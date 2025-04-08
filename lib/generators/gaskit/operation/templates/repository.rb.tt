@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+class <%= @repository_class_name %> < Gaskit::Repository
+  model <%= @model_name %>
+
+  # Define additional methods here as needed
+end
