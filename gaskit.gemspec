@@ -3,7 +3,7 @@
 require_relative "lib/gaskit/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "gasket"
+  spec.name          = "gaskit"
   spec.version       = Gaskit::VERSION
   spec.authors       = ["Nathan Lucas"]
   spec.email         = ["bnlucas@outlook.com"]
