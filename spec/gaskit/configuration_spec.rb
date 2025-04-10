@@ -62,14 +62,14 @@ RSpec.describe Gaskit::Configuration do
     let(:result_class) { Class.new(Gaskit::OperationResult) }
 
     it "registers and fetches a contract" do
-      config.register_contract(:test, result_class)
-      expect(config.fetch_contract(:test)).to eq(result_class)
-      expect(config.contract_registered?(:test)).to be true
+      config.contracts.register(:test, result_class)
+      expect(config.contracts.fetch(:test)).to eq(result_class)
+      expect(config.contracts.registered?(:test)).to be true
     end
 
     it "lists all contracts" do
-      config.register_contract(:foo, result_class)
-      expect(config.registered_contracts).to include(foo: result_class)
+      config.contracts.register(:foo, result_class)
+      expect(config.contracts.registered).to include(foo: result_class)
     end
   end
 end

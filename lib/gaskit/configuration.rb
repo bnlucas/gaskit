@@ -2,6 +2,9 @@
 
 require "logger"
 
+require_relative "contract_registry"
+require_relative "hook_registry"
+
 module Gaskit
   # Gaskit::Configuration holds global configuration for the Gaskit gem.
   #
@@ -58,6 +61,7 @@ module Gaskit
       @disable_logging = false
       @context_provider = -> { {} }
       @contract_registry = ContractRegistry.new
+      @hook_registry = HookRegistry.new
 
       setup_logger
     end
@@ -104,41 +108,18 @@ module Gaskit
       @context_provider = provider
     end
 
-    # Registers a contract with a name and associated result class.
+    # Returns the ContractRegistry instance.
     #
-    # @param name [Symbol, String] The name of the contract.
-    # @param result_class [Class] The class that represents the result for the contract.
-    # @param override [Boolean] Whether to override an existing contract (default: false).
-    # @raise [Gaskit::ContractError] If the contract is already registered and override is not allowed.
-    # @raise [Gaskit::ResultTypeError] If the result_class does not inherit from `Gaskit::OperationResult`.
-    # @return [void]
-    def register_contract(name, result_class, override: false)
-      @contract_registry.register(name, result_class, override: override)
+    # @return [Gaskit::ContractRegistry] The ContractRegistry instance.
+    def contracts
+      @contract_registry
     end
 
-    # Fetches a registered contract's result class by its name.
+    # Returns the HookRegistry instance.
     #
-    # @param name [Symbol, String] The name of the contract.
-    # @return [Class] The result class associated with the contract.
-    # @raise [Gaskit::ContractError] If the contract is not registered.
-    def fetch_contract(name)
-      @contract_registry.fetch(name)
-    end
-
-    # Checks if a contract is registered.
-    #
-    # @param name [Symbol, String] The name of the contract.
-    # @return [Boolean] true if the contract is registered, otherwise false.
-    def contract_registered?(name)
-      @contract_registry.registered?(name)
-    end
-
-    # Lists all registered contracts.
-    #
-    # @return [Hash<Symbol, Class>] A hash of all registered contracts where keys are
-    #   contract names and values are their corresponding result classes.
-    def registered_contracts
-      @contract_registry.all
+    # @return [Gaskit::HookRegistry] The HookRegistry instance.
+    def hooks
+      @hook_registry
     end
   end
 end

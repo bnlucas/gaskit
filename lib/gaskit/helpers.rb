@@ -25,6 +25,21 @@ module Gaskit
           result[k.to_sym] = compacted unless compacted.nil?
         end
       end
+
+      # Resolves the provide class's name.
+      #
+      # @param source [Class, Object, String, Symbol]
+      # @return [String] The resolved class name.
+      def resolve_name(source)
+        case source
+        when String, Symbol
+          source.to_s
+        when Class
+          source.name
+        else
+          source.class.name
+        end
+      end
     end
   end
 end

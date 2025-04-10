@@ -55,7 +55,7 @@ RSpec.describe Gaskit::OperationResult do
   describe "#inspect" do
     it "returns a string with value and duration" do
       result = described_class.new(true, 42, nil, duration: 0.1)
-      expect(result.inspect).to include("success=true")
+      expect(result.inspect).to include("status=success")
       expect(result.inspect).to include("value=42")
       expect(result.inspect).to include("duration=0.100000")
     end

@@ -10,7 +10,7 @@ module Gaskit
   #   end
   class ServiceResult < OperationResult; end
 
-  Gaskit.register_contract(:service, ServiceResult)
+  Gaskit.contracts.register(:service, ServiceResult)
 
   # A base class for service-style operations.
   #

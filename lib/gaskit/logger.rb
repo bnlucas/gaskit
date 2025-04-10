@@ -123,10 +123,11 @@ module Gaskit
         lambda do |severity, time, _progname, msg|
           message, context = extract_message_and_context(msg)
           context ||= {}
+          class_name = context.delete(:class)
 
           tags = %W[[#{time.utc.iso8601}] [#{severity}]]
-          tags << "[#{context[:class]}]" if context[:class]
-          tags += context.map { |k, v| "[#{k}=#{v}]" }
+          tags << "[#{class_name}]" if class_name
+          tags += flatten_context(context).map { |k, v| "[#{k}=#{v}]" }
 
           "#{tags.join(" ")} #{message}\n"
         end
@@ -143,18 +144,43 @@ module Gaskit
 
         [msg.to_s, {}]
       end
+
+      # Recursively flattens a nested hash by concatenating keys using underscores.
+      #
+      # @example
+      #   flatten_context({ a: { b: 1, c: { d: 2 } } })
+      #   # => { "a_b" => 1, "a_c_d" => 2 }
+      #
+      # @param hash [Hash] The hash to flatten.
+      # @param prefix [String, nil] The prefix to prepend to keys (used during recursion).
+      # @return [Hash] A flat hash with underscore-separated keys.
+      def flatten_context(hash, prefix = nil)
+        result = {}
+
+        hash.each do |key, value|
+          full_key = prefix ? "#{prefix}_#{key}" : key.to_s
+
+          if value.is_a?(Hash)
+            result.merge!(flatten_context(value, full_key))
+          else
+            result[full_key] = value
+          end
+        end
+
+        result
+      end
     end
 
     attr_reader :context
 
     # Initializes a new logger instance.
     #
-    # @param klass [Class] The name of the class being logged.
+    # @param klass [Class, Object, String, Symbol] The name of the class being logged.
     # @param context [Hash] Optional additional context to include in every log entry.
     def initialize(klass, context: {})
-      @class_name = resolve_name(klass)
-      @context = apply_context(context)
+      @class_name = Gaskit::Helpers.resolve_name(klass)
 
+      @context = apply_context(context).merge(class: @class_name)
       @logger = Gaskit.configuration.logger || ::Logger.new($stdout)
     rescue StandardError
       ::Logger.new($stdout).error "Failed to initialize logger: #{$ERROR_INFO}"
@@ -225,20 +251,6 @@ module Gaskit
     end
 
     private
-
-    # Resolves the class name provided when instantiating the logger.
-    #
-    # @return [String] The resolved class name.
-    def resolve_name(source)
-      case source
-      when String, Symbol
-        source.to_s
-      when Class
-        source.name
-      else
-        source.class.name
-      end
-    end
 
     def apply_context(context)
       default_context = Gaskit.configuration.context_provider.call

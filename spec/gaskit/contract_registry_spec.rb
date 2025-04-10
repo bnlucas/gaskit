@@ -103,14 +103,14 @@ RSpec.describe Gaskit::ContractRegistry do
       registry.register(:one, valid_result_class)
       registry.register(:two, valid_result_class)
 
-      all_contracts = registry.all
+      all_contracts = registry.registered
       expect(all_contracts).to include(:one, :two)
       expect(all_contracts[:one]).to eq(valid_result_class)
     end
 
     it "returns a shallow copy" do
       registry.register(:test, valid_result_class)
-      copy = registry.all
+      copy = registry.registered
       copy[:test] = :something_else
       expect(registry.fetch(:test)).to eq(valid_result_class)
     end

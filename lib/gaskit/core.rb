@@ -30,35 +30,18 @@ module Gaskit
       Gaskit.configuration.debug
     end
 
-    # Registers a new operation contract.
+    # Returns configuration.contracts.
     #
-    # @param name [Symbol, String] Contract name
-    # @param result_class [Class<Gaskit::OperationResult>] Result class for the operation
-    def register_contract(name, result_class, override: false)
-      configuration.register_contract(name, result_class, override: override)
+    # @return [Gaskit::ContractRegistry] The ContractRegistry instance.
+    def contracts
+      configuration.contracts
     end
 
-    # Fetches the result and exit classes for the given contract name.
+    # Returns configuration.hooks.
     #
-    # @param name [Symbol, String]
-    # @return [Class]
-    def fetch_contract(name)
-      configuration.fetch_contract(name)
-    end
-
-    # Returns whether the contract is registered.
-    #
-    # @param name [Symbol, String]
-    # @return [Boolean]
-    def contract_registered?(name)
-      configuration.contract_registered?(name)
-    end
-
-    # Returns all registered contracts.
-    #
-    # @return [Hash{Symbol=>Hash}]
-    def registered_contracts
-      configuration.registered_contracts
+    # @return [Gaskit::HookRegistry] The HookRegistry instance.
+    def hooks
+      configuration.hooks
     end
   end
 end

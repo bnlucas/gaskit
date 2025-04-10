@@ -10,6 +10,7 @@ Gaskit is a flexible, pluggable, and structured operations framework for Ruby an
 - 🧪 Built-in error declarations and early exits via `exit(:key)`
 - ⏱ Integrated duration tracking and structured logging
 - 🧰 Generators for Rails to scaffold operations, services, queries, flows, and repositories
+- 🪝 Hook system for before/after/around instrumentation and auditing
 
 ## 📦 Installation
 
@@ -98,6 +99,35 @@ end
 result = CheckoutFlow.call(user_id: 123)
 ```
 
+## 🪝 Hooks
+
+Use `use_hooks` to activate instrumentation:
+
+```ruby
+class HookedOp < Gaskit::Operation
+  use_contract :service
+  use_hooks :audit
+
+  before do |op|
+    op.logger.info("Starting operation")
+  end
+
+  after do |op, result:, error:|
+    op.logger.info("Finished with result=#{result.inspect} error=#{error.inspect}")
+  end
+
+  def call
+    "hello"
+  end
+end
+```
+
+Register global hooks via:
+
+```ruby
+Gaskit.hooks.register(:before, :audit) { |op| puts "Before: #{op.class}" }
+```
+
 ## 🧪 Generators
 
 ```bash
@@ -124,7 +154,7 @@ You can define contracts using registered result types:
 ```ruby
 class MyResult < Gaskit::OperationResult; end
 
-Gaskit.register_contract(:custom, MyResult)
+Gaskit.contracts.register(:custom, MyResult)
 
 class CustomOp < Gaskit::Operation
   use_contract :custom
@@ -146,7 +176,7 @@ end
 ```ruby
 class UserRepository < Gaskit::Repository
   model User
-  
+
   def find_by_name_or_slug(name, profile_slug)
     where(name: name).or(where(profile_slug: profile_slug))
   end

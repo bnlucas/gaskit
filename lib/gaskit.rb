@@ -27,7 +27,7 @@ require_relative "gaskit/railtie" if defined?(Rails::Railtie)
 #   end
 #
 # @example Registering a contract
-#   Gaskit.register_contract(:service, MyResultClass)
+#   Gaskit.contracts.register(:service, MyResultClass)
 #
 # @example Defining a service
 #   class MyService < Gaskit::Service

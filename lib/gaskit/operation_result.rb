@@ -30,11 +30,11 @@ module Gaskit
 
     # Initializes a new instance of OperationResult.
     #
-    # @param [Boolean] success Whether the operation was successful.
-    # @param [Object, nil] value The value obtained as a result of the operation.
-    # @param [Exception, nil] error The error encountered during the operation.
-    # @param [Float, String] duration The time taken to complete the operation in seconds.
-    # @param [Hash] context Optional context metadata for this operation.
+    # @param success [Boolean] Whether the operation was successful.
+    # @param value [Object, nil] The value obtained as a result of the operation.
+    # @param error [StandardError, nil] The error encountered during the operation.
+    # @param duration [Float, String] The time taken to complete the operation in seconds.
+    # @param context [Hash] Optional context metadata for this operation.
     def initialize(success, value, error, duration:, context: {})
       @success = success
       @value = value
@@ -47,7 +47,7 @@ module Gaskit
     #
     # @return [String] The formatted inspection string.
     def inspect
-      "#<#{self.class.name} success=#{success?} value=#{value.inspect} duration=#{duration}>"
+      "#<#{self.class.name} status=#{status} value=#{value.inspect} duration=#{duration}>"
     end
 
     # Indicates whether the operation was successful.

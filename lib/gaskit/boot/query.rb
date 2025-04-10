@@ -12,7 +12,7 @@ module Gaskit
   #   end
   class QueryResult < OperationResult; end
 
-  Gaskit.register_contract(:query, QueryResult)
+  Gaskit.contracts.register(:query, QueryResult)
 
   # A base class for query-style operations.
   #

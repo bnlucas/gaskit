@@ -16,7 +16,7 @@ RSpec.describe Gaskit do
       c.setup_logger(Logger.new(logs), level: Logger::DEBUG)
       c.context_provider = -> { { global: true } }
       c.disable_logging = false
-      c.register_contract(:dummy_type, result_class, override: true)
+      c.contracts.register(:dummy_type, result_class, override: true)
     end
 
     klass = Class.new(Gaskit::Operation) do

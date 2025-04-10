@@ -18,7 +18,7 @@ RSpec.describe Gaskit::OperationExit do
       error = described_class.new(:not_found)
 
       expect(error.key).to eq(:not_found)
-      expect(error.message).to eq("not_found")
+      expect(error.message).to eq("early exit")
     end
   end
 

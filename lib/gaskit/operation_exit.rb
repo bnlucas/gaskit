@@ -31,9 +31,13 @@ module Gaskit
     # @param message [String, nil] A human-readable message (defaults to key if not provided)
     # @param code [String, nil] A structured error code for analytics or debugging
     def initialize(key, message = nil, code: nil)
-      super(message || key.to_s)
+      super(message || "early exit")
       @key = key
       @code = code
+    end
+
+    def inspect
+      "#<#{self.class} key=#{key.inspect} message=#{message.inspect} code=#{code.inspect}>"
     end
   end
 end

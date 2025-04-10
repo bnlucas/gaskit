@@ -60,7 +60,7 @@ module Gaskit
     def fetch(name)
       @contracts.fetch(name.to_sym) do
         raise Gaskit::ContractError, "Contract #{name} not registered, register it with " \
-                                     "Gaskit.configuration.register_contract(name, result_class)"
+                                     "Gaskit.configuration.contracts.register(name, result_class)"
       end
     end
 
@@ -68,7 +68,7 @@ module Gaskit
     #
     # @return [Hash<Symbol, Class>] A hash of all registered contracts where keys are
     #   contract names and values are their corresponding result classes
-    def all
+    def registered
       @contracts.dup
     end
   end

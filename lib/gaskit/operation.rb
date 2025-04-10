@@ -4,16 +4,14 @@ require_relative "core"
 require_relative "operation_result"
 require_relative "operation_exit"
 require_relative "helpers"
+require_relative "hookable"
 
 module Gaskit
   # The Gaskit::Operation class defines a structured and extensible pattern for building application operations.
   # It enforces consistent behavior across operations while supporting customization via contracts.
   #
   # # Features
-  # - Pluggable contracts via `use_contract`, allowing you to define or reference a `result` and
-  #   `early_exit` class.
-  # - A **contract** is a pairing of a result and early_exit class, either manually defined or registered
-  #   under a symbol.
+  # - Pluggable contracts via `use_contract`, allowing you to define or reference a `result` class.
   # - Integrated duration tracking, structured logging, and early exits.
   # - Supports `.call` (non-raising) and `.call!` (raising) styles.
   #
@@ -50,6 +48,8 @@ module Gaskit
   #
   # @abstract Subclass this and define `#call` or `#call!` to create a new operation.
   class Operation
+    include Gaskit::Hookable
+
     class << self
       def result_class
         return @result_class if defined?(@result_class) && @result_class
@@ -58,30 +58,26 @@ module Gaskit
         nil
       end
 
-      # Defines the result and early exit classes for this operation.
-      # Can reference a named contract registered in `Gaskit::Registry`, override either part manually,
-      # or define both without using a named contract.
+      # Defines the result class for this operation.
+      # Can reference a named contract registered in `Gaskit::Registry`, or define one without
+      # using a registered contract.
       #
       # @example Use a registered contract
       #   use_contract :service
       #
-      # @example Override only result class
-      #   use_contract :service, result: CustomResult
-      #
-      # @example Define both without using a contract name
-      #   use_contract result: CustomResult, early_exit: CustomExit
+      # @example Define a contract that has not been registered
+      #   use_contract result: CustomResult
       #
       # @param contract [Symbol, nil] A registered contract name (e.g., `:service`)
       # @param result [Class, nil] A class that inherits from `Gaskit::BaseResult`
       # @raise [ArgumentError] if contract is not a symbol or unexpected args are passed
       # @raise [ResultTypeError] if `result` is not a subclass of `Gaskit::BaseResult`
-      # @raise [EarlyExitTypeError] if `early_exit` is not a subclass of `Gaskit::BaseExit`
       # @return [void]
       def use_contract(contract = nil, result: nil)
         if contract
           raise ArgumentError, "use_contract must be called with a symbol or keyword args" unless contract.is_a?(Symbol)
 
-          result = Gaskit.fetch_contract(contract)
+          result = Gaskit.contracts.fetch(contract)
         end
 
         Gaskit::ContractRegistry.verify_result_class!(result)
@@ -98,6 +94,10 @@ module Gaskit
       # @param code [String, nil] Optional error code.
       # @return [void]
       def error(key, message, code: nil)
+        raise ArgumentError, "Error key must be a symbol or a string, received #{key}" unless key.is_a?(Symbol)
+        raise ArgumentError, "Error message must be a string" unless message.is_a?(String)
+        raise ArgumentError, "Error key :#{key} is already registered" if errors_registry.key?(key)
+
         errors_registry[key.to_sym] = { message: message, code: code }
       end
 
@@ -108,24 +108,24 @@ module Gaskit
         @errors_registry ||= {}
       end
 
-      # Execute the operation without raising an exception on failure.
+      # Executes the operation with soft-failure handling
       #
-      # @param [Array] args Positional arguments passed.
-      # @param [Hash] kwargs Keyword arguments passed (with optional :context).
-      # @yield [Block] Additional block logic to pass during the operation.
-      # @return [OperationResult] The result of the operation.
-      def call(*args, **kwargs, &block)
-        invoke(false, *args, **kwargs, &block)
+      # @param args [Array] Positional arguments for the first step
+      # @param context [Hash] Shared context across all steps
+      # @param kwargs [Hash] Keyword arguments for the first step
+      # @return [Gaskit::OperationResult]
+      def call(*args, context: {}, **kwargs, &block)
+        invoke(false, context, *args, **kwargs, &block)
       end
 
-      # Execute the operation with raising an exception on failure.
+      # Executes the operation with hard-failure handling (raises on unhandled errors)
       #
-      # @param [Array] args Positional arguments passed.
-      # @param [Hash] kwargs Keyword arguments passed (with optional :context).
-      # @yield [Block] Additional block logic to pass during the operation.
-      # @return [OperationResult] The result of the operation.
-      def call!(*args, **kwargs, &block)
-        invoke(true, *args, **kwargs, &block)
+      # @param args [Array] Positional arguments for the first step
+      # @param context [Hash] Shared context across all steps
+      # @param kwargs [Hash] Keyword arguments for the first step
+      # @return [Gaskit::OperationResult]
+      def call!(*args, context: {}, **kwargs, &block)
+        invoke(true, context, *args, **kwargs, &block)
       end
 
       private
@@ -138,21 +138,26 @@ module Gaskit
       # @yield [Block] Additional block logic during execution.
       # @raise [NotImplementedError] If operation type is not set in subclasses.
       # @return [OperationResult] The result of the operation.
-      def invoke(raise_on_failure, *args, **kwargs, &block)
+      def invoke(raise_on_failure, context, *args, **kwargs, &block)
         unless result_class
           raise NotImplementedError, "No result_class defined for #{name} or its ancestors. " \
                                      "Did you forget to call `use_contract`?"
         end
 
-        context = kwargs.delete(:context) || {}
         operation = new(raise_on_failure, context: context)
         duration, (result, error) = execute(operation, *args, **kwargs, &block)
 
-        operation.logger.debug(context: { duration: duration }) do
-          "Operation completed in #{duration} seconds"
+        result = build_result(result, error, duration, operation.context)
+
+        begin
+          operation.apply_after_hooks(result)
+        rescue StandardError => e
+          result = handle_after_hook_error(operation, result, e, duration)
         end
 
-        result_class.new(error.nil?, result, error, duration: duration, context: context)
+        log_execution_debug(operation, duration)
+
+        result
       end
 
       # Executes the operation logic and handles potential exceptions.
@@ -164,16 +169,40 @@ module Gaskit
       # @return [Array] The execution duration, result, and error if any.
       def execute(operation, *args, **kwargs, &block)
         Helpers.time_execution do
-          [operation.call(*args, **kwargs, &block), nil]
-        rescue StandardError => e
-          if e.is_a?(Gaskit::OperationExit)
-            log_exit(operation, e)
-          else
-            log_exception(operation, e)
-            raise e if operation.raise_on_failure
-
+          operation.apply_hooks(:before, :around) do
+            [operation.call(*args, **kwargs, &block), nil]
           end
-          [nil, e]
+        rescue StandardError => e
+          handle_execution_error(operation, e)
+        end
+      end
+
+      # Builds an OperationResult instance.
+      #
+      # @param [Object, nil] result The result of the operation.
+      # @param [StandardError] error The error, if any.
+      # @param [Float] duration The duration of the operation.
+      # @param [Gaskit::Context] context The operation context.
+      # @return [OperationResult]
+      def build_result(result, error, duration, context)
+        result_class.new(
+          error.nil?,
+          result,
+          error,
+          duration: duration,
+          context: context
+        )
+      end
+
+      # Logs execution information about the operation if Gaskit.debug? == true.
+      #
+      # @param [Gaskit::Operation] operation The operation instance.
+      # @param [Float] duration The operation's duration.
+      def log_execution_debug(operation, duration)
+        return unless Gaskit.debug?
+
+        operation.logger.debug(context: { duration: duration }) do
+          "Operation completed in #{duration} seconds"
         end
       end
 
@@ -189,16 +218,40 @@ module Gaskit
       # Logs any unhandled exception during the operation.
       #
       # @param [Gaskit::Operation] operation The operation instance.
-      # @param [Exception] exception The raised exception.
+      # @param [StandardError] exception The raised exception.
       # @return [void]
       def log_exception(operation, exception)
         operation.logger.error { "[#{exception.class}] #{exception.message}" }
         operation.logger.error { exception.backtrace&.join("\n") }
       end
 
-      # @return [String] The name of the operation class (e.g., "MyOperation").
-      def operation_name
-        @operation_name ||= self.class.name.to_s
+      # Handles exceptions during execution.
+      #
+      # @param [Gaskit::Operation] operation The operation instance.
+      # @param [StandardError] error The raised error.
+      # @return [Array] The result and the error.
+      def handle_execution_error(operation, error)
+        if error.is_a?(Gaskit::OperationExit)
+          log_exit(operation, error)
+        else
+          log_exception(operation, error)
+          raise error if operation.raise_on_failure?
+        end
+
+        [nil, error]
+      end
+
+      # Handles errors raised after executing hooks.
+      #
+      # @param [Gaskit::Operation] operation The operation instance.
+      # @param [OperationResult] result The current operation result.
+      # @param [StandardError] error The encountered error.
+      # @param [Float] duration The execution duration.
+      def handle_after_hook_error(operation, result, error, duration)
+        log_exception(operation, error)
+        raise error if operation.raise_on_failure?
+
+        build_result(result, error, duration, operation.context)
       end
     end
 
@@ -212,16 +265,15 @@ module Gaskit
     def initialize(raise_on_failure, context: {})
       @raise_on_failure = raise_on_failure
       @context = apply_context(context)
-      @logger = Gaskit::Logger.new(self.class, context: @context)
+      @logger = Gaskit::Logger.new(self, context: @context)
+
+      return unless self.class.result_class.nil?
+
+      raise Gaskit::Error, "No result_class defined for #{self.class.name} or its ancestors."
     end
 
-    # Applies global context, if set, from Gaskit.configuration.context_provider.
-    #
-    # @param context [Hash] The context provided directly to the Flow.
-    # @return [Hash] The fully applied context Hash.
-    def apply_context(context)
-      default_context = Gaskit.configuration.context_provider.call
-      Helpers.deep_compact(default_context.merge(context))
+    def raise_on_failure?
+      @raise_on_failure
     end
 
     # Executes the operation logic.
@@ -239,22 +291,34 @@ module Gaskit
     # If the key was previously registered via `self.error`, it uses the declared message and code.
     # Otherwise, it uses the key as the message.
     #
-    # @param exit_key [Symbol] The symbolic reason for exiting.
+    # @param error_key [Symbol] The symbolic reason for exiting.
     # @param message [String, nil] Optional message override.
+    # @param code [String, nil] Optional error code.
     # @raise [OperationExit] always raises an instance with message and optional code
-    def exit(exit_key, message = nil)
-      exit_key = exit_key.to_sym
-      definition = self.class.errors_registry[exit_key]
+    def exit(error_key, message = nil, code: nil)
+      error_key = error_key.to_sym
+      definition = self.class.errors_registry.fetch(error_key, nil)
 
       if definition
         message ||= definition[:message]
-        code = definition[:code]
+        code ||= definition[:code]
       end
 
-      raise OperationExit.new(exit_key, message, code: code)
+      raise OperationExit.new(error_key, message, code: code)
     end
 
     # @see #exit
     alias abort exit
+
+    private
+
+    # Applies global context, if set, from Gaskit.configuration.context_provider.
+    #
+    # @param context [Hash] The context provided directly to the Flow.
+    # @return [Hash] The fully applied context Hash.
+    def apply_context(context = {})
+      default_context = Gaskit.configuration.context_provider.call
+      Helpers.deep_compact(default_context.merge(context))
+    end
   end
 end

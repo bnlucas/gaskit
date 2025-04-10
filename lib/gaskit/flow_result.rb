@@ -15,21 +15,28 @@ module Gaskit
     attr_reader :steps
 
     # Initializes a new FlowResult
-    #
-    # @param result [Gaskit::OperationResult] The final operation result
-    # @param steps [Array<Hash>] Step-by-step execution details
-    # @param duration [Float, String] Total flow duration
-    # @param context [Hash] Execution context
-    def initialize(result, steps, duration:, context: {})
+    # .
+    # @param success [Boolean] If the flow was successful or not
+    # @param value [Object, nil] The final operation result
+    # @param error [StandardError, nil] The error encountered during the operation.
+    # @param options [Hash] Keyword arguments
+    # @option options [Array<Hash>] :steps Step-by-step execution details
+    # @option options [Float, String] :duration Total flow duration
+    # @option options [Hash] Execution context
+    def initialize(success, value, error = nil, **options)
       super(
-        result.success?,
-        result.value,
-        result.error,
-        duration: duration,
-        context: context
+        success,
+        value,
+        error,
+        duration: options[:duration],
+        context: options[:context]
       )
 
-      @steps = steps
+      @steps = options.fetch(:steps, [])
+    end
+
+    def to_h
+      super.merge(steps: steps)
     end
   end
 end
