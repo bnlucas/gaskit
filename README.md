@@ -195,6 +195,10 @@ logger = Gaskit::Logger.new(self.class)
 logger.info("Started process", context: { user_id: 1 })
 ```
 
+## Planned Features
+
+- Caching Flow operations to provide replaying and resume on failure.
+
 ## 🤝 Contributing
 
 Bug reports and pull requests are welcome! Feel free to fork, extend, and share improvements.

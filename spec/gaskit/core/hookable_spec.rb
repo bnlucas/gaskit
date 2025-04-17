@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require "concurrent"
-require "gaskit/hookable"
+require "gaskit/core/hookable"
 
-RSpec.describe Gaskit::Hookable do
+RSpec.describe Gaskit::Core::Hookable do
   let(:dummy_class) do
     Class.new do
-      include Gaskit::Hookable
+      include Gaskit::Core::Hookable
     end
   end
 

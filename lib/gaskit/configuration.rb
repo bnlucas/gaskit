@@ -4,59 +4,57 @@ require "logger"
 
 require_relative "contract_registry"
 require_relative "hook_registry"
+require_relative "stores/memory_store"
+require_relative "stores/redis_store"
 
 module Gaskit
   # Gaskit::Configuration holds global configuration for the Gaskit gem.
   #
-  # It allows customization of logging behavior, including:
-  # - Log level (`log_level`)
-  # - Custom logger (`logger`)
-  # - Disabling logging entirely (`disable_logging`)
-  # - Structured or custom log formatting (`log_formatter`)
-  # - Debug mode (`debug`)
+  # It allows customization of behavior including:
+  # - Debug mode and structured logging
+  # - Custom loggers, levels, and formatters
+  # - Global context injection
+  # - Cache store configuration
   #
-  # @example Configuring Gaskit in an initializer
+  # @example Configuring Gaskit
   #   Gaskit.config do |c|
   #     c.debug = true
-  #     c.disable_logging = false
+  #     c.context_provider = -> { { request_id: SecureRandom.uuid } }
+  #     c.cache_store :redis, connection: Redis.new
   #
-  #     c.context_provider = -> {
-  #       {
-  #         tenant_id: Current.tenant_id,
-  #         user_id: Current.user_id
-  #       }
-  #     }
-  #
-  #     # Optionally replace the logger
-  #     custom_logger = Logger.new("log/gaskit.log")
-  #     c.setup_logger(custom_logger, level: :info, formatter: ->(severity, time, _progname, msg) {
-  #       message, context = msg.is_a?(Array) ? msg : [msg, {}]
-  #       "[#{time.strftime('%Y-%m-%d %H:%M:%S')} #{severity}] #{message} (#{context.inspect})\n"
+  #     c.setup_logger(Logger.new($stdout), level: :info, formatter: ->(severity, time, _, msg) {
+  #       "[#{time}] #{severity}: #{msg}\n"
   #     })
   #   end
   class Configuration
+    # Whether to raise an error when the cache store is not defined, or fallback to :memory.
+    # @return [Boolean] true to raise an error, otherwise, false
+    attr_accessor :enforce_cache_store
+
     # @return [Boolean] Whether debug mode is enabled.
     attr_accessor :debug
 
-    # @return [Boolean] Whether to completely suppress log output.
+    # @return [Boolean] Whether to suppress all logging output.
     attr_accessor :disable_logging
 
-    # @return [Logger] The logger instance used internally by Gaskit.
+    # @return [Logger] The logger used internally by Gaskit.
     attr_reader :logger
 
-    # @return[#call] A callable to apply a global context used for all log entries.
+    # @return [#call] Proc/lambda returning global context (e.g., tenant_id, user_id).
     attr_reader :context_provider
 
-    # Initializes the configuration with default settings.
+    # Initializes the configuration with defaults.
     #
-    # The configuration includes:
-    # - Default environment set to `"development"`
-    # - Debug mode disabled
-    # - Logging to stdout
-    # - Default log level set to ::Logger::DEBUG
-    # - An empty base context hash
-    # - A new `ContractRegistry` instance for contract management
+    # Sets:
+    # - enforce_cache_store: true
+    # - debug: false
+    # - disable_logging: false
+    # - context_provider: -> { {} }
+    # - cache_store: memory
+    # - default logger: Logger.new($stdout)
     def initialize
+      @enforce_cache_store = true
+
       @debug = false
       @disable_logging = false
       @context_provider = -> { {} }
@@ -66,23 +64,25 @@ module Gaskit
       setup_logger
     end
 
-    # Sets the logger, formatter, and level in one go.
+    # Configures and installs the logger.
     #
-    # @param custom_logger [::Logger, nil] An optional custom logger.
-    # @param level [Symbol, Integer] Log level (e.g., :debug, Logger::WARN)
-    # @param formatter [Proc] Custom formatter for log entries.
+    # @param custom_logger [::Logger, nil] A custom logger instance.
+    # @param level [Symbol, Integer] Log level (e.g., :debug, Logger::WARN).
+    # @param formatter [Proc, nil] Optional custom formatter.
+    # @return [void]
     def setup_logger(custom_logger = nil, level: :debug, formatter: nil)
       @logger = custom_logger || ::Logger.new($stdout)
-
       effective_formatter = formatter || @logger&.formatter || Gaskit::Logger.formatter(:pretty)
+
       self.log_formatter = effective_formatter if effective_formatter.respond_to?(:call)
       self.log_level = level
     end
 
-    # Sets the logging level.
+    # Sets the log level for the logger.
     #
-    # @param level [Symbol, Integer] The log level (e.g., :info, :debug, or Logger::WARN).
-    # @raise [NameError] If the provided level is a symbol, and it does not map to a valid Logger constant.
+    # @param level [Symbol, Integer] Symbol (e.g. :info) or constant (e.g. Logger::INFO).
+    # @raise [NameError] If symbol does not map to a valid Logger constant.
+    # @return [void]
     def log_level=(level)
       level = ::Logger.const_get(level.upcase) if level.is_a?(Symbol)
       @logger.level = level
@@ -90,36 +90,83 @@ module Gaskit
 
     # Sets a custom log formatter.
     #
-    # @param formatter [#call] A callable object that receives log arguments (severity, time, progname, msg).
-    # @raise [ArgumentError] If the provided formatter is not callable.
+    # @param formatter [#call] A callable formatter accepting (severity, time, progname, message).
+    # @raise [ArgumentError] If not a callable object.
+    # @return [void]
     def log_formatter=(formatter)
       raise ArgumentError, "Formatter must be callable" unless formatter.respond_to?(:call)
 
       @logger.formatter = formatter
     end
 
-    # Sets the global context provider used for all log entries.
+    # Sets the global context provider.
     #
-    # @param provider [#call] A proc or lambda returning a Hash of context values.
-    # @raise [ArgumentError] If the provided callable is not callable.
+    # This callable should return a Hash used in structured logs and flows.
+    #
+    # @param provider [#call] Proc/lambda that returns a context Hash.
+    # @raise [ArgumentError] If not callable.
+    # @return [void]
     def context_provider=(provider)
       raise ArgumentError, "Provider must be callable" unless provider.respond_to?(:call)
 
       @context_provider = provider
     end
 
-    # Returns the ContractRegistry instance.
+    # Configures or returns the cache store.
     #
-    # @return [Gaskit::ContractRegistry] The ContractRegistry instance.
+    # @param type [Symbol, nil] Optional type (:redis, :memory). If nil, returns current config.
+    # @param options [Hash] Optional keyword args passed to the store class (e.g., `connection: Redis.new`).
+    # @return [Hash] The configured store and options (e.g., `{ store: RedisStore, options: {...} }`).
+    #
+    # @example Configure Redis store
+    #   config.cache_store :redis, connection: Redis.new
+    #
+    # @example Read current configuration
+    #   config.cache_store
+    def cache_store(type = nil, **options)
+      type ||= :memory
+      if type
+        store_class = resolve_cache_store(type)
+        @cache_store_config = { store: store_class, options: options }
+      end
+
+      @cache_store_config ||= { store: Gaskit::Stores::MemoryStore, options: {} } # rubocop:disable Naming/MemoizedInstanceVariableName
+    end
+
+    def register_cache_store(name, klass)
+      Gaskit::Stores.register(name, klass)
+    end
+
+    def fetch_cache_store(name)
+      Gaskit::Stores.fetch(name)
+    end
+
+    # @return [ContractRegistry] The contract registry instance.
     def contracts
       @contract_registry
     end
 
-    # Returns the HookRegistry instance.
-    #
-    # @return [Gaskit::HookRegistry] The HookRegistry instance.
+    # @return [HookRegistry] The hook registry instance.
     def hooks
       @hook_registry
+    end
+
+    private
+
+    # Resolves a cache store class from a symbolic identifier.
+    #
+    # @param type [Symbol] The type (e.g. :redis, :memory).
+    # @return [Class<Gaskit::Stores::Base>] The resolved store class.
+    # @raise [ArgumentError] If an unknown type is given.
+    def resolve_cache_store(type)
+      case type
+      when :redis
+        Gaskit::Stores::RedisStore
+      when :memory
+        Gaskit::Stores::MemoryStore
+      else
+        raise ArgumentError, "Unsupported cache_store type: #{type.inspect}"
+      end
     end
   end
 end

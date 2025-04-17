@@ -4,7 +4,7 @@ require "securerandom"
 require_relative "core"
 require_relative "flow_result"
 require_relative "helpers"
-require_relative "hookable"
+require_relative "core/hookable"
 
 module Gaskit
   # The `Gaskit::Flow` class defines and executes a pipeline of operations,
@@ -22,7 +22,7 @@ module Gaskit
   # - Shared flow-level context with metadata injection
   # - Manual stepping (`walk` and `next_step`)
   # - Rewind capability for retryable flows
-  # - Hookable lifecycle via `Gaskit::Hookable`
+  # - Hookable lifecycle via `Gaskit::Core::Hookable`
   #
   # @example Inline (block-based) flow
   #   result = Gaskit::Flow.call(1) do
@@ -54,9 +54,9 @@ module Gaskit
   #
   # @see Gaskit::Operation
   # @see Gaskit::FlowResult
-  # @see Gaskit::Hookable
+  # @see Gaskit::Core::Hookable
   class Flow
-    include Gaskit::Hookable
+    include Gaskit::Core::Hookable
 
     class << self
       # Called when a subclass is defined, initializing an empty step list.

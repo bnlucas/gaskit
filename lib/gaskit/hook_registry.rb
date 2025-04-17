@@ -4,7 +4,7 @@ module Gaskit
   # Gaskit::HookRegistry manages registration and retrieval of global hooks for
   # operation-style lifecycles (e.g., `before`, `after`, `around`).
   #
-  # Hooks are grouped by type and tag. They are used in classes that include `Gaskit::Hookable`.
+  # Hooks are grouped by type and tag. They are used in classes that include `Gaskit::Core::Hookable`.
   class HookRegistry
     def initialize
       @hooks = {

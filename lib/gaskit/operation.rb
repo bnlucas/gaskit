@@ -4,7 +4,7 @@ require_relative "core"
 require_relative "operation_result"
 require_relative "operation_exit"
 require_relative "helpers"
-require_relative "hookable"
+require_relative "core/hookable"
 
 module Gaskit
   # The Gaskit::Operation class defines a structured and extensible pattern for building application operations.
@@ -37,7 +37,7 @@ module Gaskit
   #
   # @example Fully manual contract
   #   class ManualOp < Gaskit::Operation
-  #     use_contract result: MyResult, early_exit: MyExit
+  #     use_contract result: MyResult
   #
   #     def call
   #       do_work
@@ -48,7 +48,7 @@ module Gaskit
   #
   # @abstract Subclass this and define `#call` or `#call!` to create a new operation.
   class Operation
-    include Gaskit::Hookable
+    include Gaskit::Core::Hookable
 
     class << self
       def result_class
@@ -285,6 +285,8 @@ module Gaskit
     def call(*args, **kwargs)
       raise NotImplementedError, "#{self.class.name} must implement `#call`"
     end
+
+    protected
 
     # Terminates the operation early with a symbolic key.
     #
