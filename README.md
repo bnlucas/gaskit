@@ -177,12 +177,16 @@ end
 class UserRepository < Gaskit::Repository
   model User
 
+  rls_scope do |context|
+    model.where(tenant_id: context[:tenant_id])
+  end
+
   def find_by_name_or_slug(name, profile_slug)
     where(name: name).or(where(profile_slug: profile_slug))
   end
 end
 
-users = UserRepository.where(active: true)
+users = UserRepository.with_context(tenant_id: current_user.tenant_id).where(active: true)
 user = UserRepository.find_by_name_or_slug("User", "user123")
 ```
 
