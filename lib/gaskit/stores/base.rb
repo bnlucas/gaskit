@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "cattri"
+
 module Gaskit
   module Stores
     # Abstract base class for implementing Gaskit-compatible stores.
@@ -15,11 +17,10 @@ module Gaskit
     #     end
     #   end
     class Base
-      # @return [String] The cache key namespace.
-      attr_reader :namespace
+      include Cattri
 
-      # @return [Gaskit::Logger] The logger instance used by this store.
-      attr_reader :logger
+      final_cattri :namespace, nil
+      final_cattri :logger, nil
 
       # Initializes a new store instance.
       #
@@ -29,9 +30,9 @@ module Gaskit
       def initialize(namespace, key_separator: ":", logger: nil)
         logger ||= Gaskit::Logger.new(self.class)
 
-        @namespace = namespace.freeze
+        self.namespace = namespace.freeze
         @key_separator = key_separator.freeze
-        @logger = logger
+        self.logger = logger
       end
 
       # Builds a fully-qualified namespaced key.
@@ -39,7 +40,7 @@ module Gaskit
       # @param key [String] Key suffix.
       # @return [String] Fully qualified key.
       def namespace_key(key)
-        "#{@namespace}#{@key_separator}#{key}"
+        "#{namespace}#{@key_separator}#{key}"
       end
 
       # Builds a namespaced wildcard pattern for scanning keys.
@@ -52,12 +53,12 @@ module Gaskit
 
       # Checks if a key exists (safe).
       #
-      # Wraps {#key_exists!} in a `safe_op` block, returning false on failure.
+      # Wraps {#key_exists?} in a `safe_op` block, returning false on failure.
       #
       # @param key [String] The key to check.
       # @return [Boolean] True if the key exists, false if not or on failure.
-      def key_exists?(key)
-        safe_op { key_exists!(key) } || false
+      def key_exists!(key)
+        safe_op { key_exists?(key) } || false
       end
 
       # Checks if a key exists (strict).
@@ -65,7 +66,7 @@ module Gaskit
       # @param key [String] The key to check.
       # @return [Boolean] True if the key exists.
       # @raise [NotImplementedError] Must be implemented by the subclass.
-      def key_exists!(key)
+      def key_exists?(key)
         raise NotImplementedError, "#{self.class} must implement #{__method__}"
       end
 
@@ -77,8 +78,8 @@ module Gaskit
       # @yield Executes if value is missing or `force` is true.
       # @yieldreturn [Object] The value to write and return.
       # @return [Object, nil] The cached or computed value, or nil on failure.
-      def fetch(key, force: false, **options)
-        safe_op { fetch!(key, force: force, **options) }
+      def fetch(key, default = nil, force: false, **options, &block)
+        safe_op { fetch!(key, default, force: force, **options, &block) }
       end
 
       # Strictly fetches a value from the store or computes and writes it if missing.
@@ -90,13 +91,18 @@ module Gaskit
       # @yieldreturn [Object] The value to write and return.
       # @return [Object] The cached or computed value.
       # @raise [StandardError] Any error raised during read, write, or block execution.
-      def fetch!(key, force: false, **options)
+      def fetch!(key, default = nil, force: false, **options, &block)
         unless force
           cached = read(key, **options)
-          return cached if cached
+          return cached unless cached.nil?
         end
 
-        result = yield
+        result = if block_given?
+                   block.call
+                 else
+                   default
+                 end
+
         write(key, result, **options) unless result.nil?
         result
       end

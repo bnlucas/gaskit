@@ -7,11 +7,7 @@ module Gaskit
   # Hooks are grouped by type and tag. They are used in classes that include `Gaskit::Core::Hookable`.
   class HookRegistry
     def initialize
-      @hooks = {
-        before: Hash.new { |h, k| h[k] = [] },
-        after: Hash.new { |h, k| h[k] = [] },
-        around: Hash.new { |h, k| h[k] = [] }
-      }
+      reset!
     end
 
     # Registers a new hook under a given type and tag.
@@ -27,7 +23,7 @@ module Gaskit
       raise ArgumentError, "Hook must respond to #call" unless hook.respond_to?(:call)
       raise ArgumentError, "Unknown hook type: #{type}" unless @hooks.key?(type)
 
-      @hooks[type][tag.to_sym] << hook
+      hooks[type][tag.to_sym] << hook
     end
 
     # Checks if a hook tag is registered under a specific type.
@@ -36,7 +32,7 @@ module Gaskit
     # @param tag [Symbol, String] The tag to check
     # @return [Boolean] Whether a hook with that tag exists for the given type
     def registered?(type, tag)
-      @hooks[type].key?(tag.to_sym)
+      hooks[type].key?(tag.to_sym)
     end
 
     # Fetches hooks for the given type, filtered by tags.
@@ -46,9 +42,9 @@ module Gaskit
     #   returns all hooks of that type.
     # @return [Array<#call>] An array of callable hooks
     def fetch(type, tags = nil)
-      return @hooks[type].values.flatten if tags.nil? || tags.empty?
+      return hooks[type].values.flatten if tags.nil? || tags.empty?
 
-      (tags || []).flat_map { |tag| @hooks[type][tag.to_sym] }
+      (tags || []).flat_map { |tag| hooks[type][tag.to_sym] }
     end
 
     # Returns all registered tags for a given hook type.
@@ -56,7 +52,28 @@ module Gaskit
     # @param type [Symbol] The hook type (`:before`, `:after`, or `:around`)
     # @return [Array<Symbol>] List of registered tags under that type
     def registered_tags(type)
-      @hooks[type].keys
+      hooks[type].keys
+    end
+
+    # Clears all hooks (useful in tests).
+    #
+    # @return [void]
+    def reset!
+      @hooks = {
+        before: Hash.new { |h, k| h[k] = [] },
+        after: Hash.new { |h, k| h[k] = [] },
+        around: Hash.new { |h, k| h[k] = [] }
+      }
+    end
+
+    private
+
+    def hooks
+      @hooks ||= {
+        before: Hash.new { |h, k| h[k] = [] },
+        after: Hash.new { |h, k| h[k] = [] },
+        around: Hash.new { |h, k| h[k] = [] }
+      }
     end
   end
 end

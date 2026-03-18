@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe Gaskit::HookRegistry do
   let(:registry) { described_class.new }
 
@@ -79,6 +77,26 @@ RSpec.describe Gaskit::HookRegistry do
       registry.register(:around, :trace) { puts "hooked" }
 
       expect(registry.registered_tags(:around)).to contain_exactly(:timing, :trace)
+    end
+  end
+
+  describe "#reset!" do
+    it "reinitializes hook storage with default buckets" do
+      registry.register(:before, :audit) { :ok }
+      registry.reset!
+
+      expect(registry.send(:hooks)[:before][:missing]).to eq([])
+    end
+  end
+
+  describe "lazy hooks initialization" do
+    it "builds the default hook buckets when uninitialized" do
+      registry.instance_variable_set(:@hooks, nil)
+      hooks = registry.send(:hooks)
+
+      expect(hooks[:before][:missing]).to eq([])
+      expect(hooks[:after][:missing]).to eq([])
+      expect(hooks[:around][:missing]).to eq([])
     end
   end
 end

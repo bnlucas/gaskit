@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
 require "gaskit/flow"
 
 # rubocop:disable Style/Documentation
@@ -16,41 +15,6 @@ class FailureService < Gaskit::Service
   end
 end
 # rubocop:enable Style/Documentation
-
-RSpec.shared_examples "a failing hook for call" do |hook_type|
-  let(:failing_hook_class) do
-    Class.new(described_class) do
-      send(hook_type) { raise "hook failed!" }
-
-      def call(value)
-        value
-      end
-    end
-  end
-
-  it "catches the failure result" do
-    result = failing_hook_class.call(1)
-
-    expect(result).to be_failure
-    expect(result.error.message).to eq("hook failed!")
-  end
-end
-
-RSpec.shared_examples "a failing hook for call!" do |hook_type|
-  let(:failing_hook_class) do
-    Class.new(described_class) do
-      send(hook_type) { raise "hook failed!" }
-
-      def call(value)
-        value
-      end
-    end
-  end
-
-  it "raises the error" do
-    expect { failing_hook_class.call!(1) }.to raise_error(RuntimeError, "hook failed!")
-  end
-end
 
 RSpec.describe Gaskit::Flow do
   let(:dummy_class) { Class.new(described_class) }
@@ -159,7 +123,7 @@ RSpec.describe Gaskit::Flow do
       dummy_class.step SuccessService
       flow = dummy_class.walk(1)
 
-      expect(flow.next_step).to be_a(Gaskit::ServiceResult)
+      expect(flow.next_step).to be_a(Gaskit::OperationResult)
     end
   end
 
@@ -276,6 +240,22 @@ RSpec.describe Gaskit::Flow do
       result_b = flow.next_step(2)
 
       expect(flow.results).to eq([result_a.to_h, result_b.to_h])
+    end
+  end
+
+  describe "#next_step_input" do
+    let(:flow) { dummy_class.walk }
+
+    it "uses array results as next args" do
+      flow.instance_variable_set(:@result, Gaskit::OperationResult.new(true, [1, 2], nil, duration: "0"))
+
+      expect(flow.send(:next_step_input)).to eq([[1, 2], {}])
+    end
+
+    it "uses hash results as next kwargs" do
+      flow.instance_variable_set(:@result, Gaskit::OperationResult.new(true, { value: 1 }, nil, duration: "0"))
+
+      expect(flow.send(:next_step_input)).to eq([[], { value: 1 }])
     end
   end
 

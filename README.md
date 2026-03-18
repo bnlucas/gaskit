@@ -1,15 +1,14 @@
 # Gaskit
 
-Gaskit is a flexible, pluggable, and structured operations framework for Ruby and Rails applications. It provides a consistent way to implement application logic using service objects, query objects, flows, and contracts — with robust support for early exits, structured logging, duration tracking, and failure handling.
+Gaskit is a flexible, pluggable, and structured operations framework for Ruby applications. It provides a consistent way to implement application logic using service objects, query objects, flows, and contracts — with robust support for early exits, structured logging, duration tracking, and failure handling.
 
 ## ✨ Features
 
 - ✅ `Operation`, `Service`, and `Query` classes
-- 🔀 Customizable result and early exit contracts via `use_contract`
+- 🔀 Customizable result and early exit contracts via explicit `input_contract` / `output_contract`
 - 🧱 Composable multi-step flows using `Flow` DSL
 - 🧪 Built-in error declarations and early exits via `exit(:key)`
 - ⏱ Integrated duration tracking and structured logging
-- 🧰 Generators for Rails to scaffold operations, services, queries, flows, and repositories
 - 🪝 Hook system for before/after/around instrumentation and auditing
 
 ## 📦 Installation
@@ -45,18 +44,35 @@ end
 
 ## 🚀 Usage
 
+### Basic Operation (No Contracts)
+
+```ruby
+class Ping < Gaskit::Operation
+  def call
+    "pong"
+  end
+end
+
+result = Ping.call
+result.value # => "pong"
+```
+
+`Operation.call` always returns a `Gaskit::OperationResult` wrapper.
+
 ### Define an Operation
 
 ```ruby
 class MyOp < Gaskit::Operation
-  use_contract :service
+  output_contract do
+    string :status
+  end
 
   def call(user_id:)
     user = User.find_by(id: user_id)
     exit(:not_found, "User not found") unless user
     
     logger.info("Found user id=#{user_id}")
-    user
+    { status: "ok" }
   end
 end
 ```
@@ -105,7 +121,6 @@ Use `use_hooks` to activate instrumentation:
 
 ```ruby
 class HookedOp < Gaskit::Operation
-  use_contract :service
   use_hooks :audit
 
   before do |op|
@@ -128,48 +143,99 @@ Register global hooks via:
 Gaskit.hooks.register(:before, :audit) { |op| puts "Before: #{op.class}" }
 ```
 
-## 🧪 Generators
-
-```bash
-# Generate an operation
-rails generate gaskit:operation CreateUser
-
-# Generate a query
-rails generate gaskit:query FetchUsers
-
-# Generate a service
-rails generate gaskit:service RegisterAccount
-
-# Generate a flow
-rails generate gaskit:flow Checkout AddToCart ApplyDiscount FinalizeOrder
-
-# Generate a repository
-rails generate gaskit:repository User
-```
-
 ## 📂 Contracts
 
-You can define contracts using registered result types:
+Gaskit uses Castkit for input/output validation at the operation boundary.
+Input contracts run before any hooks. Output contracts run after a successful call
+and before after hooks, so after hooks observe the final `OperationResult`.
+
+### Input contracts with DTOs
 
 ```ruby
-class MyResult < Gaskit::OperationResult; end
+class UserInput < Castkit::DataObject
+  string :user_id
+  integer :limit, required: false
+end
 
-Gaskit.contracts.register(:custom, MyResult)
+class FindUser < Gaskit::Operation
+  input_contract UserInput
 
-class CustomOp < Gaskit::Operation
-  use_contract :custom
+  def call(payload:)
+    payload.user_id
+  end
 end
 ```
 
-Or override just part of the contract:
+### Output contracts with DTOs
 
 ```ruby
-class CustomResult < Gaskit::OperationResult; end
+class UserOutput < Castkit::DataObject
+  string :name
+  string :role
+end
 
-class PartialContractOp < Gaskit::Operation
-  use_contract :service, result: CustomResult
+class LoadUser < Gaskit::Operation
+  output_contract UserOutput
+
+  def call(user_id:)
+    { name: "user-#{user_id}", role: "admin" }
+  end
+end
+
+result = LoadUser.call(user_id: 42)
+result.value # => #<UserOutput ...>
+```
+
+### Input/Output validation with Castkit
+
+Optionally validate inputs and outputs using Castkit contracts or DTOs:
+
+```ruby
+class ValidateOp < Gaskit::Operation
+  input_contract do
+    string :user_id
+    integer :limit, required: false
+  end
+
+  output_contract do
+    string :status
+    hash :meta, required: false
+  end
+
+  def call(user_id:, limit: 10)
+    { status: "ok", meta: { limit: limit.to_i } }
+  end
 end
 ```
+
+`input_contract` and `output_contract` accept either a Castkit contract class, a Castkit data object, or a DSL block. Validation runs before executing `#call` (inputs) and after a successful call (outputs). Failures raise `Castkit::ContractError` (returned as a failure result for `.call`, raised for `.call!`). Input payloads are normalized (`payload:` hash, then kwargs, then a single Hash arg, else `{ args: [...] }`). Outputs are validated directly when hashes, otherwise wrapped as `{ value: result }` and unwrapped after casting.
+
+### Calling convention
+
+- If you call with kwargs (including `payload:`), the casted payload is passed as keyword args when it is a symbol-keyed Hash; otherwise it is passed as `payload:`.
+- If you call with positional args, the casted payload is passed as a single positional argument.
+
+### Failure behavior
+
+- `.call` returns a failure `OperationResult` for contract errors or raised exceptions.
+- `.call!` raises on contract errors and StandardError exceptions from `#call`.
+- `OperationExit` raised via `exit(:key, ...)` always returns an early-exit `OperationResult` for both `.call` and `.call!`.
+
+### Castkit defaults
+
+Gaskit configures Castkit with strict defaults (`enforce_typing`, `enforce_attribute_access`, `enforce_array_options`, `strict_by_default`) and registers `:any`/`:symbol` types (aliases `:object` and `:sym`).
+
+### Cache stores
+
+Gaskit ships with `Gaskit::Stores::MemoryStore` and `Gaskit::Stores::RedisStore`. Configure globally via:
+
+```ruby
+Gaskit.configure do |config|
+  config.cache_store :redis, connection: Redis.new
+end
+```
+
+Use `Gaskit::Stores.register(:name, Klass)` for custom stores. For cacheable classes, you can disable caching with `cache_store :disabled`, and `config.enforce_cache_store` controls whether missing stores raise.
 
 ## 🧱 Repositories
 

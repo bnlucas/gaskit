@@ -134,7 +134,7 @@ module Gaskit
       def should_log_execution_time?(log_level)
         return true if Gaskit.configuration.debug
         return true if log_level == :debug
-        return true if logger.respond_to?(:level) && logger.level <= Logger::DEBUG
+        return true if logger.respond_to?(:level) && logger.level <= ::Logger::DEBUG
 
         false
       end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "gaskit/castkit"
 require_relative "gaskit/version"
 require_relative "gaskit/error"
 require_relative "gaskit/operation_result"
@@ -12,8 +13,6 @@ require_relative "gaskit/core"
 require_relative "gaskit/boot/service"
 require_relative "gaskit/boot/query"
 
-require_relative "gaskit/railtie" if defined?(Rails::Railtie)
-
 # Gaskit is a lightweight, extensible framework for building structured application operations.
 #
 # It provides a clear architecture for defining, executing, and managing operations,
@@ -25,9 +24,6 @@ require_relative "gaskit/railtie" if defined?(Rails::Railtie)
 #     c.setup_logger(Logger.new(STDOUT), level: ::Logger::INFO, formatter: Gaskit::Logger.formatter(:json))
 #     c.context_provider = -> { { request_id: SecureRandom.uuid } }
 #   end
-#
-# @example Registering a contract
-#   Gaskit.contracts.register(:service, MyResultClass)
 #
 # @example Defining a service
 #   class MyService < Gaskit::Service

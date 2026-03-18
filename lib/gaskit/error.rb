@@ -9,7 +9,7 @@ module Gaskit
   class ResultTypeError < Error
     # @param [Class] klazz The class that failed the type check.
     def initialize(klazz)
-      message = "Expected result class to inherit from Gaskit::BaseResult, got: #{klazz}"
+      message = "Expected a Castkit contract or data object, got: #{klazz}"
       super(message)
     end
   end

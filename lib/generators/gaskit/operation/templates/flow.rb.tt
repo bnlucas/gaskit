@@ -1,7 +1,0 @@
-# frozen_string_literal: true
-
-class <%= class_name %>Flow < Gaskit::Flow
-<% steps.each do |step| -%>
-  step <%= step %>
-<% end -%>
-end

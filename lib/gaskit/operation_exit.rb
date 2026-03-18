@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "cattri"
+
 module Gaskit
   # OperationExit is a custom exception representing an early exit from an operation.
   #
@@ -19,11 +21,10 @@ module Gaskit
   #     puts "Exited: #{e.key} - #{e.message} (#{e.code})"
   #   end
   class OperationExit < Gaskit::Error
-    # @return [Symbol, String] The symbolic or textual reason for the early exit
-    attr_reader :key
+    include Cattri
 
-    # @return [String, nil] Optional structured code (e.g., "AUTH-001")
-    attr_reader :code
+    final_cattri :key, nil
+    final_cattri :code, nil
 
     # Initializes an OperationExit.
     #
@@ -32,8 +33,8 @@ module Gaskit
     # @param code [String, nil] A structured error code for analytics or debugging
     def initialize(key, message = nil, code: nil)
       super(message || "early exit")
-      @key = key
-      @code = code
+      self.key = key
+      self.code = code
     end
 
     def inspect

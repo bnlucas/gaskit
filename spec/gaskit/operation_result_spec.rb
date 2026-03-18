@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "spec_helper"
+require "json"
 
 RSpec.describe Gaskit::OperationResult do
   let(:value)    { "output" }
@@ -58,6 +58,13 @@ RSpec.describe Gaskit::OperationResult do
       expect(result.inspect).to include("status=success")
       expect(result.inspect).to include("value=42")
       expect(result.inspect).to include("duration=0.100000")
+    end
+  end
+
+  describe "#exception" do
+    it "returns the raw error" do
+      result = described_class.new(false, nil, error, duration: duration)
+      expect(result.exception).to eq(error)
     end
   end
 
@@ -121,6 +128,17 @@ RSpec.describe Gaskit::OperationResult do
           }
         }
       )
+    end
+  end
+
+  describe "#to_json" do
+    it "serializes the result hash to JSON" do
+      result = described_class.new(true, "ok", nil, duration: duration, context: context)
+      payload = JSON.parse(result.to_json)
+
+      expect(payload["status"]).to eq("success")
+      expect(payload["value"]).to eq("ok")
+      expect(payload["meta"]["duration"]).to eq("0.123457")
     end
   end
 end

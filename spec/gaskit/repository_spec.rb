@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe Gaskit::Repository do
   let(:model_class) do
     Class.new do
@@ -78,6 +76,38 @@ RSpec.describe Gaskit::Repository do
       expect do
         repo_class.log_execution_time { raise "boom" }
       end.to raise_error("boom")
+    end
+  end
+
+  describe ".should_log_execution_time?" do
+    let(:repo_class) { build_repo_with_model }
+
+    it "returns true when debug mode is enabled" do
+      allow(Gaskit.configuration).to receive(:debug).and_return(true)
+
+      expect(repo_class.send(:should_log_execution_time?, :info)).to be true
+    end
+
+    it "returns true for debug log level" do
+      allow(Gaskit.configuration).to receive(:debug).and_return(false)
+
+      expect(repo_class.send(:should_log_execution_time?, :debug)).to be true
+    end
+
+    it "returns true when logger level allows debug" do
+      allow(Gaskit.configuration).to receive(:debug).and_return(false)
+      logger = double("logger", level: Logger::DEBUG)
+      allow(repo_class).to receive(:logger).and_return(logger)
+
+      expect(repo_class.send(:should_log_execution_time?, :info)).to be true
+    end
+
+    it "returns false when no logging conditions are met" do
+      allow(Gaskit.configuration).to receive(:debug).and_return(false)
+      logger = double("logger", level: Logger::INFO)
+      allow(repo_class).to receive(:logger).and_return(logger)
+
+      expect(repo_class.send(:should_log_execution_time?, :info)).to be false
     end
   end
 end

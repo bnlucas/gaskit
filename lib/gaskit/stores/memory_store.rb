@@ -28,7 +28,7 @@ module Gaskit
       #
       # @param key [String] The key to check.
       # @return [Boolean] True if the key exists and is not expired.
-      def key_exists!(key)
+      def key_exists?(key)
         key = namespace_key(key)
         _, expires_at = @store[key]
 
@@ -42,7 +42,10 @@ module Gaskit
       # @return [Object, nil] A single value or a key-value hash.
       def read!(*keys, **options)
         results = read_all!(*keys, **options)
-        results.fetch(key)
+        return results if keys.size > 1
+        return nil if results.empty?
+
+        results.values.first
       end
 
       # Writes a single key-value pair into the store.
@@ -85,7 +88,7 @@ module Gaskit
       # @param ttl [Integer, nil] Time-to-live in seconds.
       # @param _options [Hash] Ignored options for compatibility.
       # @return [Boolean] Always returns true.
-      def write_all!(data, ttl: nil, **_options)
+      def write_all!(data, ttl: nil, **_options) # rubocop:disable Naming/PredicateMethod
         expires_at = ttl ? Time.now.to_f + ttl : nil
         data.each do |key, value|
           @store[namespace_key(key)] = [value, expires_at]
@@ -98,7 +101,7 @@ module Gaskit
       #
       # @param _options [Hash] Ignored options for compatibility.
       # @return [Boolean] Always returns true.
-      def flush_namespace!(**_options)
+      def flush_namespace!(**_options) # rubocop:disable Naming/PredicateMethod
         prefix = "#{namespace}:"
         @store.delete_if { |key, _| key.start_with?(prefix) }
 

@@ -68,5 +68,5 @@ Thumbs.db
 # Ignore the local config file for Overcommit.
 .overcommit.yml
 
-# Ignore generated gems
 *.gem
+.rspec_status

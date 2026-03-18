@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
+require "cattri"
 require "logger"
 
-require_relative "contract_registry"
 require_relative "hook_registry"
 require_relative "stores/memory_store"
 require_relative "stores/redis_store"
@@ -22,26 +22,17 @@ module Gaskit
   #     c.context_provider = -> { { request_id: SecureRandom.uuid } }
   #     c.cache_store :redis, connection: Redis.new
   #
-  #     c.setup_logger(Logger.new($stdout), level: :info, formatter: ->(severity, time, _, msg) {
-  #       "[#{time}] #{severity}: #{msg}\n"
-  #     })
+  #     c.setup_logger(Logger.new($stdout), level: :info, formatter: Gaskit::Logger.formatter(:pretty))
   #   end
   class Configuration
-    # Whether to raise an error when the cache store is not defined, or fallback to :memory.
-    # @return [Boolean] true to raise an error, otherwise, false
-    attr_accessor :enforce_cache_store
+    include Cattri
 
-    # @return [Boolean] Whether debug mode is enabled.
-    attr_accessor :debug
-
-    # @return [Boolean] Whether to suppress all logging output.
-    attr_accessor :disable_logging
-
-    # @return [Logger] The logger used internally by Gaskit.
-    attr_reader :logger
-
-    # @return [#call] Proc/lambda returning global context (e.g., tenant_id, user_id).
-    attr_reader :context_provider
+    cattri :enforce_cache_store, true
+    cattri :debug, false, predicate: true
+    cattri :disable_logging, false, predicate: true
+    cattri :logger, -> { ::Logger.new($stdout) }
+    # Store a callable; default returns a lambda that returns an empty hash.
+    cattri :context_provider, -> { -> { {} } }
 
     # Initializes the configuration with defaults.
     #
@@ -53,15 +44,10 @@ module Gaskit
     # - cache_store: memory
     # - default logger: Logger.new($stdout)
     def initialize
-      @enforce_cache_store = true
-
-      @debug = false
-      @disable_logging = false
-      @context_provider = -> { {} }
-      @contract_registry = ContractRegistry.new
+      super
       @hook_registry = HookRegistry.new
 
-      setup_logger
+      setup_logger(logger)
     end
 
     # Configures and installs the logger.
@@ -71,8 +57,8 @@ module Gaskit
     # @param formatter [Proc, nil] Optional custom formatter.
     # @return [void]
     def setup_logger(custom_logger = nil, level: :debug, formatter: nil)
-      @logger = custom_logger || ::Logger.new($stdout)
-      effective_formatter = formatter || @logger&.formatter || Gaskit::Logger.formatter(:pretty)
+      self.logger = custom_logger || ::Logger.new($stdout)
+      effective_formatter = formatter || logger&.formatter || Gaskit::Logger.formatter(:pretty)
 
       self.log_formatter = effective_formatter if effective_formatter.respond_to?(:call)
       self.log_level = level
@@ -85,7 +71,7 @@ module Gaskit
     # @return [void]
     def log_level=(level)
       level = ::Logger.const_get(level.upcase) if level.is_a?(Symbol)
-      @logger.level = level
+      logger.level = level
     end
 
     # Sets a custom log formatter.
@@ -96,7 +82,7 @@ module Gaskit
     def log_formatter=(formatter)
       raise ArgumentError, "Formatter must be callable" unless formatter.respond_to?(:call)
 
-      @logger.formatter = formatter
+      logger.formatter = formatter
     end
 
     # Sets the global context provider.
@@ -109,7 +95,7 @@ module Gaskit
     def context_provider=(provider)
       raise ArgumentError, "Provider must be callable" unless provider.respond_to?(:call)
 
-      @context_provider = provider
+      cattri_variable_set(:context_provider, provider)
     end
 
     # Configures or returns the cache store.
@@ -139,11 +125,6 @@ module Gaskit
 
     def fetch_cache_store(name)
       Gaskit::Stores.fetch(name)
-    end
-
-    # @return [ContractRegistry] The contract registry instance.
-    def contracts
-      @contract_registry
     end
 
     # @return [HookRegistry] The hook registry instance.

@@ -1,0 +1,3967 @@
+diff --git a/.gitignore b/.gitignore
+index c168e36..d0309a2 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -68,5 +68,5 @@ Thumbs.db
+ # Ignore the local config file for Overcommit.
+ .overcommit.yml
+ 
+-# Ignore generated gems
+-*.gem
+\ No newline at end of file
++*.gem
++.rspec_status
+diff --git a/.rspec_status b/.rspec_status
+deleted file mode 100644
+index 25c8636..0000000
+--- a/.rspec_status
++++ /dev/null
+@@ -1,146 +0,0 @@
+-example_id                                     | status | run_time        |
+----------------------------------------------- | ------ | --------------- |
+-./spec/gaskit/configuration_spec.rb[1:1:1]     | passed | 0.00201 seconds |
+-./spec/gaskit/configuration_spec.rb[1:2:1]     | passed | 0.0001 seconds  |
+-./spec/gaskit/configuration_spec.rb[1:2:2]     | passed | 0.00005 seconds |
+-./spec/gaskit/configuration_spec.rb[1:2:3]     | passed | 0.00005 seconds |
+-./spec/gaskit/configuration_spec.rb[1:2:4]     | passed | 0.00004 seconds |
+-./spec/gaskit/configuration_spec.rb[1:3:1]     | passed | 0.00074 seconds |
+-./spec/gaskit/configuration_spec.rb[1:4:1]     | passed | 0.00006 seconds |
+-./spec/gaskit/configuration_spec.rb[1:4:2]     | passed | 0.00005 seconds |
+-./spec/gaskit/configuration_spec.rb[1:5:1]     | passed | 0.00006 seconds |
+-./spec/gaskit/configuration_spec.rb[1:5:2]     | passed | 0.00152 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:1:1] | passed | 0.0001 seconds  |
+-./spec/gaskit/contract_registry_spec.rb[1:1:2] | passed | 0.00008 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:2:1] | passed | 0.00078 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:2:2] | passed | 0.00015 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:2:3] | passed | 0.00008 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:2:4] | passed | 0.00005 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:3:1] | passed | 0.00005 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:3:2] | passed | 0.00004 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:4:1] | passed | 0.00011 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:4:2] | passed | 0.00006 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:5:1] | passed | 0.00029 seconds |
+-./spec/gaskit/contract_registry_spec.rb[1:5:2] | passed | 0.00008 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:1:1]   | passed | 0.00008 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:1:2]   | passed | 0.00005 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:2:1]   | passed | 0.00008 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:2:2]   | passed | 0.00008 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:2:3]   | passed | 0.00016 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:3:1]   | passed | 0.00005 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:4:1]   | passed | 0.00005 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:5:1]   | passed | 0.00004 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:6:1]   | passed | 0.00004 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:7:1]   | passed | 0.00004 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:8:1]   | passed | 0.00004 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:1:9:1]   | passed | 0.00005 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:2:1:1]   | passed | 0.00008 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:2:1:2]   | passed | 0.00005 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:2:2:1]   | passed | 0.00005 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:2:3:1]   | passed | 0.00006 seconds |
+-./spec/gaskit/core/hookable_spec.rb[1:2:4:1]   | passed | 0.00005 seconds |
+-./spec/gaskit/core_spec.rb[1:1:1]              | passed | 0.00005 seconds |
+-./spec/gaskit/core_spec.rb[1:1:2]              | passed | 0.00003 seconds |
+-./spec/gaskit/core_spec.rb[1:2:1]              | passed | 0.00134 seconds |
+-./spec/gaskit/flow_spec.rb[1:1:1]              | passed | 0.00008 seconds |
+-./spec/gaskit/flow_spec.rb[1:2:1]              | passed | 0.00004 seconds |
+-./spec/gaskit/flow_spec.rb[1:3:1]              | passed | 0.00004 seconds |
+-./spec/gaskit/flow_spec.rb[1:4:1]              | passed | 0.00022 seconds |
+-./spec/gaskit/flow_spec.rb[1:4:2]              | passed | 0.00016 seconds |
+-./spec/gaskit/flow_spec.rb[1:4:3:1:1]          | passed | 0.00141 seconds |
+-./spec/gaskit/flow_spec.rb[1:4:4:1:1]          | passed | 0.00022 seconds |
+-./spec/gaskit/flow_spec.rb[1:4:5:1:1]          | passed | 0.00011 seconds |
+-./spec/gaskit/flow_spec.rb[1:5:1]              | passed | 0.00058 seconds |
+-./spec/gaskit/flow_spec.rb[1:5:2]              | passed | 0.00022 seconds |
+-./spec/gaskit/flow_spec.rb[1:5:3:1:1]          | passed | 0.00013 seconds |
+-./spec/gaskit/flow_spec.rb[1:5:4:1:1]          | passed | 0.0001 seconds  |
+-./spec/gaskit/flow_spec.rb[1:5:5:1:1]          | passed | 0.00011 seconds |
+-./spec/gaskit/flow_spec.rb[1:6:1]              | passed | 0.00019 seconds |
+-./spec/gaskit/flow_spec.rb[1:7:1]              | passed | 0.0001 seconds  |
+-./spec/gaskit/flow_spec.rb[1:8:1]              | passed | 0.00005 seconds |
+-./spec/gaskit/flow_spec.rb[1:8:2]              | passed | 0.00007 seconds |
+-./spec/gaskit/flow_spec.rb[1:9:1]              | passed | 0.00007 seconds |
+-./spec/gaskit/flow_spec.rb[1:9:2]              | passed | 0.00009 seconds |
+-./spec/gaskit/flow_spec.rb[1:9:3]              | passed | 0.00426 seconds |
+-./spec/gaskit/flow_spec.rb[1:9:4]              | passed | 0.00016 seconds |
+-./spec/gaskit/flow_spec.rb[1:10:1]             | passed | 0.00022 seconds |
+-./spec/gaskit/flow_spec.rb[1:10:2]             | passed | 0.00458 seconds |
+-./spec/gaskit/flow_spec.rb[1:11:1]             | passed | 0.00013 seconds |
+-./spec/gaskit/flow_spec.rb[1:12:1]             | passed | 0.00008 seconds |
+-./spec/gaskit/flow_spec.rb[1:13:1]             | passed | 0.00055 seconds |
+-./spec/gaskit/flow_spec.rb[1:14:1]             | passed | 0.00635 seconds |
+-./spec/gaskit/hook_registry_spec.rb[1:1:1]     | passed | 0.00008 seconds |
+-./spec/gaskit/hook_registry_spec.rb[1:1:2]     | passed | 0.00004 seconds |
+-./spec/gaskit/hook_registry_spec.rb[1:1:3]     | passed | 0.00006 seconds |
+-./spec/gaskit/hook_registry_spec.rb[1:1:4]     | passed | 0.00004 seconds |
+-./spec/gaskit/hook_registry_spec.rb[1:2:1]     | passed | 0.00004 seconds |
+-./spec/gaskit/hook_registry_spec.rb[1:2:2]     | passed | 0.00003 seconds |
+-./spec/gaskit/hook_registry_spec.rb[1:3:1]     | passed | 0.00378 seconds |
+-./spec/gaskit/hook_registry_spec.rb[1:3:2]     | passed | 0.00008 seconds |
+-./spec/gaskit/hook_registry_spec.rb[1:3:3]     | passed | 0.00004 seconds |
+-./spec/gaskit/hook_registry_spec.rb[1:4:1]     | passed | 0.00004 seconds |
+-./spec/gaskit/logger_spec.rb[1:1:1]            | passed | 0.0001 seconds  |
+-./spec/gaskit/logger_spec.rb[1:2:1]            | passed | 0.0001 seconds  |
+-./spec/gaskit/logger_spec.rb[1:2:2]            | passed | 0.00018 seconds |
+-./spec/gaskit/logger_spec.rb[1:3:1]            | passed | 0.00008 seconds |
+-./spec/gaskit/logger_spec.rb[1:4:1]            | passed | 0.00007 seconds |
+-./spec/gaskit/logger_spec.rb[1:4:2]            | passed | 0.00005 seconds |
+-./spec/gaskit/logger_spec.rb[1:4:3]            | passed | 0.00043 seconds |
+-./spec/gaskit/operation_exit_spec.rb[1:1:1]    | passed | 0.00006 seconds |
+-./spec/gaskit/operation_exit_spec.rb[1:1:2]    | passed | 0.00003 seconds |
+-./spec/gaskit/operation_exit_spec.rb[1:2:1]    | passed | 0.00003 seconds |
+-./spec/gaskit/operation_exit_spec.rb[1:2:2]    | passed | 0.00003 seconds |
+-./spec/gaskit/operation_exit_spec.rb[1:3:1]    | passed | 0.00003 seconds |
+-./spec/gaskit/operation_result_spec.rb[1:1:1]  | passed | 0.00008 seconds |
+-./spec/gaskit/operation_result_spec.rb[1:1:2]  | passed | 0.00003 seconds |
+-./spec/gaskit/operation_result_spec.rb[1:2:1]  | passed | 0.00004 seconds |
+-./spec/gaskit/operation_result_spec.rb[1:2:2]  | passed | 0.00004 seconds |
+-./spec/gaskit/operation_result_spec.rb[1:2:3]  | passed | 0.00004 seconds |
+-./spec/gaskit/operation_result_spec.rb[1:3:1]  | passed | 0.00005 seconds |
+-./spec/gaskit/operation_result_spec.rb[1:4:1]  | passed | 0.00004 seconds |
+-./spec/gaskit/operation_result_spec.rb[1:4:2]  | passed | 0.00004 seconds |
+-./spec/gaskit/operation_result_spec.rb[1:4:3]  | passed | 0.00004 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:1:1]       | passed | 0.00006 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:1:2]       | passed | 0.00004 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:2:1]       | passed | 0.00004 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:2:2]       | passed | 0.00005 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:2:3]       | passed | 0.00004 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:3:1]       | passed | 0.00006 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:3:2]       | passed | 0.00004 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:3:3]       | passed | 0.00003 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:3:4]       | passed | 0.0001 seconds  |
+-./spec/gaskit/operation_spec.rb[1:1:3:5]       | passed | 0.00042 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:4:1]       | passed | 0.00005 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:5:1:1:1]   | passed | 0.00033 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:5:2:1]     | passed | 0.00105 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:5:3:1:1]   | passed | 0.00014 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:5:3:2]     | passed | 0.00026 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:5:4:1:1]   | passed | 0.0002 seconds  |
+-./spec/gaskit/operation_spec.rb[1:1:5:5:1:1]   | passed | 0.00017 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:5:6:1:1]   | passed | 0.00017 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:6:1:1:1]   | passed | 0.00012 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:6:2:1]     | passed | 0.00017 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:6:3:1:1]   | passed | 0.00017 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:6:4:1:1]   | passed | 0.00015 seconds |
+-./spec/gaskit/operation_spec.rb[1:1:6:5:1:1]   | passed | 0.00044 seconds |
+-./spec/gaskit/operation_spec.rb[1:2:1:1]       | passed | 0.00013 seconds |
+-./spec/gaskit/operation_spec.rb[1:2:1:2]       | passed | 0.00004 seconds |
+-./spec/gaskit/operation_spec.rb[1:2:1:3]       | passed | 0.00005 seconds |
+-./spec/gaskit/operation_spec.rb[1:2:2:1]       | passed | 0.00018 seconds |
+-./spec/gaskit/operation_spec.rb[1:2:3:1:1]     | passed | 0.00018 seconds |
+-./spec/gaskit/operation_spec.rb[1:2:3:2:1]     | passed | 0.00019 seconds |
+-./spec/gaskit/operation_spec.rb[1:2:3:3:1]     | passed | 0.0001 seconds  |
+-./spec/gaskit/operation_spec.rb[1:2:3:4:1]     | passed | 0.00019 seconds |
+-./spec/gaskit/operation_spec.rb[1:3:1]         | passed | 0.0001 seconds  |
+-./spec/gaskit/operation_spec.rb[1:4:1:1:1]     | passed | 0.00026 seconds |
+-./spec/gaskit/operation_spec.rb[1:4:1:2:1]     | passed | 0.0001 seconds  |
+-./spec/gaskit/operation_spec.rb[1:4:1:2:2]     | passed | 0.00009 seconds |
+-./spec/gaskit/repository_spec.rb[1:1:1]        | passed | 0.00014 seconds |
+-./spec/gaskit/repository_spec.rb[1:2:1]        | passed | 0.00005 seconds |
+-./spec/gaskit/repository_spec.rb[1:2:2]        | passed | 0.00007 seconds |
+-./spec/gaskit/repository_spec.rb[1:3:1]        | passed | 0.00005 seconds |
+-./spec/gaskit/repository_spec.rb[1:3:2]        | passed | 0.00005 seconds |
+-./spec/gaskit/repository_spec.rb[1:4:1]        | passed | 0.0002 seconds  |
+-./spec/gaskit/repository_spec.rb[1:4:2]        | passed | 0.00014 seconds |
+-./spec/gaskit_spec.rb[1:1]                     | passed | 0.00004 seconds |
+-./spec/gaskit_spec.rb[1:2]                     | passed | 0.00017 seconds |
+diff --git a/AGENTS.md b/AGENTS.md
+new file mode 100644
+index 0000000..9cdc5ab
+--- /dev/null
++++ b/AGENTS.md
+@@ -0,0 +1,111 @@
++# Castkit Usage
++
++Use Castkit for DTOs and validation.
++
++## When to use
++- Defining structured data transfer objects (DTOs) for service boundaries, API payloads, or internal commands.
++- Validating incoming data without building a full model (use `Castkit::Contract`).
++- Serialization/deserialization of nested hashes with explicit types.
++- Enforcing strict schemas and catching unknown keys early.
++- Reusable typed data definitions shared across multiple services or layers.
++
++## Must use
++- Any new DTO or input validation layer should be implemented with Castkit `DataObject` or `Contract`.
++- Avoid ad-hoc Hash validation or hand-rolled coercion when Castkit can represent the schema.
++- Use Castkit types and validators instead of custom casting logic unless a custom type is required.
++
++## How to use
++- Add a DTO by inheriting `Castkit::DataObject` and declaring attributes:
++  ```ruby
++  class UserDto < Castkit::DataObject
++    string :id
++    string :email, required: false
++    array :roles, of: :string
++  end
++  ```
++- Prefer `Castkit::Contract` for request/command validation:
++  ```ruby
++  UserContract = Castkit::Contract.build(:user) do
++    string :id
++    string :email, required: false
++  end
++  ```
++- Use strict mode defaults unless a relaxed schema is explicitly required:
++  ```ruby
++  class LooseDto < Castkit::DataObject
++    strict false
++    warn_on_unknown true
++  end
++  ```
++- Configure types/plugins in an initializer:
++  ```ruby
++  Castkit.configure do |config|
++    config.register_type(:money, MyApp::Types::Money)
++    config.register_plugin(:timestamps, MyApp::Plugins::Timestamps)
++  end
++  ```
++- Use CLI generators for consistent scaffolding:
++  ```bash
++  castkit generate dataobject User name:string
++  castkit generate contract UserInput id:string
++  ```
++
++# Cattri Usage
++
++Use Cattri to define class-level and instance-level attributes with one DSL, with safe inheritance, visibility control, and optional write-once semantics.
++
++## When Cattri must be used
++
++- Any class-level configuration or metadata that needs to be inherited safely by subclasses.
++- Any attribute that must be write-once (`final: true`) or initialized lazily.
++- Any attribute that needs explicit visibility/exposure control (public/protected/private, read/write/none).
++- Any shared config in non-Rails code where `class_attribute` is unavailable or too invasive.
++
++If none of the above apply and a plain `attr_reader`/`attr_accessor` is sufficient, prefer the built-in Ruby helpers.
++
++## How to use Cattri
++
++1) Add the gem (`gem "cattri"`) and `include Cattri` in the class or module.
++2) Define attributes with `cattri`.
++3) Use `scope: :class` for class-level attributes; omit for instance-level (default).
++4) Use `final: true` for write-once attributes.
++5) Use `expose:` and `visibility:` to control method visibility and read/write access.
++
++### Minimal example
++
++```ruby
++class User
++  include Cattri
++
++  cattri :type, :standard, final: true, scope: :class
++  cattri :id, -> { SecureRandom.uuid }, final: true
++  cattri :name, "anonymous"
++  cattri :admin, false, predicate: true
++end
++```
++
++### Exposure and visibility
++
++```ruby
++class Profile
++  include Cattri
++
++  cattri :token, "secret", expose: :read
++  cattri :attempts, 0, expose: :write
++  cattri :internal_flag, true, expose: :none
++
++  private
++  cattri :audit_tag
++end
++```
++
++### Optional introspection
++
++Enable introspection only when you need attribute metadata:
++
++```ruby
++User.with_cattri_introspection
++User.attributes
++User.attribute(:type)
++User.attribute_methods
++```
+diff --git a/README.md b/README.md
+index 27daea8..2e3a504 100644
+--- a/README.md
++++ b/README.md
+@@ -5,7 +5,7 @@ Gaskit is a flexible, pluggable, and structured operations framework for Ruby an
+ ## ✨ Features
+ 
+ - ✅ `Operation`, `Service`, and `Query` classes
+-- 🔀 Customizable result and early exit contracts via `use_contract`
++- 🔀 Customizable result and early exit contracts via explicit `input_contract` / `output_contract`
+ - 🧱 Composable multi-step flows using `Flow` DSL
+ - 🧪 Built-in error declarations and early exits via `exit(:key)`
+ - ⏱ Integrated duration tracking and structured logging
+@@ -49,7 +49,7 @@ end
+ 
+ ```ruby
+ class MyOp < Gaskit::Operation
+-  use_contract :service
++  output_contract Gaskit::ServiceResult
+ 
+   def call(user_id:)
+     user = User.find_by(id: user_id)
+@@ -105,7 +105,7 @@ Use `use_hooks` to activate instrumentation:
+ 
+ ```ruby
+ class HookedOp < Gaskit::Operation
+-  use_contract :service
++  output_contract Gaskit::ServiceResult
+   use_hooks :audit
+ 
+   before do |op|
+@@ -157,7 +157,7 @@ class MyResult < Gaskit::OperationResult; end
+ Gaskit.contracts.register(:custom, MyResult)
+ 
+ class CustomOp < Gaskit::Operation
+-  use_contract :custom
++  output_contract :custom
+ end
+ ```
+ 
+@@ -167,10 +167,36 @@ Or override just part of the contract:
+ class CustomResult < Gaskit::OperationResult; end
+ 
+ class PartialContractOp < Gaskit::Operation
+-  use_contract :service, result: CustomResult
++  output_contract CustomResult
+ end
+ ```
+ 
++### Input/Output validation with Castkit
++
++Optionally validate inputs and outputs using Castkit contracts or DTOs:
++
++```ruby
++class ValidateOp < Gaskit::Operation
++  output_contract Gaskit::ServiceResult
++
++  input_contract do
++    string :user_id
++    integer :limit, required: false
++  end
++
++  output_contract do
++    string :status
++    hash :meta, required: false
++  end
++
++  def call(user_id:, limit: 10)
++    { status: "ok", meta: { limit: limit.to_i } }
++  end
++end
++```
++
++`input_contract` and `output_contract` accept either a Castkit contract class, a Castkit data object (converted to a contract), or a DSL block. Validation runs before executing `#call` (inputs) and after a successful call (outputs). Failures raise `Castkit::ContractError` (returned as a failure result for `.call`, raised for `.call!`).
++
+ ## 🧱 Repositories
+ 
+ ```ruby
+diff --git a/gaskit.gemspec b/gaskit.gemspec
+index 08b37e4..c101471 100644
+--- a/gaskit.gemspec
++++ b/gaskit.gemspec
+@@ -33,10 +33,15 @@ Gem::Specification.new do |spec|
+   spec.require_paths = ["lib"]
+ 
+   # Runtime dependencies (add if needed)
+-  spec.add_dependency "railties", "~> 7.0"
++  spec.add_dependency "castkit", "~> 0.4.0"
++  spec.add_dependency "cattri", "~> 0.2.4"
++  spec.add_dependency "concurrent-ruby", "~> 1.2"
+ 
+   # Development dependencies
+   spec.add_development_dependency "rspec", "~> 3.12"
+   spec.add_development_dependency "rubocop", "~> 1.60"
++  spec.add_development_dependency "simplecov"
++  spec.add_development_dependency "simplecov-cobertura"
++  spec.add_development_dependency "simplecov-html"
+   spec.add_development_dependency "yard", "~> 0.9"
+ end
+diff --git a/lib/gaskit.rb b/lib/gaskit.rb
+index 75c20c3..e5af7ef 100644
+--- a/lib/gaskit.rb
++++ b/lib/gaskit.rb
+@@ -1,5 +1,6 @@
+ # frozen_string_literal: true
+ 
++require_relative "gaskit/castkit"
+ require_relative "gaskit/version"
+ require_relative "gaskit/error"
+ require_relative "gaskit/operation_result"
+@@ -12,8 +13,6 @@ require_relative "gaskit/core"
+ require_relative "gaskit/boot/service"
+ require_relative "gaskit/boot/query"
+ 
+-require_relative "gaskit/railtie" if defined?(Rails::Railtie)
+-
+ # Gaskit is a lightweight, extensible framework for building structured application operations.
+ #
+ # It provides a clear architecture for defining, executing, and managing operations,
+diff --git a/lib/gaskit/boot/query.rb b/lib/gaskit/boot/query.rb
+index 1f84ef3..12a1e60 100644
+--- a/lib/gaskit/boot/query.rb
++++ b/lib/gaskit/boot/query.rb
+@@ -25,6 +25,6 @@ module Gaskit
+   #     end
+   #   end
+   class Query < Operation
+-    use_contract :query
++    output_contract QueryResult
+   end
+ end
+diff --git a/lib/gaskit/boot/service.rb b/lib/gaskit/boot/service.rb
+index 7be44fb..e6830ab 100644
+--- a/lib/gaskit/boot/service.rb
++++ b/lib/gaskit/boot/service.rb
+@@ -23,6 +23,6 @@ module Gaskit
+   #     end
+   #   end
+   class Service < Operation
+-    use_contract :service
++    output_contract Gaskit::ServiceResult
+   end
+ end
+diff --git a/lib/gaskit/castkit.rb b/lib/gaskit/castkit.rb
+new file mode 100644
+index 0000000..fc8431b
+--- /dev/null
++++ b/lib/gaskit/castkit.rb
+@@ -0,0 +1,26 @@
++# frozen_string_literal: true
++
++require "castkit"
++require_relative "types/any"
++require_relative "types/symbol"
++
++module Gaskit
++  # Sets up Castkit defaults and registers shared Gaskit-specific types.
++  module Castkit
++    module_function
++
++    def configure
++      ::Castkit.configure do |config|
++        config.enforce_typing = true
++        config.enforce_attribute_access = true
++        config.enforce_array_options = true
++        config.strict_by_default = true
++
++        config.register_type(:any, Gaskit::Types::Any, aliases: [:object])
++        config.register_type(:symbol, Gaskit::Types::Symbol, aliases: [:sym])
++      end
++    end
++  end
++end
++
++Gaskit::Castkit.configure
+diff --git a/lib/gaskit/configuration.rb b/lib/gaskit/configuration.rb
+index 8495fed..c9a31d1 100644
+--- a/lib/gaskit/configuration.rb
++++ b/lib/gaskit/configuration.rb
+@@ -1,5 +1,6 @@
+ # frozen_string_literal: true
+ 
++require "cattri"
+ require "logger"
+ 
+ require_relative "contract_registry"
+@@ -22,26 +23,17 @@ module Gaskit
+   #     c.context_provider = -> { { request_id: SecureRandom.uuid } }
+   #     c.cache_store :redis, connection: Redis.new
+   #
+-  #     c.setup_logger(Logger.new($stdout), level: :info, formatter: ->(severity, time, _, msg) {
+-  #       "[#{time}] #{severity}: #{msg}\n"
+-  #     })
++  #     c.setup_logger(Logger.new($stdout), level: :info, formatter: Gaskit::Logger.formatter(:pretty))
+   #   end
+   class Configuration
+-    # Whether to raise an error when the cache store is not defined, or fallback to :memory.
+-    # @return [Boolean] true to raise an error, otherwise, false
+-    attr_accessor :enforce_cache_store
++    include Cattri
+ 
+-    # @return [Boolean] Whether debug mode is enabled.
+-    attr_accessor :debug
+-
+-    # @return [Boolean] Whether to suppress all logging output.
+-    attr_accessor :disable_logging
+-
+-    # @return [Logger] The logger used internally by Gaskit.
+-    attr_reader :logger
+-
+-    # @return [#call] Proc/lambda returning global context (e.g., tenant_id, user_id).
+-    attr_reader :context_provider
++    cattri :enforce_cache_store, true
++    cattri :debug, false, predicate: true
++    cattri :disable_logging, false, predicate: true
++    cattri :logger, -> { ::Logger.new($stdout) }
++    # Store a callable; default returns a lambda that returns an empty hash.
++    cattri :context_provider, -> { -> { {} } }
+ 
+     # Initializes the configuration with defaults.
+     #
+@@ -53,15 +45,11 @@ module Gaskit
+     # - cache_store: memory
+     # - default logger: Logger.new($stdout)
+     def initialize
+-      @enforce_cache_store = true
+-
+-      @debug = false
+-      @disable_logging = false
+-      @context_provider = -> { {} }
++      super
+       @contract_registry = ContractRegistry.new
+       @hook_registry = HookRegistry.new
+ 
+-      setup_logger
++      setup_logger(logger)
+     end
+ 
+     # Configures and installs the logger.
+@@ -71,8 +59,8 @@ module Gaskit
+     # @param formatter [Proc, nil] Optional custom formatter.
+     # @return [void]
+     def setup_logger(custom_logger = nil, level: :debug, formatter: nil)
+-      @logger = custom_logger || ::Logger.new($stdout)
+-      effective_formatter = formatter || @logger&.formatter || Gaskit::Logger.formatter(:pretty)
++      self.logger = custom_logger || ::Logger.new($stdout)
++      effective_formatter = formatter || logger&.formatter || Gaskit::Logger.formatter(:pretty)
+ 
+       self.log_formatter = effective_formatter if effective_formatter.respond_to?(:call)
+       self.log_level = level
+@@ -85,7 +73,7 @@ module Gaskit
+     # @return [void]
+     def log_level=(level)
+       level = ::Logger.const_get(level.upcase) if level.is_a?(Symbol)
+-      @logger.level = level
++      logger.level = level
+     end
+ 
+     # Sets a custom log formatter.
+@@ -96,7 +84,7 @@ module Gaskit
+     def log_formatter=(formatter)
+       raise ArgumentError, "Formatter must be callable" unless formatter.respond_to?(:call)
+ 
+-      @logger.formatter = formatter
++      logger.formatter = formatter
+     end
+ 
+     # Sets the global context provider.
+@@ -109,7 +97,7 @@ module Gaskit
+     def context_provider=(provider)
+       raise ArgumentError, "Provider must be callable" unless provider.respond_to?(:call)
+ 
+-      @context_provider = provider
++      cattri_variable_set(:context_provider, provider)
+     end
+ 
+     # Configures or returns the cache store.
+diff --git a/lib/gaskit/contract_registry.rb b/lib/gaskit/contract_registry.rb
+index 45e7288..bb50c7f 100644
+--- a/lib/gaskit/contract_registry.rb
++++ b/lib/gaskit/contract_registry.rb
+@@ -10,10 +10,10 @@ module Gaskit
+   # It also includes validation to ensure result classes adhere to the expected base class.
+   class ContractRegistry
+     class << self
+-      # Verifies that the given class is a subclass of `Gaskit::BaseResult`
++      # Verifies that the given class is a subclass of `Gaskit::OperationResult`
+       #
+       # @param result_class [Class] The class to verify
+-      # @raise [Gaskit::ResultTypeError] if the class does not inherit from `Gaskit::BaseResult`
++      # @raise [Gaskit::ResultTypeError] if the class does not inherit from `Gaskit::OperationResult`
+       def verify_result_class!(result_class)
+         raise Gaskit::ResultTypeError, result_class unless result_class <= Gaskit::OperationResult
+       end
+@@ -39,7 +39,7 @@ module Gaskit
+       raise Gaskit::ContractError, "Contract #{name} already registered" if @contracts.key?(name) && !override
+ 
+       ContractRegistry.verify_result_class!(result_class)
+-      @contracts[name] = result_class.freeze
++      @contracts[name] = result_class
+ 
+       Gaskit.configuration.logger.debug { "[Gaskit] Registered contract #{name}" } if Gaskit.debug?
+     end
+diff --git a/lib/gaskit/core.rb b/lib/gaskit/core.rb
+index 1c0cc00..aa8f2db 100644
+--- a/lib/gaskit/core.rb
++++ b/lib/gaskit/core.rb
+@@ -2,6 +2,8 @@
+ 
+ require_relative "configuration"
+ require_relative "contract_registry"
++require_relative "core/cacheable"
++require_relative "core/hookable"
+ 
+ module Gaskit
+   class << self
+diff --git a/lib/gaskit/core/cacheable.rb b/lib/gaskit/core/cacheable.rb
+index 5ceb1a7..5552877 100644
+--- a/lib/gaskit/core/cacheable.rb
++++ b/lib/gaskit/core/cacheable.rb
+@@ -19,8 +19,12 @@ module Gaskit
+         # @param namespace [String] Required namespace to scope cache keys
+         # @param options [Hash] Additional options passed to the store constructor
+         # @return [Hash] Cache store configuration
+-        def cache_store(name = nil, namespace:, **options)
+-          @cache_store ||= { name: name, namespace: namespace, options: options }
++        def cache_store(name = nil, namespace: nil, **options)
++          return @cache_store if defined?(@cache_store) && name.nil? && namespace.nil?
++          return @cache_store = :disabled if name == :disabled
++
++          namespace ||= name || self.name
++          @cache_store = { name: name, namespace: namespace, options: options }
+         end
+ 
+         # Directly assigns a cache store config hash (used for testing/mocking).
+@@ -44,13 +48,15 @@ module Gaskit
+       # @return [Object, nil] The configured cache store or nil if not configured
+       def cache
+         return @cache if @cache
+-        return if self.class.cache_store.nil?
+ 
+-        name, namespace, options = self.class.cache_store.values_at(:name, :namespace, :options)
+-        klass = Gaskit.configuration.fetch_cache_store(name) if name
+-        klass ||= Gaskit.configuration.cache_store
++        config = resolved_cache_config
++        return unless config
++
++        store_class, global_options = resolve_store_config
++        options = merge_cache_options(config[:options], global_options)
++        cache_class = resolve_cache_class(config[:name], store_class)
+ 
+-        @cache = klass.new(namespace, logger: logger, **options)
++        @cache = cache_class.new(config[:namespace], logger: logger, **options)
+       end
+ 
+       # @return [Boolean] true if a cache store is configured and instantiated
+@@ -84,6 +90,8 @@ module Gaskit
+       # @return [void]
+       def cache_prefetch!(*keys)
+         validate_cache!
++        return unless cache_enabled?
++
+         @prefetch_cache = cache.read_all!(*keys)
+       end
+ 
+@@ -94,7 +102,11 @@ module Gaskit
+       # @yield [] Optional block to return value if key not found
+       # @return [Object, nil] The cached value, block result, or default
+       def prefetched(key, default = nil, &block)
+-        return prefetch_cache[key] if prefetch_cache.key?(key)
++        if prefetch_cache.key?(key)
++          value = prefetch_cache[key]
++          return value unless value.nil?
++        end
++
+         return block.call if block_given?
+ 
+         default
+@@ -114,10 +126,37 @@ module Gaskit
+       # @raise [RuntimeError] if no cache store is configured and enforcement is enabled
+       # @return [void]
+       def validate_cache!
+-        return unless !cache_enabled? && Gaskit.configuration.enforce_cache_store
++        return if cache_enabled?
++        return unless Gaskit.configuration.enforce_cache_store
+ 
+         raise Gaskit::Error, "No cache store configured"
+       end
++
++      def resolved_cache_config
++        config = self.class.cache_store
++        return if config.nil? || config == :disabled
++
++        config
++      end
++
++      def resolve_store_config
++        store_config = Gaskit.configuration.cache_store
++        if store_config.is_a?(Hash) && store_config.key?(:store)
++          [store_config[:store], store_config[:options] || {}]
++        else
++          [store_config, {}]
++        end
++      end
++
++      def resolve_cache_class(name, default_class)
++        return Gaskit.configuration.fetch_cache_store(name) if name
++
++        default_class
++      end
++
++      def merge_cache_options(config_options, global_options)
++        (global_options || {}).merge(config_options || {})
++      end
+     end
+   end
+ end
+diff --git a/lib/gaskit/core/hookable.rb b/lib/gaskit/core/hookable.rb
+index d9ddab2..5b4853d 100644
+--- a/lib/gaskit/core/hookable.rb
++++ b/lib/gaskit/core/hookable.rb
+@@ -1,7 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "concurrent"
+-
+ module Gaskit
+   module Core
+     # Provides before, after, and around hook capabilities to Gaskit operations and queries.
+@@ -86,9 +84,9 @@ module Gaskit
+           @registered_hooks ||= []
+         end
+ 
+-        # @return [Concurrent::Hash<Symbol, Array<Proc>>] Inline hooks organized by type
++        # @return [Hash<Symbol, Array<Proc>>] Inline hooks organized by type
+         def inline_hooks
+-          @inline_hooks ||= Concurrent::Hash.new { |h, k| h[k] = [] }
++          @inline_hooks ||= Hash.new { |h, k| h[k] = [] }
+         end
+ 
+         private
+diff --git a/lib/gaskit/error.rb b/lib/gaskit/error.rb
+index b5330bb..d328dd8 100644
+--- a/lib/gaskit/error.rb
++++ b/lib/gaskit/error.rb
+@@ -9,7 +9,7 @@ module Gaskit
+   class ResultTypeError < Error
+     # @param [Class] klazz The class that failed the type check.
+     def initialize(klazz)
+-      message = "Expected result class to inherit from Gaskit::BaseResult, got: #{klazz}"
++      message = "Expected result class to inherit from Gaskit::OperationResult, got: #{klazz}"
+       super(message)
+     end
+   end
+diff --git a/lib/gaskit/flow.rb b/lib/gaskit/flow.rb
+index 0454ba2..2657150 100644
+--- a/lib/gaskit/flow.rb
++++ b/lib/gaskit/flow.rb
+@@ -1,6 +1,7 @@
+ # frozen_string_literal: true
+ 
+ require "securerandom"
++require "cattri"
+ require_relative "core"
+ require_relative "flow_result"
+ require_relative "helpers"
+@@ -56,8 +57,11 @@ module Gaskit
+   # @see Gaskit::FlowResult
+   # @see Gaskit::Core::Hookable
+   class Flow
++    include Cattri
+     include Gaskit::Core::Hookable
+ 
++    final_cattri :logger, nil
++
+     class << self
+       # Called when a subclass is defined, initializing an empty step list.
+       #
+@@ -152,8 +156,6 @@ module Gaskit
+       end
+     end
+ 
+-    attr_reader :logger
+-
+     # Returns true if there are more steps remaining in the sequence.
+     #
+     # @return [Boolean] Whether the flow has more steps to execute.
+@@ -239,7 +241,7 @@ module Gaskit
+       @step_sequence = self.class.steps.dup
+       @step_index = 0
+ 
+-      @logger = Gaskit::Logger.new(self, context: @context)
++      self.logger = Gaskit::Logger.new(self, context: @context)
+     end
+ 
+     # Executes a single step of the flow.
+diff --git a/lib/gaskit/flow_result.rb b/lib/gaskit/flow_result.rb
+index aaef087..d5ba5df 100644
+--- a/lib/gaskit/flow_result.rb
++++ b/lib/gaskit/flow_result.rb
+@@ -1,28 +1,10 @@
+ # frozen_string_literal: true
+ 
+ module Gaskit
+-  # Represents the result of a flow execution, including step-by-step trace
+-  #
+-  # @example Checking result and accessing steps
+-  #   result = MyFlow.call(1, 2)
+-  #   if result.success?
+-  #     puts "Total: #{result.value}"
+-  #   else
+-  #     puts "Failed at: #{result.steps.last[:operation]}"
+-  #   end
++  # Castkit-backed result for flows that also captures per-step metadata.
+   class FlowResult < OperationResult
+-    # @return [Array<Hash>] A list of step data executed during the flow
+-    attr_reader :steps
++    array :steps, of: :hash, required: false, default: -> { [] }
+ 
+-    # Initializes a new FlowResult
+-    # .
+-    # @param success [Boolean] If the flow was successful or not
+-    # @param value [Object, nil] The final operation result
+-    # @param error [StandardError, nil] The error encountered during the operation.
+-    # @param options [Hash] Keyword arguments
+-    # @option options [Array<Hash>] :steps Step-by-step execution details
+-    # @option options [Float, String] :duration Total flow duration
+-    # @option options [Hash] Execution context
+     def initialize(success, value, error = nil, **options)
+       super(
+         success,
+@@ -32,7 +14,7 @@ module Gaskit
+         context: options[:context]
+       )
+ 
+-      @steps = options.fetch(:steps, [])
++      self.steps = options.fetch(:steps, [])
+     end
+ 
+     def to_h
+diff --git a/lib/gaskit/hook_registry.rb b/lib/gaskit/hook_registry.rb
+index 6ed05f0..653cb8b 100644
+--- a/lib/gaskit/hook_registry.rb
++++ b/lib/gaskit/hook_registry.rb
+@@ -7,11 +7,7 @@ module Gaskit
+   # Hooks are grouped by type and tag. They are used in classes that include `Gaskit::Core::Hookable`.
+   class HookRegistry
+     def initialize
+-      @hooks = {
+-        before: Hash.new { |h, k| h[k] = [] },
+-        after: Hash.new { |h, k| h[k] = [] },
+-        around: Hash.new { |h, k| h[k] = [] }
+-      }
++      reset!
+     end
+ 
+     # Registers a new hook under a given type and tag.
+@@ -27,7 +23,7 @@ module Gaskit
+       raise ArgumentError, "Hook must respond to #call" unless hook.respond_to?(:call)
+       raise ArgumentError, "Unknown hook type: #{type}" unless @hooks.key?(type)
+ 
+-      @hooks[type][tag.to_sym] << hook
++      hooks[type][tag.to_sym] << hook
+     end
+ 
+     # Checks if a hook tag is registered under a specific type.
+@@ -36,7 +32,7 @@ module Gaskit
+     # @param tag [Symbol, String] The tag to check
+     # @return [Boolean] Whether a hook with that tag exists for the given type
+     def registered?(type, tag)
+-      @hooks[type].key?(tag.to_sym)
++      hooks[type].key?(tag.to_sym)
+     end
+ 
+     # Fetches hooks for the given type, filtered by tags.
+@@ -46,9 +42,9 @@ module Gaskit
+     #   returns all hooks of that type.
+     # @return [Array<#call>] An array of callable hooks
+     def fetch(type, tags = nil)
+-      return @hooks[type].values.flatten if tags.nil? || tags.empty?
++      return hooks[type].values.flatten if tags.nil? || tags.empty?
+ 
+-      (tags || []).flat_map { |tag| @hooks[type][tag.to_sym] }
++      (tags || []).flat_map { |tag| hooks[type][tag.to_sym] }
+     end
+ 
+     # Returns all registered tags for a given hook type.
+@@ -56,7 +52,26 @@ module Gaskit
+     # @param type [Symbol] The hook type (`:before`, `:after`, or `:around`)
+     # @return [Array<Symbol>] List of registered tags under that type
+     def registered_tags(type)
+-      @hooks[type].keys
++      hooks[type].keys
++    end
++
++    # Clears all hooks (useful in tests)
++    def reset!
++      @hooks = {
++        before: Hash.new { |h, k| h[k] = [] },
++        after: Hash.new { |h, k| h[k] = [] },
++        around: Hash.new { |h, k| h[k] = [] }
++      }
++    end
++
++    private
++
++    def hooks
++      @hooks ||= {
++        before: Hash.new { |h, k| h[k] = [] },
++        after: Hash.new { |h, k| h[k] = [] },
++        around: Hash.new { |h, k| h[k] = [] }
++      }
+     end
+   end
+ end
+diff --git a/lib/gaskit/logger.rb b/lib/gaskit/logger.rb
+index c513389..6b72e21 100644
+--- a/lib/gaskit/logger.rb
++++ b/lib/gaskit/logger.rb
+@@ -4,6 +4,7 @@ require "logger"
+ require "json"
+ require "time"
+ require "English"
++require "cattri"
+ 
+ require_relative "helpers"
+ 
+@@ -63,6 +64,10 @@ module Gaskit
+   #
+   # @see Gaskit::Configuration
+   class Logger
++    include Cattri
++
++    final_cattri :context, -> { {} }
++
+     SENSITIVE_KEYS = %i[email ip_address password auth_token secret ssn jwt token].freeze
+ 
+     class << self
+@@ -171,8 +176,6 @@ module Gaskit
+       end
+     end
+ 
+-    attr_reader :context
+-
+     # Initializes a new logger instance.
+     #
+     # @param klass [Class, Object, String, Symbol] The name of the class being logged.
+@@ -180,7 +183,7 @@ module Gaskit
+     def initialize(klass, context: {})
+       @class_name = Gaskit::Helpers.resolve_name(klass)
+ 
+-      @context = apply_context(context).merge(class: @class_name)
++      self.context = apply_context(context).merge(class: @class_name)
+       @logger = Gaskit.configuration.logger || ::Logger.new($stdout)
+     rescue StandardError
+       ::Logger.new($stdout).error "Failed to initialize logger: #{$ERROR_INFO}"
+@@ -232,14 +235,13 @@ module Gaskit
+     def log(level, message, context: {}, &block)
+       return if Gaskit.configuration.disable_logging
+ 
+-      @logger.public_send(level) do
+-        combined_context = filtered_context(@context.merge(context))
+-        combined_context[:class] ||= @class_name
++      combined_context = filtered_context(self.context.merge(context))
++      combined_context[:class] ||= @class_name
+ 
+-        msg = message || block&.call
++      msg = message || block&.call
++      return unless loggable?(level)
+ 
+-        [msg, combined_context]
+-      end
++      @logger.public_send(level, [msg, combined_context])
+     end
+ 
+     # Creates a new logger instance with additional merged context.
+@@ -247,7 +249,7 @@ module Gaskit
+     # @param extra_context [Hash] Additional context to include.
+     # @return [Gaskit::Logger] A new logger instance with the updated context.
+     def with_context(extra_context)
+-      self.class.new(@class_name, context: @context.merge(extra_context))
++      self.class.new(@class_name, context: context.merge(extra_context))
+     end
+ 
+     private
+@@ -282,5 +284,18 @@ module Gaskit
+     def sensitive_key?(key)
+       SENSITIVE_KEYS.include?(key)
+     end
++
++    # Determines whether the given log level should be emitted based on the configured logger level.
++    #
++    # @param level [Symbol] Log level name (e.g., :debug, :info).
++    # @return [Boolean] True if the logger is configured to log at this level.
++    def loggable?(level)
++      return false unless @logger
++
++      severity_index = ::Logger.const_get(level.to_s.upcase)
++      severity_index >= @logger.level
++    rescue NameError
++      false
++    end
+   end
+ end
+diff --git a/lib/gaskit/operation.rb b/lib/gaskit/operation.rb
+index e9cc064..91de599 100644
+--- a/lib/gaskit/operation.rb
++++ b/lib/gaskit/operation.rb
+@@ -1,5 +1,7 @@
+ # frozen_string_literal: true
+ 
++require "cattri"
++require "castkit"
+ require_relative "core"
+ require_relative "operation_result"
+ require_relative "operation_exit"
+@@ -7,17 +9,284 @@ require_relative "helpers"
+ require_relative "core/hookable"
+ 
+ module Gaskit
++  module OperationExecutionHelpers
++    private
++
++    def invoke(raise_on_failure, context, *args, **kwargs, &block)
++      ensure_result_class!
++
++      operation = new(raise_on_failure, context: context)
++      input_error = input_contract_error(operation, args, kwargs, raise_on_failure)
++      return handle_input_failure(operation, raise_on_failure, input_error) if input_error
++
++      duration, (result, error) = execute(operation, *args, **kwargs, &block)
++      result, error = validate_output(operation, result, error, raise_on_failure)
++
++      result = build_result(result, error, duration, operation.context)
++      result = apply_after_hooks(operation, result, duration)
++
++      log_execution_debug(operation, duration)
++      result
++    end
++
++    def ensure_result_class!
++      return if result_class
++
++      raise NotImplementedError, "No result_class defined for #{name} or its ancestors. " \
++                                 "Did you forget to set an `output_contract` or result class?"
++    end
++
++    def handle_input_failure(operation, raise_on_failure, error)
++      return build_result(nil, error, "0.000000", operation.context) unless raise_on_failure
++
++      raise error
++    end
++
++    def input_contract_error(operation, args, kwargs, raise_on_failure)
++      validate_input_contract!(args, kwargs)
++      nil
++    rescue StandardError => e
++      log_exception(operation, e)
++      raise e if raise_on_failure
++
++      e
++    end
++
++    def execute(operation, *args, **kwargs, &block)
++      Helpers.time_execution do
++        operation.apply_hooks(:before, :around) do
++          [operation.call(*args, **kwargs, &block), nil]
++        end
++      rescue StandardError => e
++        raise e if e.is_a?(NotImplementedError)
++
++        handle_execution_error(operation, e)
++      end
++    end
++
++    def validate_output(operation, result, error, raise_on_failure)
++      validate_output_contract!(result, error)
++      [result, error]
++    rescue StandardError => e
++      log_exception(operation, e)
++      raise e if raise_on_failure
++
++      [nil, e]
++    end
++
++    def apply_after_hooks(operation, result, duration)
++      operation.apply_after_hooks(result)
++      result
++    rescue StandardError => e
++      handle_after_hook_error(operation, result, e, duration)
++    end
++
++    def build_result(result, error, duration, context)
++      result_class.new(
++        error.nil?,
++        result,
++        error,
++        duration: duration,
++        context: context
++      )
++    end
++
++    def log_execution_debug(operation, duration)
++      return unless Gaskit.debug?
++
++      operation.logger.debug(context: { duration: duration }) do
++        "Operation completed in #{duration} seconds"
++      end
++    end
++
++    def log_exit(operation, operation_exit)
++      operation.logger.warn { "Exited early: #{operation_exit.key} – #{operation_exit.message}" }
++    end
++
++    def log_exception(operation, exception)
++      operation.logger.error { "[#{exception.class}] #{exception.message}" }
++      operation.logger.error { exception.backtrace&.join("\n") }
++    end
++
++    def handle_execution_error(operation, error)
++      if error.is_a?(Gaskit::OperationExit)
++        log_exit(operation, error)
++      else
++        log_exception(operation, error)
++        raise error if operation.raise_on_failure?
++      end
++
++      [nil, error]
++    end
++
++    def handle_after_hook_error(operation, result, error, duration)
++      log_exception(operation, error)
++      raise error if operation.raise_on_failure?
++
++      build_result(result, error, duration, operation.context)
++    end
++  end
++
++  module OperationContractHelpers
++    private
++
++    def fetch_contract(kind, strict, allow_unknown)
++      memoized = instance_variable_get(:"@#{kind}_contract")
++      return memoized if memoized
++      if superclass.respond_to?("#{kind}_contract") && strict.nil? && allow_unknown.nil?
++        return superclass.send("#{kind}_contract")
++      end
++
++      nil
++    end
++
++    def resolve_contract_symbol(contract, strict, allow_unknown, &block)
++      resolved = Gaskit.contracts.fetch(contract)
++      output_contract(resolved, strict: strict, allow_unknown: allow_unknown, &block)
++    end
++
++    def assign_result_contract(contract, _strict, _allow_unknown)
++      if contract <= Gaskit::OperationResult
++        @result_class = contract
++        @output_contract = contract
++        return contract
++      elsif defined?(::Castkit::DataObject) && contract < ::Castkit::DataObject
++        @output_contract = ::Castkit::Contract.from_dataobject(contract)
++        return @output_contract
++      end
++
++      raise Gaskit::ResultTypeError, contract
++    end
++
++    def build_contract(contract, kind:, strict:, allow_unknown:, &block)
++      validation_rules = contract_validation_rules(strict, allow_unknown)
++
++      return nil if contract.nil? && !block_given?
++      return contract if contract.respond_to?(:validate!)
++      return ::Castkit::Contract.from_dataobject(contract) if contract && contract < ::Castkit::DataObject
++      raise Gaskit::ResultTypeError, contract if contract
++
++      name = contract_name(kind)
++      ::Castkit::Contract.build(name, **validation_rules, &block)
++    end
++
++    def contract_validation_rules(strict, allow_unknown)
++      {}.tap do |rules|
++        rules[:strict] = strict unless strict.nil?
++        rules[:allow_unknown] = allow_unknown unless allow_unknown.nil?
++      end
++    end
++
++    def contract_name(kind)
++      "#{Gaskit::Helpers.resolve_name(self)}_#{kind}_contract".gsub("::", "_").downcase.to_sym
++    end
++
++    def validate_input_contract!(args, kwargs)
++      contract = input_contract
++      return unless contract
++
++      payload = normalize_input_payload(args, kwargs)
++      contract.validate!(payload)
++    end
++
++    def validate_output_contract!(result, error)
++      return if error
++
++      contract = output_contract
++      return unless contract.respond_to?(:validate!)
++      return if contract <= Gaskit::OperationResult
++
++      payload = normalize_output_payload(result)
++      contract.validate!(payload)
++    end
++
++    def normalize_input_payload(args, kwargs)
++      return kwargs[:payload] if kwargs.length == 1 && kwargs.key?(:payload)
++      return kwargs unless kwargs.empty?
++      return args.first if args.length == 1 && args.first.is_a?(Hash)
++
++      { args: args }
++    end
++
++    def normalize_output_payload(result)
++      return result if result.is_a?(Hash)
++
++      { value: result }
++    end
++  end
++
++  module OperationClassMethods
++    include OperationExecutionHelpers
++    include OperationContractHelpers
++
++    # Returns the declared result class or falls back to the superclass or OperationResult.
++    def result_class
++      return @result_class if defined?(@result_class) && @result_class
++      if defined?(@output_contract) && @output_contract.is_a?(Class) && @output_contract <= Gaskit::OperationResult
++        return @output_contract
++      end
++      return superclass.result_class if superclass.respond_to?(:result_class)
++
++      Gaskit::OperationResult
++    end
++
++    # Declares an input contract for validating args/kwargs before executing #call.
++    def input_contract(contract = nil, strict: nil, allow_unknown: nil, &block)
++      if contract.nil? && !block_given? && strict.nil? && allow_unknown.nil?
++        return fetch_contract(:input, strict,
++                              allow_unknown)
++      end
++
++      @input_contract = build_contract(contract, kind: :input, strict: strict, allow_unknown: allow_unknown, &block)
++    end
++
++    # Declares an output contract for validating the returned value from #call.
++    def output_contract(contract = nil, strict: nil, allow_unknown: nil, &block)
++      if contract.nil? && !block_given? && strict.nil? && allow_unknown.nil?
++        return fetch_contract(:output, strict,
++                              allow_unknown)
++      end
++
++      return resolve_contract_symbol(contract, strict, allow_unknown, &block) if contract.is_a?(Symbol)
++      return assign_result_contract(contract, strict, allow_unknown) if contract.is_a?(Class)
++
++      @output_contract = build_contract(contract, kind: :output, strict: strict, allow_unknown: allow_unknown, &block)
++    end
++
++    # Declares a symbolic error and message for use with `exit(:key)`
++    def error(key, message, code: nil)
++      raise ArgumentError, "Error key must be a symbol or a string, received #{key}" unless key.is_a?(Symbol)
++      raise ArgumentError, "Error message must be a string" unless message.is_a?(String)
++      raise ArgumentError, "Error key :#{key} is already registered" if errors_registry.key?(key)
++
++      errors_registry[key.to_sym] = { message: message, code: code }
++    end
++
++    # Returns the error registry for the operation class
++    def errors_registry
++      @errors_registry ||= {}
++    end
++
++    def call(*args, context: {}, **kwargs, &block)
++      invoke(false, context, *args, **kwargs, &block)
++    end
++
++    def call!(*args, context: {}, **kwargs, &block)
++      invoke(true, context, *args, **kwargs, &block)
++    end
++  end
++
+   # The Gaskit::Operation class defines a structured and extensible pattern for building application operations.
+   # It enforces consistent behavior across operations while supporting customization via contracts.
+   #
+   # # Features
+-  # - Pluggable contracts via `use_contract`, allowing you to define or reference a `result` class.
++  # - Pluggable contracts via `output_contract`, allowing you to define or reference a `result` class.
+   # - Integrated duration tracking, structured logging, and early exits.
+   # - Supports `.call` (non-raising) and `.call!` (raising) styles.
+   #
+   # @example Using a registered contract
+   #   class MyOperation < Gaskit::Operation
+-  #     use_contract :service
++  #     output_contract :service
+   #
+   #     def call
+   #       # Do work
+@@ -27,7 +296,7 @@ module Gaskit
+   #
+   # @example Overriding only part of the contract
+   #   class MyCustomOp < Gaskit::Operation
+-  #     use_contract :service, result: MyCustomResult
++  #     output_contract MyCustomResult
+   #
+   #     def call
+   #       exit(:unauthorized, "User not allowed") if unauthorized?
+@@ -37,7 +306,7 @@ module Gaskit
+   #
+   # @example Fully manual contract
+   #   class ManualOp < Gaskit::Operation
+-  #     use_contract result: MyResult
++  #     output_contract MyResult
+   #
+   #     def call
+   #       do_work
+@@ -48,214 +317,13 @@ module Gaskit
+   #
+   # @abstract Subclass this and define `#call` or `#call!` to create a new operation.
+   class Operation
++    include Cattri
+     include Gaskit::Core::Hookable
++    extend OperationClassMethods
+ 
+-    class << self
+-      def result_class
+-        return @result_class if defined?(@result_class) && @result_class
+-        return superclass&.result_class if superclass.respond_to?(:result_class)
+-
+-        nil
+-      end
+-
+-      # Defines the result class for this operation.
+-      # Can reference a named contract registered in `Gaskit::Registry`, or define one without
+-      # using a registered contract.
+-      #
+-      # @example Use a registered contract
+-      #   use_contract :service
+-      #
+-      # @example Define a contract that has not been registered
+-      #   use_contract result: CustomResult
+-      #
+-      # @param contract [Symbol, nil] A registered contract name (e.g., `:service`)
+-      # @param result [Class, nil] A class that inherits from `Gaskit::BaseResult`
+-      # @raise [ArgumentError] if contract is not a symbol or unexpected args are passed
+-      # @raise [ResultTypeError] if `result` is not a subclass of `Gaskit::BaseResult`
+-      # @return [void]
+-      def use_contract(contract = nil, result: nil)
+-        if contract
+-          raise ArgumentError, "use_contract must be called with a symbol or keyword args" unless contract.is_a?(Symbol)
+-
+-          result = Gaskit.contracts.fetch(contract)
+-        end
+-
+-        Gaskit::ContractRegistry.verify_result_class!(result)
+-        @result_class = result
+-      end
+-
+-      # Declares a symbolic error and message for use with `exit(:key)`
+-      #
+-      # @example
+-      #   error :unauthorized, "You must be signed in", code: "AUTH-001"
+-      #
+-      # @param key [String, Symbol] The key used to declare the error.
+-      # @param message [String] The error message.
+-      # @param code [String, nil] Optional error code.
+-      # @return [void]
+-      def error(key, message, code: nil)
+-        raise ArgumentError, "Error key must be a symbol or a string, received #{key}" unless key.is_a?(Symbol)
+-        raise ArgumentError, "Error message must be a string" unless message.is_a?(String)
+-        raise ArgumentError, "Error key :#{key} is already registered" if errors_registry.key?(key)
+-
+-        errors_registry[key.to_sym] = { message: message, code: code }
+-      end
+-
+-      # Returns the error registry for the operation class
+-      #
+-      # @return [void]
+-      def errors_registry
+-        @errors_registry ||= {}
+-      end
+-
+-      # Executes the operation with soft-failure handling
+-      #
+-      # @param args [Array] Positional arguments for the first step
+-      # @param context [Hash] Shared context across all steps
+-      # @param kwargs [Hash] Keyword arguments for the first step
+-      # @return [Gaskit::OperationResult]
+-      def call(*args, context: {}, **kwargs, &block)
+-        invoke(false, context, *args, **kwargs, &block)
+-      end
+-
+-      # Executes the operation with hard-failure handling (raises on unhandled errors)
+-      #
+-      # @param args [Array] Positional arguments for the first step
+-      # @param context [Hash] Shared context across all steps
+-      # @param kwargs [Hash] Keyword arguments for the first step
+-      # @return [Gaskit::OperationResult]
+-      def call!(*args, context: {}, **kwargs, &block)
+-        invoke(true, context, *args, **kwargs, &block)
+-      end
+-
+-      private
+-
+-      # Core execution logic for operations, handling errors and timing.
+-      #
+-      # @param [Boolean] raise_on_failure Whether to raise exceptions on failure.
+-      # @param [Array] args Positional arguments for the operation.
+-      # @param [Hash] kwargs Keyword arguments, including optional :context.
+-      # @yield [Block] Additional block logic during execution.
+-      # @raise [NotImplementedError] If operation type is not set in subclasses.
+-      # @return [OperationResult] The result of the operation.
+-      def invoke(raise_on_failure, context, *args, **kwargs, &block)
+-        unless result_class
+-          raise NotImplementedError, "No result_class defined for #{name} or its ancestors. " \
+-                                     "Did you forget to call `use_contract`?"
+-        end
+-
+-        operation = new(raise_on_failure, context: context)
+-        duration, (result, error) = execute(operation, *args, **kwargs, &block)
+-
+-        result = build_result(result, error, duration, operation.context)
+-
+-        begin
+-          operation.apply_after_hooks(result)
+-        rescue StandardError => e
+-          result = handle_after_hook_error(operation, result, e, duration)
+-        end
+-
+-        log_execution_debug(operation, duration)
+-
+-        result
+-      end
+-
+-      # Executes the operation logic and handles potential exceptions.
+-      #
+-      # @param [Gaskit::Operation] operation The instance of the current operation.
+-      # @param [Array] args Positional arguments passed.
+-      # @param [Hash] kwargs Keyword arguments passed.
+-      # @yield [Block] Additional block for the operation.
+-      # @return [Array] The execution duration, result, and error if any.
+-      def execute(operation, *args, **kwargs, &block)
+-        Helpers.time_execution do
+-          operation.apply_hooks(:before, :around) do
+-            [operation.call(*args, **kwargs, &block), nil]
+-          end
+-        rescue StandardError => e
+-          handle_execution_error(operation, e)
+-        end
+-      end
+-
+-      # Builds an OperationResult instance.
+-      #
+-      # @param [Object, nil] result The result of the operation.
+-      # @param [StandardError] error The error, if any.
+-      # @param [Float] duration The duration of the operation.
+-      # @param [Gaskit::Context] context The operation context.
+-      # @return [OperationResult]
+-      def build_result(result, error, duration, context)
+-        result_class.new(
+-          error.nil?,
+-          result,
+-          error,
+-          duration: duration,
+-          context: context
+-        )
+-      end
+-
+-      # Logs execution information about the operation if Gaskit.debug? == true.
+-      #
+-      # @param [Gaskit::Operation] operation The operation instance.
+-      # @param [Float] duration The operation's duration.
+-      def log_execution_debug(operation, duration)
+-        return unless Gaskit.debug?
+-
+-        operation.logger.debug(context: { duration: duration }) do
+-          "Operation completed in #{duration} seconds"
+-        end
+-      end
+-
+-      # Logs an early exit from the operation.
+-      #
+-      # @param [Gaskit::Operation] operation The operation instance.
+-      # @param [StandardError] operation_exit The exit error raised.
+-      # @return [void]
+-      def log_exit(operation, operation_exit)
+-        operation.logger.warn { "Exited early: #{operation_exit.key} – #{operation_exit.message}" }
+-      end
+-
+-      # Logs any unhandled exception during the operation.
+-      #
+-      # @param [Gaskit::Operation] operation The operation instance.
+-      # @param [StandardError] exception The raised exception.
+-      # @return [void]
+-      def log_exception(operation, exception)
+-        operation.logger.error { "[#{exception.class}] #{exception.message}" }
+-        operation.logger.error { exception.backtrace&.join("\n") }
+-      end
+-
+-      # Handles exceptions during execution.
+-      #
+-      # @param [Gaskit::Operation] operation The operation instance.
+-      # @param [StandardError] error The raised error.
+-      # @return [Array] The result and the error.
+-      def handle_execution_error(operation, error)
+-        if error.is_a?(Gaskit::OperationExit)
+-          log_exit(operation, error)
+-        else
+-          log_exception(operation, error)
+-          raise error if operation.raise_on_failure?
+-        end
+-
+-        [nil, error]
+-      end
+-
+-      # Handles errors raised after executing hooks.
+-      #
+-      # @param [Gaskit::Operation] operation The operation instance.
+-      # @param [OperationResult] result The current operation result.
+-      # @param [StandardError] error The encountered error.
+-      # @param [Float] duration The execution duration.
+-      def handle_after_hook_error(operation, result, error, duration)
+-        log_exception(operation, error)
+-        raise error if operation.raise_on_failure?
+-
+-        build_result(result, error, duration, operation.context)
+-      end
+-    end
+-
+-    attr_reader :raise_on_failure, :context, :logger
++    cattri :raise_on_failure, nil, final: true
++    cattri :context, -> { {} }, final: true
++    cattri :logger, nil, final: true
+ 
+     # Initializes a new Gaskit::Operation instance.
+     #
+@@ -263,9 +331,9 @@ module Gaskit
+     # @param [Hash] context Context data for the operation.
+     # @return [void]
+     def initialize(raise_on_failure, context: {})
+-      @raise_on_failure = raise_on_failure
+-      @context = apply_context(context)
+-      @logger = Gaskit::Logger.new(self, context: @context)
++      self.raise_on_failure = raise_on_failure ? true : false
++      self.context = apply_context(context)
++      self.logger = Gaskit::Logger.new(self, context: self.context)
+ 
+       return unless self.class.result_class.nil?
+ 
+@@ -273,7 +341,7 @@ module Gaskit
+     end
+ 
+     def raise_on_failure?
+-      @raise_on_failure
++      raise_on_failure ? true : false
+     end
+ 
+     # Executes the operation logic.
+diff --git a/lib/gaskit/operation_exit.rb b/lib/gaskit/operation_exit.rb
+index 05ff078..83ea03a 100644
+--- a/lib/gaskit/operation_exit.rb
++++ b/lib/gaskit/operation_exit.rb
+@@ -1,5 +1,7 @@
+ # frozen_string_literal: true
+ 
++require "cattri"
++
+ module Gaskit
+   # OperationExit is a custom exception representing an early exit from an operation.
+   #
+@@ -19,11 +21,10 @@ module Gaskit
+   #     puts "Exited: #{e.key} - #{e.message} (#{e.code})"
+   #   end
+   class OperationExit < Gaskit::Error
+-    # @return [Symbol, String] The symbolic or textual reason for the early exit
+-    attr_reader :key
++    include Cattri
+ 
+-    # @return [String, nil] Optional structured code (e.g., "AUTH-001")
+-    attr_reader :code
++    final_cattri :key, nil
++    final_cattri :code, nil
+ 
+     # Initializes an OperationExit.
+     #
+@@ -32,8 +33,8 @@ module Gaskit
+     # @param code [String, nil] A structured error code for analytics or debugging
+     def initialize(key, message = nil, code: nil)
+       super(message || "early exit")
+-      @key = key
+-      @code = code
++      self.key = key
++      self.code = code
+     end
+ 
+     def inspect
+diff --git a/lib/gaskit/operation_result.rb b/lib/gaskit/operation_result.rb
+index c30269c..3d0cd3d 100644
+--- a/lib/gaskit/operation_result.rb
++++ b/lib/gaskit/operation_result.rb
+@@ -1,5 +1,6 @@
+ # frozen_string_literal: true
+ 
++require "castkit"
+ require "json"
+ 
+ module Gaskit
+@@ -12,21 +13,24 @@ module Gaskit
+   #   else
+   #     puts "Operation failed with reason: #{result.to_h[:error]}"
+   #   end
+-  class OperationResult
+-    # @return [Boolean] Whether the operation was successful.
+-    attr_reader :success
++  class OperationResult < ::Castkit::DataObject
++    ignore_nil true
++    ignore_blank true
+ 
+-    # @return [Object, nil] The result value of the operation, if any.
+-    attr_reader :value
++    boolean :success
++    attribute :value, :any, required: false
++    attribute :error, :any, required: false
+ 
+-    # @return [Exception, nil] The error that occurred during the operation, if any.
+-    attr_reader :error
+-
+-    # @return [Float] The duration of the operation in seconds.
+-    attr_reader :duration
++    hash :exit, required: false
++    composite :meta, :hash, required: false do
++      { duration: duration, context: context }.compact
++    end
+ 
+-    # @return [Hash] The context used during the operation.
+-    attr_reader :context
++    transient do
++      string :duration
++      hash :context, default: -> { {} }
++      attribute :raw_error, :any
++    end
+ 
+     # Initializes a new instance of OperationResult.
+     #
+@@ -35,12 +39,19 @@ module Gaskit
+     # @param error [StandardError, nil] The error encountered during the operation.
+     # @param duration [Float, String] The time taken to complete the operation in seconds.
+     # @param context [Hash] Optional context metadata for this operation.
+-    def initialize(success, value, error, duration:, context: {})
+-      @success = success
+-      @value = value
+-      @error = error
+-      @duration = format_duration(duration)
+-      @context = context
++    def initialize(success, value, error = nil, duration:, context: {})
++      formatted_duration = format_duration(duration)
++
++      super(
++        success: success ? true : false,
++        value: value,
++        exit: build_exit(error),
++        error: error
++      )
++
++      self.duration = formatted_duration
++      self.context = context
++      self.raw_error = error
+     end
+ 
+     # Provides a human-readable string representation of the result.
+@@ -54,21 +65,21 @@ module Gaskit
+     #
+     # @return [Boolean] `true` if the operation was successful, `false` otherwise.
+     def success?
+-      @success
++      success
+     end
+ 
+     # Indicates whether the operation failed.
+     #
+     # @return [Boolean] `true` if the operation failed, `false` otherwise.
+     def failure?
+-      !@success
++      !success?
+     end
+ 
+     # Indicates whether the operation exited early using `exit(:key)`.
+     #
+     # @return [Boolean] `true` if the operation exited early, `false` otherwise.
+     def early_exit?
+-      !@success && error.is_a?(Gaskit::OperationExit)
++      failure? && raw_error.is_a?(Gaskit::OperationExit)
+     end
+ 
+     # Returns the status of the operation result.
+@@ -80,6 +91,13 @@ module Gaskit
+       success? ? :success : :failure
+     end
+ 
++    # Returns the raw error object, if any.
++    #
++    # @return [Exception, nil]
++    def exception
++      raw_error
++    end
++
+     # Converts the operation result to a structured hash.
+     #
+     # - Includes `:value` on success
+@@ -89,18 +107,12 @@ module Gaskit
+     #
+     # @return [Hash] A nested representation of the result.
+     def to_h
+-      hash = {
+-        success: success?,
+-        status: status,
+-        value: value
+-      }.compact
++      hash = base_hash
+ 
+-      hash = failure_to_hash(hash) if failure?
+-
+-      hash[:meta] = {
+-        duration: duration,
+-        context: context
+-      }.compact
++      add_exit!(hash)
++      add_error!(hash)
++      add_meta!(hash)
++      add_steps!(hash)
+ 
+       hash.freeze
+     end
+@@ -115,19 +127,66 @@ module Gaskit
+ 
+     private
+ 
++    # Builds the base representation for result serialization.
++    #
++    # @return [Hash]
++    def base_hash
++      {
++        success: success?,
++        status: status,
++        value: value
++      }.compact
++    end
++
++    # Adds early-exit data to the result hash when present.
++    #
++    # @param hash [Hash]
++    # @return [void]
++    def add_exit!(hash)
++      hash[:exit] = exit if early_exit?
++    end
++
++    # Adds error data to the result hash for failure cases.
++    #
++    # @param hash [Hash]
++    # @return [void]
++    def add_error!(hash)
++      return unless failure? && !early_exit? && error
++
++      hash[:error] = error_hash
++    end
++
++    # Adds metadata (duration and context) to the result hash.
++    #
++    # @param hash [Hash]
++    # @return [void]
++    def add_meta!(hash)
++      hash[:meta] = meta
++    end
++
++    # Adds step data to the result hash when present.
++    #
++    # @param hash [Hash]
++    # @return [void]
++    def add_steps!(hash)
++      hash[:steps] = steps if respond_to?(:steps)
++    end
++
+     # Formats duration as a 6-digit string.
+     #
+     # @param duration [Float, String]
+     # @return [String]
+     def format_duration(duration)
+-      duration = duration.to_f
+-      format("%.6f", duration)
++      format("%.6f", duration.to_f)
+     end
+ 
+-    # Builds the exit section of the result hash.
++    # Builds the exit section of the result hash for early exits.
+     #
+-    # @return [Hash] Details about the early exit, including key and message.
+-    def exit_to_hash
++    # @param error [Gaskit::OperationExit, nil]
++    # @return [Hash, nil]
++    def build_exit(error)
++      return unless error.is_a?(Gaskit::OperationExit)
++
+       {
+         key: error.key,
+         message: error.message,
+@@ -138,7 +197,12 @@ module Gaskit
+     # Builds the error section of the result hash.
+     #
+     # @return [Hash] Details about the raised exception (if any).
+-    def error_to_hash
++    # Builds the error section of the result hash for failures.
++    #
++    # @return [Hash, nil]
++    def error_hash
++      return if error.nil? || error.is_a?(Gaskit::OperationExit)
++
+       {
+         type: error.class.name,
+         message: error.message,
+@@ -146,12 +210,5 @@ module Gaskit
+         backtrace: error.backtrace
+       }.compact
+     end
+-
+-    def failure_to_hash(hash)
+-      hash[:exit] = exit_to_hash if early_exit?
+-      hash[:error] = error_to_hash if failure? && !early_exit? && error
+-
+-      hash
+-    end
+   end
+ end
+diff --git a/lib/gaskit/railtie.rb b/lib/gaskit/railtie.rb
+deleted file mode 100644
+index 1d87e30..0000000
+--- a/lib/gaskit/railtie.rb
++++ /dev/null
+@@ -1,11 +0,0 @@
+-# frozen_string_literal: true
+-
+-require "rails/railtie"
+-
+-module Gaskit
+-  class Railtie < Rails::Railtie
+-    config.app_generators do |g|
+-      g.templates.unshift File.expand_path("../../generators", __dir__)
+-    end
+-  end
+-end
+diff --git a/lib/gaskit/repository.rb b/lib/gaskit/repository.rb
+index 0b84517..7c4d751 100644
+--- a/lib/gaskit/repository.rb
++++ b/lib/gaskit/repository.rb
+@@ -134,7 +134,7 @@ module Gaskit
+       def should_log_execution_time?(log_level)
+         return true if Gaskit.configuration.debug
+         return true if log_level == :debug
+-        return true if logger.respond_to?(:level) && logger.level <= Logger::DEBUG
++        return true if logger.respond_to?(:level) && logger.level <= ::Logger::DEBUG
+ 
+         false
+       end
+diff --git a/lib/gaskit/stores/base.rb b/lib/gaskit/stores/base.rb
+index a7c20f6..09154b9 100644
+--- a/lib/gaskit/stores/base.rb
++++ b/lib/gaskit/stores/base.rb
+@@ -1,5 +1,7 @@
+ # frozen_string_literal: true
+ 
++require "cattri"
++
+ module Gaskit
+   module Stores
+     # Abstract base class for implementing Gaskit-compatible stores.
+@@ -15,11 +17,10 @@ module Gaskit
+     #     end
+     #   end
+     class Base
+-      # @return [String] The cache key namespace.
+-      attr_reader :namespace
++      include Cattri
+ 
+-      # @return [Gaskit::Logger] The logger instance used by this store.
+-      attr_reader :logger
++      final_cattri :namespace, nil
++      final_cattri :logger, nil
+ 
+       # Initializes a new store instance.
+       #
+@@ -29,9 +30,9 @@ module Gaskit
+       def initialize(namespace, key_separator: ":", logger: nil)
+         logger ||= Gaskit::Logger.new(self.class)
+ 
+-        @namespace = namespace.freeze
++        self.namespace = namespace.freeze
+         @key_separator = key_separator.freeze
+-        @logger = logger
++        self.logger = logger
+       end
+ 
+       # Builds a fully-qualified namespaced key.
+@@ -39,7 +40,7 @@ module Gaskit
+       # @param key [String] Key suffix.
+       # @return [String] Fully qualified key.
+       def namespace_key(key)
+-        "#{@namespace}#{@key_separator}#{key}"
++        "#{namespace}#{@key_separator}#{key}"
+       end
+ 
+       # Builds a namespaced wildcard pattern for scanning keys.
+@@ -52,12 +53,12 @@ module Gaskit
+ 
+       # Checks if a key exists (safe).
+       #
+-      # Wraps {#key_exists!} in a `safe_op` block, returning false on failure.
++      # Wraps {#key_exists?} in a `safe_op` block, returning false on failure.
+       #
+       # @param key [String] The key to check.
+       # @return [Boolean] True if the key exists, false if not or on failure.
+-      def key_exists?(key)
+-        safe_op { key_exists!(key) } || false
++      def key_exists!(key)
++        safe_op { key_exists?(key) } || false
+       end
+ 
+       # Checks if a key exists (strict).
+@@ -65,7 +66,7 @@ module Gaskit
+       # @param key [String] The key to check.
+       # @return [Boolean] True if the key exists.
+       # @raise [NotImplementedError] Must be implemented by the subclass.
+-      def key_exists!(key)
++      def key_exists?(key)
+         raise NotImplementedError, "#{self.class} must implement #{__method__}"
+       end
+ 
+@@ -77,8 +78,8 @@ module Gaskit
+       # @yield Executes if value is missing or `force` is true.
+       # @yieldreturn [Object] The value to write and return.
+       # @return [Object, nil] The cached or computed value, or nil on failure.
+-      def fetch(key, force: false, **options)
+-        safe_op { fetch!(key, force: force, **options) }
++      def fetch(key, default = nil, force: false, **options, &block)
++        safe_op { fetch!(key, default, force: force, **options, &block) }
+       end
+ 
+       # Strictly fetches a value from the store or computes and writes it if missing.
+@@ -90,13 +91,18 @@ module Gaskit
+       # @yieldreturn [Object] The value to write and return.
+       # @return [Object] The cached or computed value.
+       # @raise [StandardError] Any error raised during read, write, or block execution.
+-      def fetch!(key, force: false, **options)
++      def fetch!(key, default = nil, force: false, **options, &block)
+         unless force
+           cached = read(key, **options)
+-          return cached if cached
++          return cached unless cached.nil?
+         end
+ 
+-        result = yield
++        result = if block_given?
++                   block.call
++                 else
++                   default
++                 end
++
+         write(key, result, **options) unless result.nil?
+         result
+       end
+diff --git a/lib/gaskit/stores/memory_store.rb b/lib/gaskit/stores/memory_store.rb
+index 11482f3..096eb39 100644
+--- a/lib/gaskit/stores/memory_store.rb
++++ b/lib/gaskit/stores/memory_store.rb
+@@ -28,7 +28,7 @@ module Gaskit
+       #
+       # @param key [String] The key to check.
+       # @return [Boolean] True if the key exists and is not expired.
+-      def key_exists!(key)
++      def key_exists?(key)
+         key = namespace_key(key)
+         _, expires_at = @store[key]
+ 
+@@ -42,7 +42,10 @@ module Gaskit
+       # @return [Object, nil] A single value or a key-value hash.
+       def read!(*keys, **options)
+         results = read_all!(*keys, **options)
+-        results.fetch(key)
++        return results if keys.size > 1
++        return nil if results.empty?
++
++        results.values.first
+       end
+ 
+       # Writes a single key-value pair into the store.
+@@ -85,7 +88,7 @@ module Gaskit
+       # @param ttl [Integer, nil] Time-to-live in seconds.
+       # @param _options [Hash] Ignored options for compatibility.
+       # @return [Boolean] Always returns true.
+-      def write_all!(data, ttl: nil, **_options)
++      def write_all!(data, ttl: nil, **_options) # rubocop:disable Naming/PredicateMethod
+         expires_at = ttl ? Time.now.to_f + ttl : nil
+         data.each do |key, value|
+           @store[namespace_key(key)] = [value, expires_at]
+@@ -98,7 +101,7 @@ module Gaskit
+       #
+       # @param _options [Hash] Ignored options for compatibility.
+       # @return [Boolean] Always returns true.
+-      def flush_namespace!(**_options)
++      def flush_namespace!(**_options) # rubocop:disable Naming/PredicateMethod
+         prefix = "#{namespace}:"
+         @store.delete_if { |key, _| key.start_with?(prefix) }
+ 
+diff --git a/lib/gaskit/stores/redis_store.rb b/lib/gaskit/stores/redis_store.rb
+index 59e8b90..bd3a27f 100644
+--- a/lib/gaskit/stores/redis_store.rb
++++ b/lib/gaskit/stores/redis_store.rb
+@@ -1,6 +1,7 @@
+ # frozen_string_literal: true
+ 
+ require "json"
++require "zlib"
+ require_relative "base"
+ 
+ module Gaskit
+@@ -16,8 +17,7 @@ module Gaskit
+     #   store.read!("foo") # => { "a" => 1 }
+     #
+     class RedisStore < Gaskit::Stores::Base
+-      # @return [::Redis] The provided Redis connection.
+-      attr_reader :connection
++      final_cattri :connection, nil
+ 
+       # @param namespace [String] Key namespace prefix
+       # @param connection [::Redis] A Redis client instance
+@@ -25,9 +25,9 @@ module Gaskit
+       # @param serializer [#call, nil] Callable to serialize values (default: JSON)
+       # @param deserializer [#call, nil] Callable to deserialize values (default: JSON)
+       def initialize(namespace, connection, logger: nil, serializer: nil, deserializer: nil)
++        self.connection = connection
+         super(namespace, logger: logger)
+ 
+-        @connection = connection.freeze
+         @serializer = serializer
+         @deserializer = deserializer
+       end
+@@ -36,15 +36,15 @@ module Gaskit
+       #
+       # @param key [String]
+       # @return [Boolean]
+-      def key_exists?(key)
+-        safe_op { key_exists!(key) } || false
++      def key_exists!(key)
++        safe_op { key_exists?(key) } || false
+       end
+ 
+       # Strict check if a key exists
+       #
+       # @param key [String]
+       # @return [Boolean]
+-      def key_exists!(key)
++      def key_exists?(key)
+         connection.exists?(namespace_key(key))
+       end
+ 
+@@ -54,7 +54,7 @@ module Gaskit
+       # @param purge_on_error [Boolean] Whether to purge corrupted keys
+       # @return [Object, nil]
+       def read(key, purge_on_error: false, **options)
+-        safe_op { read(key, purge_on_error: purge_on_error, **options) }
++        safe_op { read!(key, purge_on_error: purge_on_error, **options) }
+       end
+ 
+       # Strict read of a single key. Raises on deserialization failure.
+@@ -63,8 +63,8 @@ module Gaskit
+       # @param purge_on_error [Boolean] Whether to purge corrupted keys
+       # @return [Object, nil]
+       def read!(key, purge_on_error: false, **options)
+-        result = read_all!(*key, purge_on_error: purge_on_error, **options)
+-        result.fetch(key)
++        result = read_all!(key, purge_on_error: purge_on_error, **options)
++        result.fetch(namespace_key(key))
+       end
+ 
+       # Writes a single key
+@@ -103,7 +103,7 @@ module Gaskit
+       # @return [Hash{String => Object, nil}]
+       def read_all!(*keys, purge_on_error: true, **options)
+         keys = namespaced_keys(keys)
+-        results = read_keys(keys)
++        results = read_keys(keys, options: options)
+ 
+         results.each_with_object({}) do |(key, value), hash|
+           hash[key] = deserialize(key, value, purge_on_error: purge_on_error, **options)
+@@ -175,7 +175,7 @@ module Gaskit
+         keys.size == 1 && keys.first.include?("*")
+       end
+ 
+-      def read_keys(keys)
++      def read_keys(keys, options:)
+         return keys.zip(connection.mget(*keys)) unless wildcard_key?(keys)
+ 
+         scan(keys.first, **options) do |found_keys, batch_results|
+@@ -216,14 +216,15 @@ module Gaskit
+       # @param fail_on_error [Boolean] Raise error or return nil
+       # @param purge_on_error [Boolean] Delete key if deserialization fails
+       # @return [Object, nil]
+-      def deserialize(key, value, fail_on_error:, purge_on_error: true)
++      def deserialize(key, value, fail_on_error: false, purge_on_error: true)
+         return nil if value.nil?
+ 
+-        Zlib::Inflate.inflate(deserializer.call(value.to_s))
++        inflated = Zlib::Inflate.inflate(value.to_s)
++        deserializer.call(inflated)
+       rescue StandardError => e
+         if purge_on_error
+           logger.warn("[#{self.class}] Purging corrupted key: #{key}")
+-          delete(key)
++          connection.del(key)
+         end
+ 
+         raise e if fail_on_error
+diff --git a/lib/gaskit/types/any.rb b/lib/gaskit/types/any.rb
+new file mode 100644
+index 0000000..7de4cbb
+--- /dev/null
++++ b/lib/gaskit/types/any.rb
+@@ -0,0 +1,18 @@
++# frozen_string_literal: true
++
++require "castkit"
++
++module Gaskit
++  module Types
++    # Permissive Castkit type that accepts and returns any value untouched.
++    # Used for fields like `value` or `error` payloads where callers control the shape.
++    class Any < Castkit::Types::Base
++      def validate!(value, options: {}, context: {})
++        validator = options[:validator]
++        return unless validator
++
++        validator.call(value, options: options, context: context)
++      end
++    end
++  end
++end
+diff --git a/lib/gaskit/types/symbol.rb b/lib/gaskit/types/symbol.rb
+new file mode 100644
+index 0000000..2e4bdf7
+--- /dev/null
++++ b/lib/gaskit/types/symbol.rb
+@@ -0,0 +1,26 @@
++# frozen_string_literal: true
++
++require "castkit"
++
++module Gaskit
++  module Types
++    # Castkit type for symbol fields. Coerces via `to_sym` when possible.
++    class Symbol < Castkit::Types::Base
++      def deserialize(value)
++        return if value.nil?
++        return value if value.is_a?(::Symbol)
++
++        value.to_sym
++      rescue StandardError
++        type_error!(:symbol, value)
++        nil
++      end
++
++      def validate!(value, _options: {}, context: {})
++        return if value.nil? || value.is_a?(::Symbol) || value.respond_to?(:to_sym)
++
++        type_error!(:symbol, value, context: context)
++      end
++    end
++  end
++end
+diff --git a/lib/gaskit/version.rb b/lib/gaskit/version.rb
+index 5efe788..0d9836f 100644
+--- a/lib/gaskit/version.rb
++++ b/lib/gaskit/version.rb
+@@ -1,5 +1,5 @@
+ # frozen_string_literal: true
+ 
+ module Gaskit
+-  VERSION = "0.1.2-alpha"
++  VERSION = "0.2.0"
+ end
+diff --git a/lib/generators/gaskit/operation/flow_generator.rb b/lib/generators/gaskit/operation/flow_generator.rb
+deleted file mode 100644
+index 7156821..0000000
+--- a/lib/generators/gaskit/operation/flow_generator.rb
++++ /dev/null
+@@ -1,34 +0,0 @@
+-# frozen_string_literal: true
+-
+-require "rails/generators/base"
+-
+-module Gaskit
+-  module Generators
+-    # Generates a new Gaskit::Flow class using the class-based DSL.
+-    #
+-    # This generator creates a flow subclass using statically defined steps.
+-    #
+-    # @example Generates a class like:
+-    #   class CheckoutFlow < Gaskit::Flow
+-    #     step AddToCart
+-    #     step ApplyDiscount
+-    #     step Finalize
+-    #   end
+-    #
+-    #   CheckoutFlow.call(user_id: 123)
+-    #
+-    #   rails generate gaskit:flow Checkout AddToCart ApplyDiscount Finalize
+-    #
+-    # @see templates/flow.rb.tt for the ERB template used.
+-    class FlowGenerator < Rails::Generators::NamedBase
+-      source_root File.expand_path("templates", __dir__)
+-
+-      # List of operation steps for the flow
+-      argument :steps, type: :array, default: [], banner: "StepOne StepTwo"
+-
+-      def create_flow_file
+-        template "flow.rb.tt", File.join("app/flows", class_path, "#{file_name}_flow.rb")
+-      end
+-    end
+-  end
+-end
+diff --git a/lib/generators/gaskit/operation/operation_generator.rb b/lib/generators/gaskit/operation/operation_generator.rb
+deleted file mode 100644
+index 2a1f10f..0000000
+--- a/lib/generators/gaskit/operation/operation_generator.rb
++++ /dev/null
+@@ -1,51 +0,0 @@
+-# frozen_string_literal: true
+-
+-require "rails/generators/base"
+-
+-module Gaskit
+-  module Generators
+-    # A Rails generator for creating new operation classes that inherit from `Gaskit::Operation`,
+-    # `Gaskit::Service`, or `Gaskit::Query`, depending on the specified `--type` option.
+-    #
+-    # This generator supports namespaced operations and places them under `app/operations`.
+-    #
+-    # @example Generate a base operation
+-    #   rails generate gaskit:operation CreateUser
+-    #
+-    # @example Generate a service operation
+-    #   rails generate gaskit:operation CreateUser --type=service
+-    #
+-    # @example Generate a query operation
+-    #   rails generate gaskit:operation FetchUsers --type=query
+-    #
+-    # @see templates/operation.rb.tt for the ERB template used.
+-    class OperationGenerator < Rails::Generators::NamedBase
+-      SUPPORTED_TYPES = %w[base service query].freeze
+-
+-      source_root File.expand_path("templates", __dir__)
+-
+-      class_option :type,
+-                   type: :string,
+-                   default: "base",
+-                   desc: "Operation type (base, service, query)"
+-
+-      def validate_type!
+-        return if SUPPORTED_TYPES.include?(options["type"])
+-
+-        raise ArgumentError, "Invalid type: #{options["type"]}. Supported types are: #{SUPPORTED_TYPES.join(", ")}"
+-      end
+-
+-      def create_operation_file
+-        validate_type!
+-
+-        subdir = case options["type"]
+-                 when "service" then "services"
+-                 when "query" then "queries"
+-                 else "operations"
+-                 end
+-
+-        template "operation.rb.tt", File.join("app", subdir, class_path, "#{file_name}.rb")
+-      end
+-    end
+-  end
+-end
+diff --git a/lib/generators/gaskit/operation/query_generator.rb b/lib/generators/gaskit/operation/query_generator.rb
+deleted file mode 100644
+index f8183f7..0000000
+--- a/lib/generators/gaskit/operation/query_generator.rb
++++ /dev/null
+@@ -1,22 +0,0 @@
+-# frozen_string_literal: true
+-
+-require "rails/generators/base"
+-
+-module Gaskit
+-  module Generators
+-    # A Rails generator for creating new service classes that inherit from `Gaskit::Query`.
+-    #
+-    # This generator supports namespaced queries and places them under `app/queries`.
+-    #
+-    # @example Generate a base operation
+-    #   rails generate gaskit:query FetchUserQuery
+-    #
+-    # @see templates/operation.rb.tt for the ERB template used.
+-    class QueryGenerator < OperationGenerator
+-      def initialize(*args)
+-        super
+-        options[:type] = "query"
+-      end
+-    end
+-  end
+-end
+diff --git a/lib/generators/gaskit/operation/repository_generator.rb b/lib/generators/gaskit/operation/repository_generator.rb
+deleted file mode 100644
+index 5f4c44e..0000000
+--- a/lib/generators/gaskit/operation/repository_generator.rb
++++ /dev/null
+@@ -1,37 +0,0 @@
+-# frozen_string_literal: true
+-
+-require "rails/generators/base"
+-
+-module Gaskit
+-  module Generators
+-    # Generates a repository for a given model name
+-    #
+-    # @example
+-    #   rails generate gaskit:repository User
+-    #
+-    #   # Creates:
+-    #   # app/repositories/user_repository.rb
+-    #
+-    #   # With contents:
+-    #   # class UserRepository < Gaskit::Repository
+-    #   #   model User
+-    #   # end
+-    class RepositoryGenerator < Rails::Generators::NamedBase
+-      source_root File.expand_path("templates", __dir__)
+-
+-      def create_repository_file
+-        @model_name = class_name
+-        @repository_class_name = "#{class_name}Repository"
+-        @file_path = File.join("app/repositories", class_path, "#{file_name}_repository.rb")
+-
+-        template "repository.rb.tt", @file_path
+-      end
+-
+-      private
+-
+-      def file_name
+-        super.underscore
+-      end
+-    end
+-  end
+-end
+diff --git a/lib/generators/gaskit/operation/service_generator.rb b/lib/generators/gaskit/operation/service_generator.rb
+deleted file mode 100644
+index e9ea4ad..0000000
+--- a/lib/generators/gaskit/operation/service_generator.rb
++++ /dev/null
+@@ -1,22 +0,0 @@
+-# frozen_string_literal: true
+-
+-require "rails/generators/base"
+-
+-module Gaskit
+-  module Generators
+-    # A Rails generator for creating new service classes that inherit from `Gaskit::Service`.
+-    #
+-    # This generator supports namespaced services and places them under `app/services`.
+-    #
+-    # @example Generate a base operation
+-    #   rails generate gaskit:service CreateUserService
+-    #
+-    # @see templates/operation.rb.tt for the ERB template used.
+-    class ServiceGenerator < OperationGenerator
+-      def initialize(*args)
+-        super
+-        options[:type] = "service"
+-      end
+-    end
+-  end
+-end
+diff --git a/lib/generators/gaskit/operation/templates/flow.rb.tt b/lib/generators/gaskit/operation/templates/flow.rb.tt
+deleted file mode 100644
+index 2aef6a3..0000000
+--- a/lib/generators/gaskit/operation/templates/flow.rb.tt
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# frozen_string_literal: true
+-
+-class <%= class_name %>Flow < Gaskit::Flow
+-<% steps.each do |step| -%>
+-  step <%= step %>
+-<% end -%>
+-end
+diff --git a/lib/generators/gaskit/operation/templates/operation.rb.tt b/lib/generators/gaskit/operation/templates/operation.rb.tt
+deleted file mode 100644
+index e6a8fa4..0000000
+--- a/lib/generators/gaskit/operation/templates/operation.rb.tt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-# frozen_string_literal: true
+-
+-<% gaskit_type = case options["type"] %>
+-<% when "service" then "Gaskit::Service" %>
+-<% when "query" then "Gaskit::Query" %>
+-<% else "Gaskit::Operation" %>
+-<% end %>
+-
+-class <%= class_name %> < <%= gaskit_type %>
+-  # This is a generated Gaskit operation. Add your logic below.
+-
+-  def call(*args, **kwargs)
+-    # Your operation logic goes here.
+-    "ok"
+-  end
+-end
+diff --git a/lib/generators/gaskit/operation/templates/repository.rb.tt b/lib/generators/gaskit/operation/templates/repository.rb.tt
+deleted file mode 100644
+index fd9e994..0000000
+--- a/lib/generators/gaskit/operation/templates/repository.rb.tt
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# frozen_string_literal: true
+-
+-class <%= @repository_class_name %> < Gaskit::Repository
+-  model <%= @model_name %>
+-
+-  # Define additional methods here as needed
+-end
+diff --git a/spec/gaskit/configuration_spec.rb b/spec/gaskit/configuration_spec.rb
+index 5ae458c..451e9cb 100644
+--- a/spec/gaskit/configuration_spec.rb
++++ b/spec/gaskit/configuration_spec.rb
+@@ -1,7 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
+-
+ RSpec.describe Gaskit::Configuration do
+   let(:config) { described_class.new }
+ 
+@@ -58,6 +56,36 @@ RSpec.describe Gaskit::Configuration do
+     end
+   end
+ 
++  describe "#cache_store" do
++    it "configures redis store when requested" do
++      store_config = config.cache_store(:redis)
++
++      expect(store_config[:store]).to eq(Gaskit::Stores::RedisStore)
++    end
++
++    it "raises for unsupported cache store types" do
++      expect { config.cache_store(:unknown) }.to raise_error(ArgumentError, /Unsupported cache_store type/)
++    end
++  end
++
++  describe "#register_cache_store and #fetch_cache_store" do
++    it "registers and fetches a custom store" do
++      custom_store = Class.new(Gaskit::Stores::Base) do
++        def read_all!(*)
++          {}
++        end
++
++        def initialize(namespace, logger: nil, **_options)
++          super(namespace, logger: logger)
++        end
++      end
++
++      config.register_cache_store(:custom_spec_store, custom_store)
++
++      expect(config.fetch_cache_store(:custom_spec_store)).to eq(custom_store)
++    end
++  end
++
+   describe "contract registry" do
+     let(:result_class) { Class.new(Gaskit::OperationResult) }
+ 
+diff --git a/spec/gaskit/contract_registry_spec.rb b/spec/gaskit/contract_registry_spec.rb
+index 6b41a7b..a4f769a 100644
+--- a/spec/gaskit/contract_registry_spec.rb
++++ b/spec/gaskit/contract_registry_spec.rb
+@@ -1,6 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
+ require "stringio"
+ 
+ RSpec.describe Gaskit::ContractRegistry do
+diff --git a/spec/gaskit/core/cacheable_spec.rb b/spec/gaskit/core/cacheable_spec.rb
+new file mode 100644
+index 0000000..dffbf0d
+--- /dev/null
++++ b/spec/gaskit/core/cacheable_spec.rb
+@@ -0,0 +1,108 @@
++# frozen_string_literal: true
++
++# Class for testing cacheable behavior
++class CacheableOp
++  include Gaskit::Core::Cacheable
++
++  attr_reader :logger
++
++  def initialize
++    @logger = Gaskit::Logger.new(self.class)
++  end
++
++  cache_store nil, namespace: "cacheable_op"
++end
++
++RSpec.describe Gaskit::Core::Cacheable do
++  before do
++    Gaskit.configuration.cache_store(:memory)
++    Gaskit.configuration.enforce_cache_store = false
++  end
++
++  let(:operation) { CacheableOp.new }
++
++  it "instantiates a cache store with the configured namespace" do
++    expect(operation.cache).to be_a(Gaskit::Stores::MemoryStore)
++    operation.cache.write!("key", 1)
++    expect(operation.cache.read!("key")).to eq(1)
++  end
++
++  it "prefetches keys and serves them from prefetched cache" do
++    operation.cache.write!("prefetch", "value")
++    operation.cache_prefetch!("prefetch")
++
++    expect(operation.prefetched(operation.cache.namespace_key("prefetch"))).to eq("value")
++  end
++
++  it "returns default or block fallback when prefetched key missing" do
++    operation.cache_prefetch!("missing")
++    key = operation.cache.namespace_key("missing")
++    expect(operation.prefetched(key, "default")).to eq("default")
++    expect(operation.prefetched(key) { "block" }).to eq("block")
++  end
++
++  it "raises when cache is enforced but not configured" do
++    CacheableOp.cache_store(:disabled)
++    Gaskit.configuration.enforce_cache_store = true
++
++    expect { CacheableOp.new.cache_prefetch!("key") }.to raise_error(Gaskit::Error, /No cache store/)
++  ensure
++    Gaskit.configuration.enforce_cache_store = false
++    Gaskit.configuration.cache_store(:memory)
++    CacheableOp.cache_store nil, namespace: "cacheable_op"
++  end
++
++  it "reports cache as disabled when configured as :disabled" do
++    CacheableOp.cache_store(:disabled)
++    expect(CacheableOp.new.cache_enabled?).to be false
++  ensure
++    CacheableOp.cache_store nil, namespace: "cacheable_op"
++  end
++
++  it "treats prefetched nil as a miss and falls back" do
++    CacheableOp.reset_cache_store!
++    CacheableOp.cache_store nil, namespace: "cacheable_op"
++    op = CacheableOp.new
++    op.cache_prefetch!("present_nil")
++    key = op.cache.namespace_key("present_nil")
++    op.prefetch_cache[key] = nil
++
++    expect(op.prefetched(key, "fallback")).to eq("fallback")
++    expect(op.prefetched(key) { "block" }).to eq("block")
++  end
++
++  it "allows overriding the cache store config" do
++    CacheableOp.override_cache_store(name: :memory, namespace: "override", options: {})
++
++    expect(CacheableOp.cache_store).to eq({ name: :memory, namespace: "override", options: {} })
++  ensure
++    CacheableOp.reset_cache_store!
++    CacheableOp.cache_store nil, namespace: "cacheable_op"
++  end
++
++  it "logs and rescues errors during cache_prefetch" do
++    logger = instance_double(Gaskit::Logger, warn: nil)
++    allow(operation).to receive(:logger).and_return(logger)
++    allow(operation).to receive(:cache_prefetch!).and_raise(StandardError, "boom")
++
++    operation.cache_prefetch("key")
++
++    expect(logger).to have_received(:warn).with("Cache prefetch failed: boom")
++  end
++
++  it "clears prefetched cache" do
++    operation.prefetch_cache["key"] = "value"
++    operation.clear_prefetched_cache!
++
++    expect(operation.prefetch_cache).to eq({})
++  end
++
++  it "returns default store config when configured directly" do
++    allow(Gaskit.configuration).to receive(:cache_store).and_return(Gaskit::Stores::MemoryStore)
++
++    store_class, options = operation.send(:resolve_store_config)
++
++    expect(store_class).to eq(Gaskit::Stores::MemoryStore)
++    expect(options).to eq({})
++  end
++end
+diff --git a/spec/gaskit/core/hookable_spec.rb b/spec/gaskit/core/hookable_spec.rb
+index c16e108..88ee6cf 100644
+--- a/spec/gaskit/core/hookable_spec.rb
++++ b/spec/gaskit/core/hookable_spec.rb
+@@ -188,5 +188,19 @@ RSpec.describe Gaskit::Core::Hookable do
+         expect(instance.instance_variable_get(:@received_result)).to eq("final-result")
+       end
+     end
++
++    describe "global hooks" do
++      it "applies all hooks when run_all_hooks is enabled" do
++        Gaskit.hooks.reset!
++        dummy_class.use_hooks
++        Gaskit.hooks.register(:before, :global) { @global_before = true }
++
++        instance.apply_before_hooks
++
++        expect(instance.instance_variable_get(:@global_before)).to eq(true)
++      ensure
++        Gaskit.hooks.reset!
++      end
++    end
+   end
+ end
+diff --git a/spec/gaskit/core_spec.rb b/spec/gaskit/core_spec.rb
+index 7e8f4f3..383b6f9 100644
+--- a/spec/gaskit/core_spec.rb
++++ b/spec/gaskit/core_spec.rb
+@@ -1,7 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
+-
+ RSpec.describe Gaskit do
+   let(:result_class) { Class.new(Gaskit::OperationResult) }
+   let(:exit_class)   { Class.new(Gaskit::BaseExit) }
+diff --git a/spec/gaskit/flow_integration_spec.rb b/spec/gaskit/flow_integration_spec.rb
+new file mode 100644
+index 0000000..f242456
+--- /dev/null
++++ b/spec/gaskit/flow_integration_spec.rb
+@@ -0,0 +1,47 @@
++# frozen_string_literal: true
++
++# Class for testing service operations
++class AddOneService < Gaskit::Service
++  def call(value)
++    value + 1
++  end
++end
++
++# Class for testing service operations
++class MultiplyService < Gaskit::Service
++  def call(value)
++    value * 2
++  end
++end
++
++# Class for testing service pipelines
++class PipelineFlow < Gaskit::Flow
++  step AddOneService
++  step MultiplyService
++end
++
++RSpec.describe Gaskit::Flow do
++  it "runs a multi-step flow using service operations" do
++    result = PipelineFlow.call(2, context: { correlation_id: "abc" })
++
++    expect(result).to be_success
++    expect(result.value).to eq(6)
++    expect(result.steps.size).to eq(2)
++  end
++
++  it "returns a failing result when a step raises without raising globally" do
++    failing_service = Class.new(Gaskit::Service) do
++      def call(_value)
++        raise "boom"
++      end
++    end
++
++    flow_class = Class.new(Gaskit::Flow) do
++      step failing_service
++    end
++
++    result = flow_class.call(1)
++    expect(result).to be_failure
++    expect(result.error).to be_a(RuntimeError)
++  end
++end
+diff --git a/spec/gaskit/flow_result_spec.rb b/spec/gaskit/flow_result_spec.rb
+new file mode 100644
+index 0000000..1712112
+--- /dev/null
++++ b/spec/gaskit/flow_result_spec.rb
+@@ -0,0 +1,11 @@
++# frozen_string_literal: true
++
++require "gaskit/flow_result"
++
++RSpec.describe Gaskit::FlowResult do
++  it "includes steps in the hash representation" do
++    result = described_class.new(true, "ok", nil, steps: [{ step: 1 }], duration: "0.000001", context: {})
++
++    expect(result.to_h[:steps]).to eq([{ step: 1 }])
++  end
++end
+diff --git a/spec/gaskit/flow_spec.rb b/spec/gaskit/flow_spec.rb
+index 39700c3..6fb29c5 100644
+--- a/spec/gaskit/flow_spec.rb
++++ b/spec/gaskit/flow_spec.rb
+@@ -1,6 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
+ require "gaskit/flow"
+ 
+ # rubocop:disable Style/Documentation
+@@ -17,41 +16,6 @@ class FailureService < Gaskit::Service
+ end
+ # rubocop:enable Style/Documentation
+ 
+-RSpec.shared_examples "a failing hook for call" do |hook_type|
+-  let(:failing_hook_class) do
+-    Class.new(described_class) do
+-      send(hook_type) { raise "hook failed!" }
+-
+-      def call(value)
+-        value
+-      end
+-    end
+-  end
+-
+-  it "catches the failure result" do
+-    result = failing_hook_class.call(1)
+-
+-    expect(result).to be_failure
+-    expect(result.error.message).to eq("hook failed!")
+-  end
+-end
+-
+-RSpec.shared_examples "a failing hook for call!" do |hook_type|
+-  let(:failing_hook_class) do
+-    Class.new(described_class) do
+-      send(hook_type) { raise "hook failed!" }
+-
+-      def call(value)
+-        value
+-      end
+-    end
+-  end
+-
+-  it "raises the error" do
+-    expect { failing_hook_class.call!(1) }.to raise_error(RuntimeError, "hook failed!")
+-  end
+-end
+-
+ RSpec.describe Gaskit::Flow do
+   let(:dummy_class) { Class.new(described_class) }
+ 
+@@ -279,6 +243,22 @@ RSpec.describe Gaskit::Flow do
+     end
+   end
+ 
++  describe "#next_step_input" do
++    let(:flow) { dummy_class.walk }
++
++    it "uses array results as next args" do
++      flow.instance_variable_set(:@result, Gaskit::OperationResult.new(true, [1, 2], nil, duration: "0"))
++
++      expect(flow.send(:next_step_input)).to eq([[1, 2], {}])
++    end
++
++    it "uses hash results as next kwargs" do
++      flow.instance_variable_set(:@result, Gaskit::OperationResult.new(true, { value: 1 }, nil, duration: "0"))
++
++      expect(flow.send(:next_step_input)).to eq([[], { value: 1 }])
++    end
++  end
++
+   describe "hook processing" do
+     let(:hooked_flow) do
+       Class.new(described_class) do
+diff --git a/spec/gaskit/hook_registry_spec.rb b/spec/gaskit/hook_registry_spec.rb
+index 02c908e..1a69691 100644
+--- a/spec/gaskit/hook_registry_spec.rb
++++ b/spec/gaskit/hook_registry_spec.rb
+@@ -1,7 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
+-
+ RSpec.describe Gaskit::HookRegistry do
+   let(:registry) { described_class.new }
+ 
+@@ -81,4 +79,24 @@ RSpec.describe Gaskit::HookRegistry do
+       expect(registry.registered_tags(:around)).to contain_exactly(:timing, :trace)
+     end
+   end
++
++  describe "#reset!" do
++    it "reinitializes hook storage with default buckets" do
++      registry.register(:before, :audit) { :ok }
++      registry.reset!
++
++      expect(registry.send(:hooks)[:before][:missing]).to eq([])
++    end
++  end
++
++  describe "lazy hooks initialization" do
++    it "builds the default hook buckets when uninitialized" do
++      registry.instance_variable_set(:@hooks, nil)
++      hooks = registry.send(:hooks)
++
++      expect(hooks[:before][:missing]).to eq([])
++      expect(hooks[:after][:missing]).to eq([])
++      expect(hooks[:around][:missing]).to eq([])
++    end
++  end
+ end
+diff --git a/spec/gaskit/logger_spec.rb b/spec/gaskit/logger_spec.rb
+index 4adc866..dc80737 100644
+--- a/spec/gaskit/logger_spec.rb
++++ b/spec/gaskit/logger_spec.rb
+@@ -1,7 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
+-
+ RSpec.describe Gaskit::Logger do
+   let(:string_io) { StringIO.new }
+   let(:ruby_logger) { Logger.new(string_io) }
+@@ -24,6 +22,12 @@ RSpec.describe Gaskit::Logger do
+       gaskit_logger = described_class.new(String, context: { request_id: "123" })
+       expect(gaskit_logger.context).to include(global: "ctx", request_id: "123")
+     end
++
++    it "falls back to a null logger when initialization fails" do
++      allow(Gaskit::Helpers).to receive(:resolve_name).and_raise(StandardError, "boom")
++
++      expect { described_class.new("Broken") }.not_to raise_error
++    end
+   end
+ 
+   describe "#log" do
+@@ -79,4 +83,10 @@ RSpec.describe Gaskit::Logger do
+       end.to raise_error(ArgumentError, /Invalid log formatter/)
+     end
+   end
++
++  describe "#loggable?" do
++    it "returns false for unknown log levels" do
++      expect(logger.send(:loggable?, :nope)).to be false
++    end
++  end
+ end
+diff --git a/spec/gaskit/operation_contracts_spec.rb b/spec/gaskit/operation_contracts_spec.rb
+new file mode 100644
+index 0000000..5ee868d
+--- /dev/null
++++ b/spec/gaskit/operation_contracts_spec.rb
+@@ -0,0 +1,71 @@
++# frozen_string_literal: true
++
++# Class for testing operation contracts
++class InputPayload < Castkit::DataObject
++  attribute :value, :integer
++end
++
++# Class for testing operation contracts
++class InputValidatedOp < Gaskit::Operation
++  input_contract InputPayload
++
++  def call(payload:)
++    payload[:value] * 2
++  end
++end
++
++# Class for testing operation contracts
++class OutputValidatedOp < Gaskit::Operation
++  # Castkit data object for output contract
++  class Payload < ::Castkit::DataObject
++    attribute :value, :integer
++  end
++
++  output_contract Payload
++
++  def call
++    { value: 5 }
++  end
++end
++
++# Class for testing operation contracts
++class OutputInvalidOp < OutputValidatedOp
++  def call
++    { value: "oops" }
++  end
++end
++
++RSpec.describe "Operation contracts" do
++  it "validates input contract and returns success for valid payload" do
++    result = InputValidatedOp.call(payload: { value: 10 })
++
++    expect(result).to be_success
++    expect(result.value).to eq(20)
++    expect(result.error).to be_nil
++  end
++
++  it "captures input contract errors on call and returns failure result" do
++    result = InputValidatedOp.call(payload: { value: "bad" })
++
++    expect(result).to be_failure
++    expect(result.error).to be_a(Castkit::ContractError)
++  end
++
++  it "raises on invalid input when using call!" do
++    expect { InputValidatedOp.call!(payload: { value: "bad" }) }.to raise_error(Castkit::ContractError)
++  end
++
++  it "validates output contract with Castkit data object" do
++    result = OutputValidatedOp.call
++
++    expect(result).to be_success
++    expect(result.value).to eq({ value: 5 })
++  end
++
++  it "captures output contract errors and returns failure result" do
++    result = OutputInvalidOp.call
++
++    expect(result).to be_failure
++    expect(result.error).to be_a(Castkit::ContractError)
++  end
++end
+diff --git a/spec/gaskit/operation_exit_spec.rb b/spec/gaskit/operation_exit_spec.rb
+index c823655..ead434a 100644
+--- a/spec/gaskit/operation_exit_spec.rb
++++ b/spec/gaskit/operation_exit_spec.rb
+@@ -1,7 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
+-
+ RSpec.describe Gaskit::OperationExit do
+   let(:key) { :unauthorized }
+   let(:message) { "User is not allowed" }
+@@ -37,4 +35,14 @@ RSpec.describe Gaskit::OperationExit do
+       expect(described_class.new(key, message).to_s).to eq("User is not allowed")
+     end
+   end
++
++  describe "#inspect" do
++    it "includes key, message, and code" do
++      exit_error = described_class.new(key, message, code: "AUTH-1")
++
++      expect(exit_error.inspect).to include("key=:unauthorized")
++      expect(exit_error.inspect).to include("message=\"User is not allowed\"")
++      expect(exit_error.inspect).to include("code=\"AUTH-1\"")
++    end
++  end
+ end
+diff --git a/spec/gaskit/operation_result_spec.rb b/spec/gaskit/operation_result_spec.rb
+index 21340d0..4918de9 100644
+--- a/spec/gaskit/operation_result_spec.rb
++++ b/spec/gaskit/operation_result_spec.rb
+@@ -1,6 +1,6 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
++require "json"
+ 
+ RSpec.describe Gaskit::OperationResult do
+   let(:value)    { "output" }
+@@ -61,6 +61,13 @@ RSpec.describe Gaskit::OperationResult do
+     end
+   end
+ 
++  describe "#exception" do
++    it "returns the raw error" do
++      result = described_class.new(false, nil, error, duration: duration)
++      expect(result.exception).to eq(error)
++    end
++  end
++
+   describe "#to_h" do
+     it "includes value on success" do
+       result = described_class.new(true, "ok", nil, duration: duration, context: context)
+@@ -123,4 +130,15 @@ RSpec.describe Gaskit::OperationResult do
+       )
+     end
+   end
++
++  describe "#to_json" do
++    it "serializes the result hash to JSON" do
++      result = described_class.new(true, "ok", nil, duration: duration, context: context)
++      payload = JSON.parse(result.to_json)
++
++      expect(payload["status"]).to eq("success")
++      expect(payload["value"]).to eq("ok")
++      expect(payload["meta"]["duration"]).to eq("0.123457")
++    end
++  end
+ end
+diff --git a/spec/gaskit/operation_spec.rb b/spec/gaskit/operation_spec.rb
+index 634ef60..6d2a122 100644
+--- a/spec/gaskit/operation_spec.rb
++++ b/spec/gaskit/operation_spec.rb
+@@ -1,6 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
+ require "gaskit/operation"
+ 
+ class DummyResult < Gaskit::OperationResult; end
+@@ -15,48 +14,10 @@ RSpec.shared_examples "successful operation" do |method|
+   end
+ end
+ 
+-RSpec.shared_examples "a failing hook for call" do |hook_type|
+-  let(:failing_hook_class) do
+-    Class.new(described_class) do
+-      send(hook_type) { raise "hook failed!" }
+-      use_contract :result_class
+-
+-      def call(num_a, num_b)
+-        num_a + num_b
+-      end
+-    end
+-  end
+-
+-  it "catches the failure result" do
+-    result = failing_hook_class.call(1, 2, context: context)
+-
+-    expect(result).to be_failure
+-    expect(result.error.message).to eq("hook failed!")
+-  end
+-end
+-
+-RSpec.shared_examples "a failing hook for call!" do |hook_type|
+-  let(:failing_hook_class) do
+-    Class.new(described_class) do
+-      send(hook_type) { raise "hook failed!" }
+-      use_contract :result_class
+-
+-      def call(num_a, num_b)
+-        num_a + num_b
+-      end
+-    end
+-  end
+-
+-  it "raises the error" do
+-    expect { failing_hook_class.call!(1, 2, context: context) }
+-      .to raise_error(RuntimeError, "hook failed!")
+-  end
+-end
+-
+ RSpec.shared_examples "operation exit" do |error_key:, expected_key:, expected_message: nil, expected_code: nil|
+   let(:dummy_class) do
+     Class.new(Gaskit::Operation) do
+-      use_contract result: DummyResult
++      output_contract DummyResult
+       error :registered_error, "registered error", code: 123
+ 
+       define_method(:call) do
+@@ -99,7 +60,7 @@ RSpec.describe Gaskit::Operation do
+       let(:subclass) { Class.new(superclass) }
+ 
+       before do
+-        superclass.use_contract result: result_class
++        superclass.output_contract result_class
+       end
+ 
+       it "returns the result class for the operation" do
+@@ -110,21 +71,23 @@ RSpec.describe Gaskit::Operation do
+         expect(superclass.result_class).to eq(result_class)
+         expect(superclass.result_class).to eq(subclass.result_class)
+       end
+-    end
+ 
+-    describe ".use_contract" do
+-      it "sets the result class from a registered contract" do
+-        dummy_class.use_contract :result_class
++      it "falls back to output_contract when result_class is unset" do
++        klass = Class.new(described_class)
++        klass.instance_variable_set(:@output_contract, result_class)
+ 
+-        expect(dummy_class.result_class).to eq(result_class)
++        expect(klass.result_class).to eq(result_class)
+       end
++    end
+ 
+-      it "validates the contract argument as a symbol" do
+-        expect { dummy_class.use_contract "not_a_symbol" }.to raise_error(ArgumentError)
+-      end
++    describe ".output_contract" do
++      it "builds a contract from a block" do
++        klass = Class.new(described_class)
++        klass.output_contract do
++          string :name
++        end
+ 
+-      it "raises an error if the result class is invalid" do
+-        expect { dummy_class.use_contract result: "not_a_class" }.to raise_error(ArgumentError)
++        expect(klass.output_contract).to respond_to(:validate!)
+       end
+     end
+ 
+@@ -195,7 +158,7 @@ RSpec.describe Gaskit::Operation do
+       let(:context) { { test_key: "test_value" } }
+       let(:success_class) do
+         Class.new(described_class) do
+-          use_contract :result_class
++          output_contract :result_class
+ 
+           def call(num_a, num_b)
+             num_a + num_b
+@@ -214,7 +177,7 @@ RSpec.describe Gaskit::Operation do
+       context "when the operation fails" do
+         let(:failed_class) do
+           Class.new(described_class) do
+-            use_contract :result_class
++            output_contract :result_class
+ 
+             def call
+               raise "boom!"
+@@ -234,7 +197,7 @@ RSpec.describe Gaskit::Operation do
+       context "when hooks are defined" do
+         let(:hooked_class) do
+           Class.new(described_class) do
+-            use_contract :result_class
++            output_contract :result_class
+ 
+             before { self.class.hook_events << "before" }
+             around do |block|
+@@ -286,7 +249,7 @@ RSpec.describe Gaskit::Operation do
+       let(:context) { { test_key: "test_value" } }
+       let(:success_class) do
+         Class.new(described_class) do
+-          use_contract :result_class
++          output_contract :result_class
+ 
+           def call(num_a, num_b)
+             num_a + num_b
+@@ -305,7 +268,7 @@ RSpec.describe Gaskit::Operation do
+       context "when the operation fails" do
+         let(:failed_class) do
+           Class.new(described_class) do
+-            use_contract :result_class
++            output_contract :result_class
+ 
+             def call
+               raise "boom!"
+@@ -336,7 +299,7 @@ RSpec.describe Gaskit::Operation do
+     describe "#initialize" do
+       let(:operation) do
+         Class.new(described_class) do
+-          use_contract :result_class
++          output_contract :result_class
+           def call
+             :ok
+           end
+@@ -360,6 +323,13 @@ RSpec.describe Gaskit::Operation do
+ 
+         expect(instance.logger).to be_a(Gaskit::Logger)
+       end
++
++      it "raises when no result_class can be resolved" do
++        klass = Class.new(described_class)
++        allow(klass).to receive(:result_class).and_return(nil)
++
++        expect { klass.new(false) }.to raise_error(Gaskit::Error, /No result_class/)
++      end
+     end
+ 
+     describe "#call" do
+@@ -395,7 +365,7 @@ RSpec.describe Gaskit::Operation do
+   describe "#abort" do
+     let(:operation) do
+       Class.new(described_class) do
+-        use_contract :result_class
++        output_contract :result_class
+         def call
+           abort(:unauthorized, "blocked", code: "ERR-401")
+         end
+@@ -427,7 +397,7 @@ RSpec.describe Gaskit::Operation do
+       context "when context is provided" do
+         let(:operation_class) do
+           Class.new(described_class) do
+-            use_contract :result_class
++            output_contract :result_class
+ 
+             def call
+               :ok
+@@ -447,13 +417,13 @@ RSpec.describe Gaskit::Operation do
+         let!(:custom_result) { Class.new(Gaskit::OperationResult) }
+         let(:parent_operation) do
+           Class.new(described_class) do
+-            use_contract :result_class
++            output_contract :result_class
+           end
+         end
+ 
+         it "uses the result class from the subclass" do
+           child_operation = Class.new(parent_operation)
+-          child_operation.use_contract result: custom_result
++          child_operation.output_contract custom_result
+ 
+           expect(child_operation.result_class).to eq(custom_result)
+         end
+@@ -461,9 +431,107 @@ RSpec.describe Gaskit::Operation do
+         it "fails if the result class is not a subclass of Gaskit::OperationResult" do
+           child_operation = Class.new(parent_operation)
+ 
+-          expect { child_operation.use_contract(result: Object) }.to raise_error(Gaskit::ResultTypeError)
++          expect { child_operation.output_contract(Object) }.to raise_error(Gaskit::ResultTypeError)
++        end
++      end
++    end
++
++    describe ".ensure_result_class!" do
++      it "raises when no result_class is available" do
++        klass = Class.new(described_class)
++        allow(klass).to receive(:result_class).and_return(nil)
++
++        expect { klass.call }.to raise_error(NotImplementedError, /No result_class/)
++      end
++    end
++
++    describe ".build_contract" do
++      let(:klass) { Class.new(described_class) }
++      let(:data_object) do
++        Class.new(Castkit::DataObject) do
++          attribute :value, :string
++        end
++      end
++
++      it "builds a contract from a data object" do
++        contract = klass.send(:build_contract, data_object, kind: :input, strict: nil, allow_unknown: nil)
++        expect(contract).to respond_to(:validate!)
++      end
++
++      it "raises for unsupported contracts" do
++        expect { klass.send(:build_contract, Object, kind: :input, strict: nil, allow_unknown: nil) }
++          .to raise_error(Gaskit::ResultTypeError)
++      end
++
++      it "builds a contract using a block" do
++        contract = klass.send(:build_contract, nil, kind: :input, strict: true, allow_unknown: false) do
++          string :name
++        end
++
++        expect(contract).to respond_to(:validate!)
++      end
++    end
++
++    describe ".handle_input_failure" do
++      let(:klass) do
++        Class.new(described_class) do
++          output_contract :result_class
+         end
+       end
++
++      it "re-raises errors when raise_on_failure is true" do
++        error = StandardError.new("boom")
++        operation = klass.new(true)
++
++        expect do
++          klass.send(:handle_input_failure, operation, true, error)
++        end.to raise_error(StandardError, "boom")
++      end
++    end
++
++    describe ".normalize_input_payload" do
++      let(:klass) { Class.new(described_class) }
++
++      it "returns payload when passed as a single keyword" do
++        payload = { value: 1 }
++        result = klass.send(:normalize_input_payload, [], { payload: payload })
++
++        expect(result).to eq(payload)
++      end
++
++      it "returns kwargs when provided" do
++        result = klass.send(:normalize_input_payload, [], { value: 2 })
++
++        expect(result).to eq({ value: 2 })
++      end
++
++      it "returns a single hash argument" do
++        result = klass.send(:normalize_input_payload, [{ value: 3 }], {})
++
++        expect(result).to eq({ value: 3 })
++      end
++
++      it "wraps positional args when no hash kwargs are given" do
++        result = klass.send(:normalize_input_payload, [1, 2], {})
++
++        expect(result).to eq({ args: [1, 2] })
++      end
++    end
++
++    describe ".normalize_output_payload" do
++      let(:klass) { Class.new(described_class) }
++
++      it "returns hashes unchanged" do
++        result = klass.send(:normalize_output_payload, { value: 1 })
++
++        expect(result).to eq({ value: 1 })
++      end
++
++      it "wraps non-hash values" do
++        result = klass.send(:normalize_output_payload, 5)
++
++        expect(result).to eq({ value: 5 })
++      end
+     end
+   end
+ end
+diff --git a/spec/gaskit/repository_spec.rb b/spec/gaskit/repository_spec.rb
+index ede7e9d..9e3a37d 100644
+--- a/spec/gaskit/repository_spec.rb
++++ b/spec/gaskit/repository_spec.rb
+@@ -1,7 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
+-
+ RSpec.describe Gaskit::Repository do
+   let(:model_class) do
+     Class.new do
+@@ -80,4 +78,36 @@ RSpec.describe Gaskit::Repository do
+       end.to raise_error("boom")
+     end
+   end
++
++  describe ".should_log_execution_time?" do
++    let(:repo_class) { build_repo_with_model }
++
++    it "returns true when debug mode is enabled" do
++      allow(Gaskit.configuration).to receive(:debug).and_return(true)
++
++      expect(repo_class.send(:should_log_execution_time?, :info)).to be true
++    end
++
++    it "returns true for debug log level" do
++      allow(Gaskit.configuration).to receive(:debug).and_return(false)
++
++      expect(repo_class.send(:should_log_execution_time?, :debug)).to be true
++    end
++
++    it "returns true when logger level allows debug" do
++      allow(Gaskit.configuration).to receive(:debug).and_return(false)
++      logger = double("logger", level: Logger::DEBUG)
++      allow(repo_class).to receive(:logger).and_return(logger)
++
++      expect(repo_class.send(:should_log_execution_time?, :info)).to be true
++    end
++
++    it "returns false when no logging conditions are met" do
++      allow(Gaskit.configuration).to receive(:debug).and_return(false)
++      logger = double("logger", level: Logger::INFO)
++      allow(repo_class).to receive(:logger).and_return(logger)
++
++      expect(repo_class.send(:should_log_execution_time?, :info)).to be false
++    end
++  end
+ end
+diff --git a/spec/gaskit/stores/base_spec.rb b/spec/gaskit/stores/base_spec.rb
+new file mode 100644
+index 0000000..50fceee
+--- /dev/null
++++ b/spec/gaskit/stores/base_spec.rb
+@@ -0,0 +1,117 @@
++# frozen_string_literal: true
++
++# Test helper store for base store specs.
++class DummyBaseStore < Gaskit::Stores::Base
++  attr_reader :writes
++
++  def initialize(namespace, logger:)
++    super
++    @data = {}
++    @writes = 0
++  end
++
++  def key_exists?(key)
++    @data.key?(key)
++  end
++
++  def read!(*keys, **_options)
++    return @data[keys.first] if keys.size == 1
++
++    keys.index_with { |k| @data[k] }
++  end
++
++  def write!(key, value, **_options) # rubocop:disable Naming/PredicateMethod
++    @writes += 1
++    @data[key] = value
++    true
++  end
++
++  def delete!(*keys, **_options)
++    keys.count { |key| @data.delete(key) }
++  end
++
++  def read_all!(*keys, **_options)
++    keys.index_with { |k| @data[k] }
++  end
++
++  def write_all!(data, **_options) # rubocop:disable Naming/PredicateMethod
++    data.each { |k, v| write!(k, v) }
++    true
++  end
++
++  def flush_namespace!(**_options) # rubocop:disable Naming/PredicateMethod
++    @data.clear
++    true
++  end
++end
++
++RSpec.describe Gaskit::Stores::Base do
++  let(:logger) { instance_double(Gaskit::Logger, error: nil) }
++  let(:store) { DummyBaseStore.new("ns", logger: logger) }
++
++  it "builds namespaced keys" do
++    expect(store.namespace_key("a")).to eq("ns:a")
++    expect(store.namespace_pattern("a*")).to eq("ns:a*")
++  end
++
++  it "fetches cached values and avoids recomputation unless forced" do
++    store.write!("key", 1)
++    expect(store.fetch!("key") { 2 }).to eq(1)
++    expect(store.fetch!("key", force: true) { 3 }).to eq(3)
++    expect(store.writes).to be >= 2
++  end
++
++  it "does not write when fetch! block returns nil" do
++    initial_writes = store.writes
++    result = store.fetch!("missing") { nil }
++
++    expect(result).to be_nil
++    expect(store.writes).to eq(initial_writes)
++  end
++
++  it "wraps failures via safe operations" do
++    allow(store).to receive(:read!).and_raise(StandardError, "boom")
++    expect(store.read("key")).to be_nil
++    expect(logger).to have_received(:error).with(/\[DummyBaseStore\] StandardError: boom/)
++  end
++
++  it "returns false on key_exists? when an error occurs" do
++    allow(store).to receive(:key_exists!).and_raise(StandardError)
++    expect(store.key_exists?("oops")).to be false
++  end
++
++  it "flushes the namespace via flush_namespace!" do
++    store.write!("k", 1)
++    expect(store.flush_namespace).to be true
++    expect(store.read!("k")).to be_nil
++  end
++
++  describe "abstract methods" do
++    let(:base) { described_class.new("ns") }
++
++    it "raises for strict methods on the base class" do
++      expect { base.key_exists?("a") }.to raise_error(NotImplementedError)
++      expect { base.read!("a") }.to raise_error(NotImplementedError)
++      expect { base.write!("a", 1) }.to raise_error(NotImplementedError)
++      expect { base.delete!("a") }.to raise_error(NotImplementedError)
++      expect { base.read_all!("a") }.to raise_error(NotImplementedError)
++      expect { base.write_all!({ "a" => 1 }) }.to raise_error(NotImplementedError)
++      expect { base.flush_namespace! }.to raise_error(NotImplementedError)
++    end
++
++    it "returns safe defaults for wrapper methods" do
++      store = DummyBaseStore.new("ns", logger: logger)
++      allow(store).to receive(:key_exists?).and_raise(StandardError, "boom")
++      allow(store).to receive(:delete!).and_raise(StandardError, "boom")
++      allow(store).to receive(:read_all!).and_raise(StandardError, "boom")
++      allow(store).to receive(:write_all!).and_raise(StandardError, "boom")
++      allow(store).to receive(:flush_namespace!).and_raise(StandardError, "boom")
++
++      expect(store.key_exists!("a")).to be false
++      expect(store.delete("a")).to be_nil
++      expect(store.read_all("a")).to be_nil
++      expect(store.write_all({ "a" => 1 })).to be_nil
++      expect(store.flush_namespace).to be false
++    end
++  end
++end
+diff --git a/spec/gaskit/stores/memory_store_spec.rb b/spec/gaskit/stores/memory_store_spec.rb
+new file mode 100644
+index 0000000..b17afc5
+--- /dev/null
++++ b/spec/gaskit/stores/memory_store_spec.rb
+@@ -0,0 +1,52 @@
++# frozen_string_literal: true
++
++RSpec.describe Gaskit::Stores::MemoryStore do
++  let(:store) { described_class.new("ns") }
++
++  it "writes and reads values in the namespace" do
++    store.write!("user", 1)
++    store.write!("token", "abc")
++
++    expect(store.read!("user")).to eq(1)
++    expect(store.read!("token")).to eq("abc")
++    expect(store.key_exists?("user")).to be true
++  end
++
++  it "supports fetch helpers and force recompute" do
++    computed = store.fetch("calc", 10)
++    expect(computed).to eq(10)
++    expect(store.read!("calc")).to eq(10)
++
++    forced = store.fetch("calc", force: true) { 20 }
++    expect(forced).to eq(20)
++    expect(store.read!("calc")).to eq(20)
++  end
++
++  it "expires keys based on ttl" do
++    allow(Time).to receive(:now).and_return(Time.at(1000))
++    store.write!("short", "v", ttl: 5)
++
++    allow(Time).to receive(:now).and_return(Time.at(1006))
++    expect(store.read!("short")).to be_nil
++    expect(store.key_exists?("short")).to be false
++  end
++
++  it "flushes only the current namespace" do
++    other = described_class.new("other")
++    store.write!("a", 1)
++    other.write!("a", 2)
++
++    store.flush_namespace!
++
++    expect(store.read!("a")).to be_nil
++    expect(other.read!("a")).to eq(2)
++  end
++
++  it "deletes keys in the namespace" do
++    store.write!("delete_me", 1)
++
++    store.delete!("delete_me")
++
++    expect(store.read!("delete_me")).to be_nil
++  end
++end
+diff --git a/spec/gaskit/stores/redis_store_spec.rb b/spec/gaskit/stores/redis_store_spec.rb
+new file mode 100644
+index 0000000..f8024b6
+--- /dev/null
++++ b/spec/gaskit/stores/redis_store_spec.rb
+@@ -0,0 +1,131 @@
++# frozen_string_literal: true
++
++# Minimal fake Redis client to exercise RedisStore without a real server.
++class FakeRedis
++  def initialize
++    @data = {}
++    @ttl = {}
++  end
++
++  def exists?(key)
++    value = @data[key]
++    expires_at = @ttl[key]
++    return false if expires_at && Time.now.to_f >= expires_at
++
++    !value.nil?
++  end
++
++  def mset(*args)
++    args.each_slice(2) do |key, value|
++      @data[key] = value
++    end
++    "OK"
++  end
++
++  def mget(*keys)
++    keys.map do |key|
++      value = @data[key]
++      expires_at = @ttl[key]
++      expires_at && Time.now.to_f >= expires_at ? nil : value
++    end
++  end
++
++  def expire(key, ttl) # rubocop:disable Naming/PredicateMethod
++    @ttl[key] = Time.now.to_f + ttl
++    true
++  end
++
++  def del(*keys)
++    keys.flatten.each { |key| @data.delete(key) }
++    keys.length
++  end
++
++  def scan(_cursor, match:, count:)
++    pattern = Regexp.new("^#{match.gsub("*", ".*")}$")
++    matched = @data.keys.grep(pattern)
++    ["0", matched.first(count)]
++  end
++
++  def multi
++    result = yield(self)
++    [result]
++  end
++end
++
++RSpec.describe Gaskit::Stores::RedisStore do
++  let(:redis) { FakeRedis.new }
++  let(:store) { described_class.new("ns", redis) }
++
++  it "writes and reads values with namespacing" do
++    store.write!("user", { id: 1 })
++    expect(store.read!("user")).to eq({ "id" => 1 })
++    expect(store.key_exists?("user")).to be true
++  end
++
++  it "supports ttl on write_all!" do
++    store.write_all!({ "a" => 1 }, ttl: 1)
++    expect(store.read!("a")).to eq(1)
++
++    allow(Time).to receive(:now).and_return(Time.at(Time.now.to_i + 2))
++    expect(store.read!("a")).to be_nil
++  end
++
++  it "deletes keys and wildcards via flush" do
++    store.write_all!({ "one" => 1, "two" => 2 })
++    expect(store.delete!("one")).to eq(1)
++
++    store.flush_namespace!
++    expect(store.read!("two")).to be_nil
++  end
++
++  it "supports wildcard reads" do
++    store.write_all!({ "one" => 1, "two" => 2 })
++    results = store.read_all!("*")
++
++    expect(results).to include("ns:one" => 1, "ns:two" => 2)
++  end
++
++  it "purges corrupted data when purge_on_error is true" do
++    redis.mset("ns:bad", "junk")
++
++    results = store.read_all!("bad", purge_on_error: true)
++    expect(results["ns:bad"]).to be_nil
++    expect(redis.exists?("ns:bad")).to be false
++  end
++
++  it "raises when fail_on_error is true" do
++    redis.mset("ns:bad", "junk")
++    expect { store.read_all!("bad", purge_on_error: false, fail_on_error: true) }
++      .to raise_error(StandardError)
++  end
++
++  it "returns nil for corrupted data when purge_on_error is false" do
++    redis.mset("ns:bad", "junk")
++    results = store.read_all!("bad", purge_on_error: false, fail_on_error: false)
++
++    expect(results["ns:bad"]).to be_nil
++    expect(redis.exists?("ns:bad")).to be true
++  end
++
++  it "returns false when key_exists! encounters an error" do
++    error_store = Class.new(described_class) do
++      def key_exists?(_key)
++        raise StandardError, "boom"
++      end
++    end.new("ns", FakeRedis.new)
++
++    expect(error_store.key_exists!("user")).to be false
++  end
++
++  it "returns nil when read encounters an error" do
++    allow(store).to receive(:read!).and_raise(StandardError, "boom")
++
++    expect(store.read("user")).to be_nil
++  end
++
++  it "returns nil when read_all encounters an error" do
++    allow(store).to receive(:read_all!).and_raise(StandardError, "boom")
++
++    expect(store.read_all("user")).to be_nil
++  end
++end
+diff --git a/spec/gaskit/stores_spec.rb b/spec/gaskit/stores_spec.rb
+new file mode 100644
+index 0000000..5cf338d
+--- /dev/null
++++ b/spec/gaskit/stores_spec.rb
+@@ -0,0 +1,58 @@
++# frozen_string_literal: true
++
++require "gaskit/stores"
++
++# Custom store for testing purposes
++class DummyStore < Gaskit::Stores::Base
++  def key_exists?(_key)
++    false
++  end
++
++  def read_all!(*_keys, **_options)
++    {}
++  end
++
++  def write_all!(_data, **_options) # rubocop:disable Naming/PredicateMethod
++    true
++  end
++
++  def delete!(*_keys, **_options)
++    0
++  end
++
++  def flush_namespace!(**_options) # rubocop:disable Naming/PredicateMethod
++    true
++  end
++end
++
++RSpec.describe Gaskit::Stores do
++  it "fetches default stores" do
++    expect(described_class.fetch(:memory)).to eq(Gaskit::Stores::MemoryStore)
++    expect(described_class.fetch(:redis)).to eq(Gaskit::Stores::RedisStore)
++  end
++
++  it "registers and fetches custom stores" do
++    described_class.register(:dummy, DummyStore)
++    expect(described_class.fetch(:dummy)).to eq(DummyStore)
++  end
++
++  it "raises when registering non-store classes" do
++    expect { described_class.register(:bad, Object) }.to raise_error(Gaskit::Error)
++  end
++
++  it "raises on unknown store when enforcement enabled" do
++    previous = Gaskit.configuration.enforce_cache_store
++    Gaskit.configuration.enforce_cache_store = true
++    expect { described_class.fetch(:unknown) }.to raise_error(ArgumentError)
++  ensure
++    Gaskit.configuration.enforce_cache_store = previous
++  end
++
++  it "falls back to memory when enforcement disabled" do
++    previous = Gaskit.configuration.enforce_cache_store
++    Gaskit.configuration.enforce_cache_store = false
++    expect(described_class.fetch(:unknown)).to eq(Gaskit::Stores::MemoryStore)
++  ensure
++    Gaskit.configuration.enforce_cache_store = previous
++  end
++end
+diff --git a/spec/gaskit/types/any_spec.rb b/spec/gaskit/types/any_spec.rb
+new file mode 100644
+index 0000000..f65a13d
+--- /dev/null
++++ b/spec/gaskit/types/any_spec.rb
+@@ -0,0 +1,23 @@
++# frozen_string_literal: true
++
++require "gaskit/types/any"
++
++RSpec.describe Gaskit::Types::Any do
++  let(:type) { described_class.new }
++
++  it "accepts any value by default" do
++    expect { type.validate!("anything") }.not_to raise_error
++    expect { type.validate!(nil) }.not_to raise_error
++  end
++
++  it "delegates to custom validator when provided" do
++    calls = []
++    validator = ->(value, options:, context:) { calls << [value, options, context] }
++
++    type.validate!("ok", options: { validator: validator }, context: { key: :value })
++
++    expect(calls.first[0]).to eq("ok")
++    expect(calls.first[1][:validator]).to eq(validator)
++    expect(calls.first[2]).to eq({ key: :value })
++  end
++end
+diff --git a/spec/gaskit/types/symbol_spec.rb b/spec/gaskit/types/symbol_spec.rb
+new file mode 100644
+index 0000000..565f5a6
+--- /dev/null
++++ b/spec/gaskit/types/symbol_spec.rb
+@@ -0,0 +1,26 @@
++# frozen_string_literal: true
++
++require "gaskit/types/symbol"
++
++RSpec.describe Gaskit::Types::Symbol do
++  let(:type) { described_class.new }
++
++  it "deserializes strings to symbols" do
++    expect(type.deserialize("foo")).to eq(:foo)
++    expect(type.deserialize(:bar)).to eq(:bar)
++    expect(type.deserialize(nil)).to be_nil
++  end
++
++  it "raises attribute error on invalid input" do
++    expect { type.validate!(123) }.to raise_error(Castkit::AttributeError)
++  end
++
++  it "raises type error on deserialize when to_sym is unavailable" do
++    expect { type.deserialize(Object.new) }.to raise_error(Castkit::AttributeError)
++  end
++
++  it "returns nil when deserialize fails and type_error is silenced" do
++    allow(type).to receive(:type_error!).and_return(nil)
++    expect(type.deserialize(Object.new)).to be_nil
++  end
++end
+diff --git a/spec/gaskit_spec.rb b/spec/gaskit_spec.rb
+index d258267..950f05d 100644
+--- a/spec/gaskit_spec.rb
++++ b/spec/gaskit_spec.rb
+@@ -1,7 +1,5 @@
+ # frozen_string_literal: true
+ 
+-require "spec_helper"
+-
+ RSpec.describe Gaskit do
+   let(:result_class) { Class.new(Gaskit::OperationResult) }
+ 
+@@ -20,7 +18,7 @@ RSpec.describe Gaskit do
+     end
+ 
+     klass = Class.new(Gaskit::Operation) do
+-      use_contract :dummy_type
++      output_contract :dummy_type
+ 
+       def call
+         logger.info("Doing something")
+diff --git a/spec/integration/real_world_usage_spec.rb b/spec/integration/real_world_usage_spec.rb
+new file mode 100644
+index 0000000..cf552c0
+--- /dev/null
++++ b/spec/integration/real_world_usage_spec.rb
+@@ -0,0 +1,44 @@
++# frozen_string_literal: true
++
++# Classes for testing real-world usage of Gaskit
++class ProfileResult < Castkit::DataObject
++  attribute :name, :string
++  attribute :role, :string
++end
++
++# Classes for testing real-world usage of Gaskit
++class ProfileOperation < Gaskit::Operation
++  output_contract ProfileResult
++
++  def call(user_id:)
++    { name: "user-#{user_id}", role: "admin" }
++  end
++end
++
++# Classes for testing real-world usage of Gaskit
++class InvalidProfileOperation < Gaskit::Operation
++  output_contract ProfileResult
++
++  def call(user_id:)
++    { name: "user-#{user_id}" } # missing role -> contract failure
++  end
++end
++
++RSpec.describe "Real world usage" do
++  it "runs a typed operation and validates output via Castkit" do
++    result = ProfileOperation.call(user_id: 42, context: { request_id: "abc123" })
++
++    expect(result).to be_success
++    expect(result.value).to eq({ name: "user-42", role: "admin" })
++    expect(result.error).to be_nil
++    expect(result.meta[:context][:request_id]).to eq("abc123")
++  end
++
++  it "captures contract validation failures as operation failures" do
++    result = InvalidProfileOperation.call(user_id: 42)
++
++    expect(result).to be_failure
++    expect(result.error).to be_a(Castkit::ContractError)
++    expect(result.error.message).to include("Validation failed")
++  end
++end
+diff --git a/spec/simplecov_helper.rb b/spec/simplecov_helper.rb
+new file mode 100644
+index 0000000..6fdba2e
+--- /dev/null
++++ b/spec/simplecov_helper.rb
+@@ -0,0 +1,21 @@
++# frozen_string_literal: true
++
++require "simplecov"
++require "simplecov-cobertura"
++require "simplecov-html"
++
++SimpleCov.formatters = [
++  SimpleCov::Formatter::CoberturaFormatter,
++  SimpleCov::Formatter::HTMLFormatter
++]
++
++SimpleCov.start do
++  enable_coverage :branch
++
++  track_files "lib/gaskit/**/*.rb"
++
++  add_filter "lib/gaskit/version.rb"
++  add_filter "/spec/"
++end
++
++SimpleCov.minimum_coverage 100
+diff --git a/spec/spec_helper.rb b/spec/spec_helper.rb
+index 40402ec..d9353d8 100644
+--- a/spec/spec_helper.rb
++++ b/spec/spec_helper.rb
+@@ -1,7 +1,10 @@
+ # frozen_string_literal: true
+ 
++require_relative "simplecov_helper"
+ require "gaskit"
+ 
++Dir[File.join(__dir__, "support/**/*.rb")].sort.each { |f| require f }
++
+ RSpec.configure do |config|
+   # Enable flags like --only-failures and --next-failure
+   config.example_status_persistence_file_path = ".rspec_status"
+diff --git a/spec/support/shared_examples/hooks.rb b/spec/support/shared_examples/hooks.rb
+new file mode 100644
+index 0000000..2eef91e
+--- /dev/null
++++ b/spec/support/shared_examples/hooks.rb
+@@ -0,0 +1,48 @@
++# frozen_string_literal: true
++
++RSpec.shared_examples "a failing hook for call" do |hook_type|
++  let(:failing_hook_class) do
++    Class.new(described_class) do
++      send(hook_type) { raise "hook failed!" }
++      output_contract :result_class if superclass <= Gaskit::Operation
++
++      define_method(:call) do |a = nil, b = nil, **_kwargs|
++        if self.class.superclass <= Gaskit::Operation
++          (a || 0) + (b || 0)
++        else
++          a
++        end
++      end
++    end
++  end
++
++  it "catches the failure result" do
++    args = described_class <= Gaskit::Operation ? [1, 2] : [1]
++    result = failing_hook_class.call(*args)
++
++    expect(result).to be_failure
++    expect(result.error.message).to eq("hook failed!")
++  end
++end
++
++RSpec.shared_examples "a failing hook for call!" do |hook_type|
++  let(:failing_hook_class) do
++    Class.new(described_class) do
++      send(hook_type) { raise "hook failed!" }
++      output_contract :result_class if superclass <= Gaskit::Operation
++
++      define_method(:call) do |a = nil, b = nil, **_kwargs|
++        if self.class.superclass <= Gaskit::Operation
++          (a || 0) + (b || 0)
++        else
++          a
++        end
++      end
++    end
++  end
++
++  it "raises the error" do
++    args = described_class <= Gaskit::Operation ? [1, 2] : [1]
++    expect { failing_hook_class.call!(*args) }.to raise_error(RuntimeError, "hook failed!")
++  end
++end

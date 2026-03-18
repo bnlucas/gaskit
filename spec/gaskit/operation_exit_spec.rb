@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe Gaskit::OperationExit do
   let(:key) { :unauthorized }
   let(:message) { "User is not allowed" }
@@ -35,6 +33,16 @@ RSpec.describe Gaskit::OperationExit do
   describe "#to_s" do
     it "returns the message" do
       expect(described_class.new(key, message).to_s).to eq("User is not allowed")
+    end
+  end
+
+  describe "#inspect" do
+    it "includes key, message, and code" do
+      exit_error = described_class.new(key, message, code: "AUTH-1")
+
+      expect(exit_error.inspect).to include("key=:unauthorized")
+      expect(exit_error.inspect).to include("message=\"User is not allowed\"")
+      expect(exit_error.inspect).to include("code=\"AUTH-1\"")
     end
   end
 end

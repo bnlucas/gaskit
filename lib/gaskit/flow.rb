@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "securerandom"
+require "cattri"
 require_relative "core"
 require_relative "flow_result"
 require_relative "helpers"
@@ -56,7 +57,10 @@ module Gaskit
   # @see Gaskit::FlowResult
   # @see Gaskit::Core::Hookable
   class Flow
+    include Cattri
     include Gaskit::Core::Hookable
+
+    final_cattri :logger, nil
 
     class << self
       # Called when a subclass is defined, initializing an empty step list.
@@ -152,8 +156,6 @@ module Gaskit
       end
     end
 
-    attr_reader :logger
-
     # Returns true if there are more steps remaining in the sequence.
     #
     # @return [Boolean] Whether the flow has more steps to execute.
@@ -239,7 +241,7 @@ module Gaskit
       @step_sequence = self.class.steps.dup
       @step_index = 0
 
-      @logger = Gaskit::Logger.new(self, context: @context)
+      self.logger = Gaskit::Logger.new(self, context: @context)
     end
 
     # Executes a single step of the flow.

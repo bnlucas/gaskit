@@ -188,5 +188,19 @@ RSpec.describe Gaskit::Core::Hookable do
         expect(instance.instance_variable_get(:@received_result)).to eq("final-result")
       end
     end
+
+    describe "global hooks" do
+      it "applies all hooks when run_all_hooks is enabled" do
+        Gaskit.hooks.reset!
+        dummy_class.use_hooks
+        Gaskit.hooks.register(:before, :global) { @global_before = true }
+
+        instance.apply_before_hooks
+
+        expect(instance.instance_variable_get(:@global_before)).to eq(true)
+      ensure
+        Gaskit.hooks.reset!
+      end
+    end
   end
 end

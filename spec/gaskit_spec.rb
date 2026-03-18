@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe Gaskit do
-  let(:result_class) { Class.new(Gaskit::OperationResult) }
-
   it "has a version number" do
     expect(Gaskit::VERSION).not_to be nil
   end
@@ -16,12 +12,9 @@ RSpec.describe Gaskit do
       c.setup_logger(Logger.new(logs), level: Logger::DEBUG)
       c.context_provider = -> { { global: true } }
       c.disable_logging = false
-      c.contracts.register(:dummy_type, result_class, override: true)
     end
 
     klass = Class.new(Gaskit::Operation) do
-      use_contract :dummy_type
-
       def call
         logger.info("Doing something")
         "done"

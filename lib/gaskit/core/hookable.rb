@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "concurrent"
-
 module Gaskit
   module Core
     # Provides before, after, and around hook capabilities to Gaskit operations and queries.
@@ -86,9 +84,9 @@ module Gaskit
           @registered_hooks ||= []
         end
 
-        # @return [Concurrent::Hash<Symbol, Array<Proc>>] Inline hooks organized by type
+        # @return [Hash<Symbol, Array<Proc>>] Inline hooks organized by type
         def inline_hooks
-          @inline_hooks ||= Concurrent::Hash.new { |h, k| h[k] = [] }
+          @inline_hooks ||= Hash.new { |h, k| h[k] = [] }
         end
 
         private

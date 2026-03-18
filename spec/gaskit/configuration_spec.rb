@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe Gaskit::Configuration do
   let(:config) { described_class.new }
 
@@ -58,18 +56,34 @@ RSpec.describe Gaskit::Configuration do
     end
   end
 
-  describe "contract registry" do
-    let(:result_class) { Class.new(Gaskit::OperationResult) }
+  describe "#cache_store" do
+    it "configures redis store when requested" do
+      store_config = config.cache_store(:redis)
 
-    it "registers and fetches a contract" do
-      config.contracts.register(:test, result_class)
-      expect(config.contracts.fetch(:test)).to eq(result_class)
-      expect(config.contracts.registered?(:test)).to be true
+      expect(store_config[:store]).to eq(Gaskit::Stores::RedisStore)
     end
 
-    it "lists all contracts" do
-      config.contracts.register(:foo, result_class)
-      expect(config.contracts.registered).to include(foo: result_class)
+    it "raises for unsupported cache store types" do
+      expect { config.cache_store(:unknown) }.to raise_error(ArgumentError, /Unsupported cache_store type/)
     end
   end
+
+  describe "#register_cache_store and #fetch_cache_store" do
+    it "registers and fetches a custom store" do
+      custom_store = Class.new(Gaskit::Stores::Base) do
+        def read_all!(*)
+          {}
+        end
+
+        def initialize(namespace, logger: nil, **_options)
+          super(namespace, logger: logger)
+        end
+      end
+
+      config.register_cache_store(:custom_spec_store, custom_store)
+
+      expect(config.fetch_cache_store(:custom_spec_store)).to eq(custom_store)
+    end
+  end
+
 end

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require_relative "configuration"
-require_relative "contract_registry"
+require_relative "core/cacheable"
+require_relative "core/hookable"
 
 module Gaskit
   class << self
@@ -28,13 +29,6 @@ module Gaskit
     # @return [Boolean] `true` is Gaskit is set to debug, `false` otherwise.
     def debug?
       Gaskit.configuration.debug
-    end
-
-    # Returns configuration.contracts.
-    #
-    # @return [Gaskit::ContractRegistry] The ContractRegistry instance.
-    def contracts
-      configuration.contracts
     end
 
     # Returns configuration.hooks.

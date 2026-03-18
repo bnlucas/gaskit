@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe Gaskit::Logger do
   let(:string_io) { StringIO.new }
   let(:ruby_logger) { Logger.new(string_io) }
@@ -23,6 +21,12 @@ RSpec.describe Gaskit::Logger do
     it "sets up the logger with class context" do
       gaskit_logger = described_class.new(String, context: { request_id: "123" })
       expect(gaskit_logger.context).to include(global: "ctx", request_id: "123")
+    end
+
+    it "falls back to a null logger when initialization fails" do
+      allow(Gaskit::Helpers).to receive(:resolve_name).and_raise(StandardError, "boom")
+
+      expect { described_class.new("Broken") }.not_to raise_error
     end
   end
 
@@ -77,6 +81,12 @@ RSpec.describe Gaskit::Logger do
       expect do
         described_class.formatter(:foo)
       end.to raise_error(ArgumentError, /Invalid log formatter/)
+    end
+  end
+
+  describe "#loggable?" do
+    it "returns false for unknown log levels" do
+      expect(logger.send(:loggable?, :nope)).to be false
     end
   end
 end

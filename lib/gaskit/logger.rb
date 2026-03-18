@@ -4,6 +4,7 @@ require "logger"
 require "json"
 require "time"
 require "English"
+require "cattri"
 
 require_relative "helpers"
 
@@ -63,6 +64,10 @@ module Gaskit
   #
   # @see Gaskit::Configuration
   class Logger
+    include Cattri
+
+    final_cattri :context, -> { {} }
+
     SENSITIVE_KEYS = %i[email ip_address password auth_token secret ssn jwt token].freeze
 
     class << self
@@ -171,8 +176,6 @@ module Gaskit
       end
     end
 
-    attr_reader :context
-
     # Initializes a new logger instance.
     #
     # @param klass [Class, Object, String, Symbol] The name of the class being logged.
@@ -180,7 +183,7 @@ module Gaskit
     def initialize(klass, context: {})
       @class_name = Gaskit::Helpers.resolve_name(klass)
 
-      @context = apply_context(context).merge(class: @class_name)
+      self.context = apply_context(context).merge(class: @class_name)
       @logger = Gaskit.configuration.logger || ::Logger.new($stdout)
     rescue StandardError
       ::Logger.new($stdout).error "Failed to initialize logger: #{$ERROR_INFO}"
@@ -232,14 +235,13 @@ module Gaskit
     def log(level, message, context: {}, &block)
       return if Gaskit.configuration.disable_logging
 
-      @logger.public_send(level) do
-        combined_context = filtered_context(@context.merge(context))
-        combined_context[:class] ||= @class_name
+      combined_context = filtered_context(self.context.merge(context))
+      combined_context[:class] ||= @class_name
 
-        msg = message || block&.call
+      msg = message || block&.call
+      return unless loggable?(level)
 
-        [msg, combined_context]
-      end
+      @logger.public_send(level, [msg, combined_context])
     end
 
     # Creates a new logger instance with additional merged context.
@@ -247,7 +249,7 @@ module Gaskit
     # @param extra_context [Hash] Additional context to include.
     # @return [Gaskit::Logger] A new logger instance with the updated context.
     def with_context(extra_context)
-      self.class.new(@class_name, context: @context.merge(extra_context))
+      self.class.new(@class_name, context: context.merge(extra_context))
     end
 
     private
@@ -281,6 +283,19 @@ module Gaskit
     # @return [Boolean] True if the key is sensitive and should be filtered; false otherwise.
     def sensitive_key?(key)
       SENSITIVE_KEYS.include?(key)
+    end
+
+    # Determines whether the given log level should be emitted based on the configured logger level.
+    #
+    # @param level [Symbol] Log level name (e.g., :debug, :info).
+    # @return [Boolean] True if the logger is configured to log at this level.
+    def loggable?(level)
+      return false unless @logger
+
+      severity_index = ::Logger.const_get(level.to_s.upcase)
+      severity_index >= @logger.level
+    rescue NameError
+      false
     end
   end
 end

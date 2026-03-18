@@ -33,10 +33,15 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Runtime dependencies (add if needed)
-  spec.add_dependency "railties", "~> 7.0"
+  spec.add_dependency "castkit", "~> 0.4.0"
+  spec.add_dependency "cattri", "~> 0.2.4"
+  spec.add_dependency "concurrent-ruby", "~> 1.2"
 
   # Development dependencies
   spec.add_development_dependency "rspec", "~> 3.12"
   spec.add_development_dependency "rubocop", "~> 1.60"
+  spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "simplecov-cobertura"
+  spec.add_development_dependency "simplecov-html"
   spec.add_development_dependency "yard", "~> 0.9"
 end

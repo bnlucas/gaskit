@@ -57,6 +57,13 @@ module Gaskit
       @success
     end
 
+    # Returns the captured error (if any).
+    #
+    # @return [Exception, nil] The underlying error.
+    def exception
+      error
+    end
+
     # Indicates whether the operation failed.
     #
     # @return [Boolean] `true` if the operation failed, `false` otherwise.
