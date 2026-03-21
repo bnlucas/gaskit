@@ -51,6 +51,21 @@ RSpec.describe Gaskit::Repository do
       repo_class = build_repo_with_model
       expect { repo_class.foobar }.to raise_error(NoMethodError)
     end
+
+    it "runs hooks around delegated calls" do
+      repo_class = build_repo_with_model
+      events = []
+
+      repo_class.around lambda { |inner|
+        events << :before
+        result = inner.call
+        events << :after
+        result
+      }
+
+      expect(repo_class.find(1)).to eq("found 1")
+      expect(events).to eq(%i[before after])
+    end
   end
 
   describe ".log_execution_time" do

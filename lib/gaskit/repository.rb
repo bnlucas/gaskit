@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require_relative "core/hookable"
+
 module Gaskit
   class Repository
+    include Gaskit::Core::Hookable
     COMMON_AR_METHODS = %i[
       find find_by find_by! find_each
       where order limit offset group having
@@ -23,6 +26,7 @@ module Gaskit
         subclass.define_singleton_method(:new) do
           raise TypeError, "Repositories cannot be instantiated: #{subclass.name}"
         end
+        subclass.instance_variable_set(:@hook_runner, nil)
         super
       end
 
@@ -119,7 +123,9 @@ module Gaskit
       def delegate_common_model_methods
         COMMON_AR_METHODS.each do |method_name|
           define_singleton_method(method_name) do |*args, **kwargs, &block|
-            model.public_send(method_name, *args, **kwargs, &block)
+            hook_runner.apply_hooks(:before, :around, :after) do
+              model.public_send(method_name, *args, **kwargs, &block)
+            end
           end
         end
       end
@@ -138,6 +144,18 @@ module Gaskit
 
         false
       end
+
+      def hook_runner
+        @hook_runner ||= allocate
+      end
+    end
+
+    def logger
+      self.class.logger
+    end
+
+    def model
+      self.class.model
     end
   end
 end
