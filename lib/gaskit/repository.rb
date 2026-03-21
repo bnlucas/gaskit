@@ -11,6 +11,22 @@ module Gaskit
     ].freeze
 
     class << self
+      def rls_scope(&block)
+        return @rls_scope unless block
+
+        @rls_scope = block
+      end
+
+      def base_relation(context: nil)
+        return model unless @rls_scope
+
+        instance_exec(context, &@rls_scope)
+      end
+
+      def with_context(context)
+        ContextProxy.new(self, context)
+      end
+
       # Prevents instantiation of repository classes.
       #
       # This ensures that subclasses of `Gaskit::Repository` cannot be instantiated
@@ -118,8 +134,8 @@ module Gaskit
       # @note This method is called automatically when a model is defined using {#model}.
       def delegate_common_model_methods
         COMMON_AR_METHODS.each do |method_name|
-          define_singleton_method(method_name) do |*args, **kwargs, &block|
-            model.public_send(method_name, *args, **kwargs, &block)
+          define_singleton_method(method_name) do |*args, context: nil, **kwargs, &block|
+            base_relation(context: context).public_send(method_name, *args, **kwargs, &block)
           end
         end
       end
@@ -137,6 +153,24 @@ module Gaskit
         return true if logger.respond_to?(:level) && logger.level <= ::Logger::DEBUG
 
         false
+      end
+    end
+
+    class ContextProxy
+      def initialize(repository_class, context)
+        @repository_class = repository_class
+        @context = context
+      end
+
+      COMMON_AR_METHODS.each do |method_name|
+        define_method(method_name) do |*args, **kwargs, &block|
+          kwargs[:context] ||= @context
+          @repository_class.public_send(method_name, *args, **kwargs, &block)
+        end
+      end
+
+      def respond_to_missing?(method_name, include_private = false)
+        COMMON_AR_METHODS.include?(method_name) || super
       end
     end
   end

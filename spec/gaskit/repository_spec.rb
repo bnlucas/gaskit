@@ -53,6 +53,40 @@ RSpec.describe Gaskit::Repository do
     end
   end
 
+  describe "rls scope" do
+    let(:scoped_relation_class) do
+      Class.new do
+        def initialize(context)
+          @context = context
+        end
+
+        def where(**)
+          "scoped #{@context}"
+        end
+      end
+    end
+
+    it "defaults to the model when no scope is defined" do
+      repo_class = build_repo_with_model
+      expect(repo_class.base_relation).to eq(model_class)
+    end
+
+    it "applies the rls scope to delegated queries" do
+      repo_class = build_repo_with_model
+      repo_class.rls_scope { |_context| scoped_relation_class.new("tenant-1") }
+
+      expect(repo_class.where(name: "Test")).to eq("scoped tenant-1")
+    end
+
+    it "passes context to the scope block" do
+      repo_class = build_repo_with_model
+      repo_class.rls_scope { |context| scoped_relation_class.new(context) }
+
+      expect(repo_class.where(context: "tenant-2")).to eq("scoped tenant-2")
+      expect(repo_class.with_context("tenant-3").where).to eq("scoped tenant-3")
+    end
+  end
+
   describe ".log_execution_time" do
     let(:repo_class) { build_repo_with_model }
 
